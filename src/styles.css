@@ -1,1 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
+
+.center-text {
+  text-align: center;
+}
+
+.no-border-right {
+  border-right: 0 !important;
+}
+
+.left-right-move-1 {
+  margin-left: 1px;
+  margin-right: 1px;
+}
