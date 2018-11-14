@@ -1,1 +1,18 @@
-GD
+<div class="card text-left border-secondary mb-3">
+  <div class="card-header">
+    Fid
+  </div>
+  <ul class="list-group list-group-flush">
+    <div *ngFor="let data of geeDeeData" class="list-group-item">
+      <div class="d-flex w-100 justify-content-between">
+        <p class="mb-1">{{data.date ? data.date : 'NO DATE'}}</p>
+        <small>1 days ago</small>
+      </div>
+      <div class="data-info row">
+          <h3 class="col-md mb-1 dollar-amount">${{data.balance}}</h3>
+          <h3 class="col-md mb-1 gains-rate">+ {{data.profit ? data.profit : 'NONE'}}</h3>
+        </div>
+        <small class="text-muted">More info here.</small>
+    </div>
+  </ul>
+</div>

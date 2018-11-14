@@ -9,7 +9,16 @@ export interface Item {
   nom: ItemDetail[];
 }
 
-export interface ItemDetail {
+export class ItemDetail {
   date: string;
   balance: number;
+  age: number;
+  profit: number;
+
+  constructor(date, balance) {
+    this.date = date;
+    this.balance = balance;
+    this.age = 0;
+    this.profit = 0;
+  }
 }

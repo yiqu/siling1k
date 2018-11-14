@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../service/data.service';
 import { HttpResponse } from '@angular/common/http';
 import { DataResponse } from '../shared/models/data.model'
+import { ItemDetail } from '../shared/models/data.model';
 
 @Component({
   selector: 'app-deegee',
@@ -11,7 +12,8 @@ import { DataResponse } from '../shared/models/data.model'
 
 export class DeeGeeComponent implements OnInit {
 
-  currentData: DataResponse = null;
+  rawData: DataResponse = null;
+  geeDeeData: ItemDetail[] = [];
 
   constructor(public ds: DataService) {
 
@@ -22,18 +24,23 @@ export class DeeGeeComponent implements OnInit {
   }
 
   getData() {
+    console.log("Loading...")
     this.ds.getAllData().subscribe(
       (res: HttpResponse<DataResponse>) => {
-        this.currentData = res.body;
-        console.log(this.currentData.items.gd)
-
+        this.rawData = res.body;
+        this.extractData();
       },
       error => {
       },
       () => {
-
+        console.log("Done")
       }
     )
+  }
+
+  extractData() {
+    this.geeDeeData = this.rawData.items.gd;
+    console.log(this.geeDeeData);
   }
 
 }

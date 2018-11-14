@@ -1,0 +1,12 @@
+.data-info {
+  margin-left: 0px;
+}
+
+.gains-rate {
+  text-align: right;
+}
+
+.dollar-amount {
+  text-align: left;
+  padding-left: 0px;
+}

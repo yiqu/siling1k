@@ -1,9 +1,12 @@
 import { NgModule } from '@angular/core';
 import { DeeGeeComponent } from './deegee.component';
 import { DataService } from '../service/data.service';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
-  imports: [],
+  imports: [
+    CommonModule
+  ],
 
   exports: [
     DeeGeeComponent
