@@ -14,11 +14,13 @@ export class ItemDetail {
   balance: number;
   age: number;
   profit: number;
+  profitPercent: number;
 
   constructor(date, balance) {
     this.date = date;
     this.balance = balance;
     this.age = 0;
     this.profit = 0;
+    this.profitPercent = 0
   }
 }
