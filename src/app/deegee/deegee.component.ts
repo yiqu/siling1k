@@ -15,6 +15,7 @@ export class DeeGeeComponent implements OnInit {
 
   rawData: DataResponse = null;
   geeDeeData: ItemDetail[] = [];
+  loading: boolean = false;
 
   constructor(public ds: DataService, public cs: CalcService) {
   }
@@ -24,24 +25,26 @@ export class DeeGeeComponent implements OnInit {
   }
 
   getData() {
-    console.log("Loading...")
+    this.loading = true;
     this.ds.getAllData().subscribe(
       (res: HttpResponse<DataResponse>) => {
         this.rawData = res.body;
-        this.extractData();
       },
       error => {
+        this.loading = false;
       },
       () => {
-        console.log("Done")
+        this.loading = false;
+        this.extractData();
       }
     )
   }
 
   extractData() {
     this.geeDeeData = this.rawData.items.gd;
-    console.log(this.geeDeeData);
-    this.cs.getReturnPercent(this.geeDeeData);
+    if (this.geeDeeData.length > 1) {
+      this.cs.getReturnPercent(this.geeDeeData);
+    }
   }
 
 }
