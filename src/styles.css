@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400');
 
 .center-text {
   text-align: center;
@@ -11,4 +12,25 @@
 .left-right-move-1 {
   margin-left: 1px;
   margin-right: 1px;
+}
+
+.numbers {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 100;
+}
+
+.big-number {
+  font-size: 34px;
+}
+
+.med-number {
+  font-size: 30px;
+}
+
+.small-number {
+  font-size: 16px;
+}
+
+.spacing-half {
+  letter-spacing: 0.5px;
 }

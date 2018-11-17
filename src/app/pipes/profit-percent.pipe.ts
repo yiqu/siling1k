@@ -1,4 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { Utils } from '../shared/utils';
 
 @Pipe({name: 'profitPercent'})
 export class ProfitPercentPipe implements PipeTransform {
@@ -8,14 +9,10 @@ export class ProfitPercentPipe implements PipeTransform {
     if (isNaN(percent)) {
       return "N/A";
     } else if (percent < 0) {
-      result = this.roundUp(percent) + "%";
+      result = Utils.roundNumber(percent, 1) + "%";
     } else {
-      result = "+" + this.roundUp(percent) + "%";
+      result = "+" + Utils.roundNumber(percent, 1) + "%";
     }
     return result;
-  }
-  
-  roundUp(val: number): string {
-    return val.toFixed(2);
   }
 }

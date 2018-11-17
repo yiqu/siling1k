@@ -10,10 +10,14 @@
         <small>1 days ago</small>
       </div>
       <div class="data-info row">
-          <h3 class="col-md mb-1 dollar-amount">${{data.balance}}</h3>
-          <h3 class="col-md mb-1 gains-rate">{{data.profitPercent | profitPercent}}</h3>
-        </div>
-        <small class="text-muted">{{data.profit | profit}}</small>
+        <h3 class="col-md dollar-amount numbers med-number">${{formatCurrency(data.balance)}}</h3>
+
+        <h3 [className]="getGainsClass(data.profitPercent)">
+            {{data.profitPercent | profitPercent}}
+        </h3>
+
+      </div>
+      <small [className]="'text-muted' + ' numbers small-number'">{{data.profit | profit}}</small>
     </div>
   </ul>
 </div>

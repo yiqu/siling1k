@@ -1,4 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { Utils } from '../shared/utils';
 
 @Pipe({name: 'profit'})
 export class ProfitPipe implements PipeTransform {
@@ -7,9 +8,9 @@ export class ProfitPipe implements PipeTransform {
     if (isNaN(value)) {
       return "N/A";
     } else if (value > 0) {
-      result = "UP +$" + value;
+      result = "+$" + Utils.toLocalFormatting(value);
     } else {
-      result = "DOWN -$" + Math.abs(value);
+      result = "-$" + Utils.toLocalFormatting(Math.abs(value));
     }
     return result;
   }
