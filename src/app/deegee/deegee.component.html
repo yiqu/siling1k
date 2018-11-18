@@ -1,23 +1,5 @@
-<div class="card text-left border-secondary mb-3">
-  <img class="card-img-top" src="assets/images/fid_logo.jpg" alt="Fid Logo Img">
-  <div class="card-header">
-    Fid {{loading ? "'s data loading ..." : ''}}
-  </div>
-  <ul class="list-group list-group-flush">
-    <div *ngFor="let data of geeDeeData" class="list-group-item">
-      <div class="d-flex w-100 justify-content-between">
-        <p class="mb-1">{{data.date ? data.date : 'NO DATE'}}</p>
-        <small>1 days ago</small>
-      </div>
-      <div class="data-info row">
-        <h3 class="col-md dollar-amount numbers med-number">${{formatCurrency(data.balance)}}</h3>
-
-        <h3 [className]="getGainsClass(data.profitPercent)">
-            {{data.profitPercent | profitPercent}}
-        </h3>
-
-      </div>
-      <small [className]="'text-muted' + ' numbers small-number'">{{data.profit | profit}}</small>
-    </div>
-  </ul>
-</div>
+<app-display 
+  [displayImageUrl]="displayImageUrl"
+  [displayData]="geeDeeData"
+  [displayTitle]="displayTitle">
+</app-display>

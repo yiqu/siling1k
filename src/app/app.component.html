@@ -1,13 +1,13 @@
 <div class="container">
   <div class="row">
     <div class="col-md center-text">
-      <app-deegee></app-deegee>
+      <app-deegee [geeDeeData]="rawData?.items.gd"></app-deegee>
     </div>
     <div class="col-md center-text">
-      One of three columns
+      <app-prax [praxData]="rawData?.items.prax"></app-prax>
     </div>
     <div class="col-md center-text">
-      One of three columns
+      <app-nom [nomData]="rawData?.items.nom"></app-nom>
     </div>
   </div>
 </div>

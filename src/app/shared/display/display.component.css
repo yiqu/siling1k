@@ -1,0 +1,17 @@
+.data-info {
+  margin-left: 0px;
+}
+
+.gains-rate {
+  text-align: right;
+}
+
+.dollar-amount {
+  text-align: left;
+  padding-left: 0px;
+  letter-spacing: 0.5px;
+}
+
+.img-fixed-height {
+  height: 100px;
+}

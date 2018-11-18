@@ -6,7 +6,7 @@ import { delay } from 'rxjs/operators';
 import { HttpErrorHandler, HandleError } from './error-handler.service';
 import { DataResponse } from '../shared/models/data.model';
 import { environment } from '../../environments/environment';
-
+import { ItemDetail } from '../shared/models/data.model';
 
 @Injectable()
 export class DataService {
@@ -18,7 +18,7 @@ export class DataService {
     this.handleError = httpErrorHandler.createHandleError('DataService');
   }
 
-  getAllData(): Observable<HttpResponse<DataResponse>> {
+  getAllData$(): Observable<HttpResponse<DataResponse>> {
     let url: string = this.baseUrl + this.getDataSet();
     return this.http.get<DataResponse>(url, {observe: 'response', responseType: "json"})
       .pipe(
