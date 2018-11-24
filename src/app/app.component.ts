@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loadData();
+    //this.loadData();
     // set tooltip on for bootstrap
     setTimeout(()=> {
       this.enableJqueryTooltip();
@@ -30,20 +30,6 @@ export class AppComponent implements OnInit {
 
   enableJqueryTooltip(): void {
     $('[data-toggle="tooltip"]').tooltip()
-  }
-
-  loadData(): void {
-    this.ds.getAllData$().subscribe(
-      (res: HttpResponse<DataResponse>) => {
-        this.rawData = res.body;
-      },
-      error => {
-        this.loading = false;
-      },
-      () => {
-        this.loading = false;
-      }
-    );
   }
   
 }

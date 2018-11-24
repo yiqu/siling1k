@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { AppRoutingModule } from './app-routing.module';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http'; 
@@ -9,6 +10,9 @@ import { MessageService } from './service/message.service';
 import { DataService } from './service/data.service';
 import { NomModule } from './nom/nom.module';
 import { PraxModule } from './prax/prax.module';
+import { NavBarModule } from './shared/nav-bar/nav-bar.module';
+import { AboutModule } from './about/about.module';
+import { HomeModule } from './home/home.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +25,11 @@ import { PraxModule } from './prax/prax.module';
     HttpClientModule,
     DeeGeeModule,
     NomModule,
-    PraxModule
+    PraxModule,
+    NavBarModule,
+    AboutModule,
+    HomeModule,
+    AppRoutingModule
   ],
 
   providers: [
