@@ -18,17 +18,18 @@ export class AppComponent implements OnInit {
   loading: boolean = false;
 
   constructor(private ds: DataService, private cs: CalcService) {
-    this.enableJqueryTooltip();
   }
 
   ngOnInit() {
     this.loadData();
+    // set tooltip on for bootstrap
+    setTimeout(()=> {
+      this.enableJqueryTooltip();
+    },1000)
   }
 
   enableJqueryTooltip(): void {
-    $(function () {
-      $('[data-toggle="tooltip"]').tooltip()
-    });
+    $('[data-toggle="tooltip"]').tooltip()
   }
 
   loadData(): void {
