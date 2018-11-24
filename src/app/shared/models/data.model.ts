@@ -12,14 +12,14 @@ export interface Item {
 export class ItemDetail {
   date: string;
   balance: number;
-  age: number;
+  age: string;
+  ageInDays: number;
   profit: number;
   profitPercent: number;
 
   constructor(date, balance) {
     this.date = date;
     this.balance = balance;
-    this.age = 0;
     this.profit = 0;
     this.profitPercent = 0
   }

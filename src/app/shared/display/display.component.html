@@ -6,9 +6,13 @@
   <ul class="list-group list-group-flush">
     <div *ngFor="let data of displayData" class="list-group-item">
       <div class="d-flex w-100 justify-content-between">
-        <p class="mb-1">{{data.date ? data.date : 'NO DATE'}}</p>
-        <small>1 days ago</small>
-      </div>
+        <p class="mb-1" data-toggle="tooltip" data-html="true" data-placement="top" 
+          [title]="'<i>' + data.date + '</i>'">
+            {{data.date ? (data.date | dateFormat) : 'NO DATE'}}
+        </p>
+        <small data-toggle="tooltip" data-html="true" data-placement="top" 
+          [title]="'<b>' + data.ageInDays + ' days ago </b>'">{{data.age}}</small>
+      </div> 
       <div class="data-info row">
         <h3 class="col-md dollar-amount numbers med-number">${{formatCurrency(data.balance)}}</h3>
 
