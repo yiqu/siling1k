@@ -22,6 +22,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     console.log("at Home");
     this.loadData();
+    // have to do this everytime app switches back to this view
     this.enableJqueryTooltip();
   }
 
@@ -39,6 +40,9 @@ export class HomeComponent implements OnInit {
     );
   }
 
+  /**
+   * Enable tooltip for BS
+   */
   enableJqueryTooltip(): void {
     setTimeout(()=> {
       $('[data-toggle="tooltip"]').tooltip();
