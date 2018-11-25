@@ -12,14 +12,6 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    // set tooltip on for bootstrap
-    setTimeout(()=> {
-      this.enableJqueryTooltip();
-    },1000)
   }
 
-  enableJqueryTooltip(): void {
-    $('[data-toggle="tooltip"]').tooltip();
-  }
-  
 }
