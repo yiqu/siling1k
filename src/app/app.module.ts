@@ -13,6 +13,7 @@ import { PraxModule } from './prax/prax.module';
 import { NavBarModule } from './shared/nav-bar/nav-bar.module';
 import { AboutModule } from './about/about.module';
 import { HomeModule } from './home/home.module';
+import { NotFoundModule } from './404/404.module';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { HomeModule } from './home/home.module';
     NavBarModule,
     AboutModule,
     HomeModule,
+    NotFoundModule,
     AppRoutingModule
   ],
 

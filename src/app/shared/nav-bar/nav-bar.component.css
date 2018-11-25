@@ -8,3 +8,11 @@
 .indie-font {
   font-size: 25px;
 }
+
+.active-ul {
+  text-decoration: underline;
+}
+
+.disabled-link {
+  pointer-events: none;
+}

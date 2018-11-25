@@ -1,17 +1,12 @@
 <nav class="navbar navbar-expand-lg navbar-light sticky-top top-nav">
-  <a class="navbar-brand" href="#">
+  <a class="navbar-brand" routerLink="home">
     <img src="favicon.png" width="30" height="30" 
       class="d-inline-block align-top" alt="siling1k logo">
-        <span class="indie-font">SiLing1K</span>
+    <span class="indie-font">SiLing1K</span>
   </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-    <div class="navbar-nav">
-      <a *ngFor="let item of navItemsList" class="nav-item nav-link" href="#">{{item.display}}</a>
-
-      <a class="nav-item nav-link active" href="#">Home</a>
-    </div>
+  <div class="navbar-nav">
+    <a *ngFor="let item of navItemsList" 
+      [ngClass]="{'nav-item':true, 'nav-link':true, 'disabled-link disabled':item.disabled}" [routerLink]="item.url" 
+      routerLinkActive="active active-ul">{{item.display}}</a>
   </div>
 </nav>

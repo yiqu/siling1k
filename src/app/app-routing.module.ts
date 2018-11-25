@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
+import { NotFoundComponent } from './404/404.component';
 
  //Root routes for app
 const routes: Routes = [
@@ -20,7 +21,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: '/home'
+    component: NotFoundComponent
   }
   
 ];

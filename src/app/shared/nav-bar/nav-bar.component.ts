@@ -3,7 +3,7 @@ import { NavItem } from '../models/nav-item.model';
 
 const NAV_ITEM_LIST = [
   new NavItem("Home", "home"),
-  new NavItem("Market", "market"),
+  new NavItem("Market", "market", true),
   new NavItem("About", "about")
 ]
 
