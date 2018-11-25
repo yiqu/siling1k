@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
   }
 
   enableJqueryTooltip(): void {
-    $('[data-toggle="tooltip"]').tooltip()
+    $('[data-toggle="tooltip"]').tooltip();
   }
   
 }

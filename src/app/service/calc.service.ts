@@ -9,7 +9,6 @@ export class CalcService {
 
   constructor() { 
     this.today = moment();
-    console.log(this.today)
   }
 
   getReturnPercent(data: ItemDetail[]) {

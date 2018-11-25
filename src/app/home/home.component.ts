@@ -4,6 +4,8 @@ import { HttpResponse } from '@angular/common/http';
 import { DataResponse } from '../shared/models/data.model';
 import { CalcService } from '../service/calc.service';
 
+import * as $ from 'jquery';
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.component.html',
@@ -18,7 +20,9 @@ export class HomeComponent implements OnInit {
   constructor(private ds: DataService, private cs: CalcService) { }
 
   ngOnInit() {
+    console.log("at Home");
     this.loadData();
+    this.enableJqueryTooltip();
   }
 
   loadData(): void {
@@ -33,5 +37,11 @@ export class HomeComponent implements OnInit {
         this.loading = false;
       }
     );
+  }
+
+  enableJqueryTooltip(): void {
+    setTimeout(()=> {
+      $('[data-toggle="tooltip"]').tooltip();
+    },1000);
   }
 }
