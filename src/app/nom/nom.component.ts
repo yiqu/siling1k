@@ -2,6 +2,7 @@ import { Component, SimpleChange, Input, OnChanges } from '@angular/core';
 import { CalcService } from '../service/calc.service';
 import { DataService } from '../service/data.service';
 import { ItemDetail } from '../shared/models/data.model';
+import { ToggleAction } from '../shared/models/toggle-action.model';
 
 @Component({
   selector: 'app-nom',
@@ -24,5 +25,9 @@ export class NomComponent implements OnChanges {
     if(changes['nomData'].currentValue) {
       this.cs.getReturnPercent(this.nomData);
     }
+  }
+
+  onExpandToggleOutput(toggled: ToggleAction) {
+    console.log("1: ", toggled.toString());
   }
 }

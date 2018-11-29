@@ -48,4 +48,9 @@ export class HomeComponent implements OnInit {
       $('[data-toggle="tooltip"]').tooltip();
     },1000);
   }
+
+  onExpandToggleOutput(panelTitle) {
+    console.log("hi ",panelTitle);
+
+  }
 }

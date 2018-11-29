@@ -2,6 +2,9 @@
   <img class="card-img-top img-fixed-height" [src]="displayImageUrl" alt="SiLing Co. Logo Img">
   <div class="card-header">
     {{displayTitle}} {{displayData ? "" : "'s data loading ..."}}
+  <button class="btn btn-custom-gray pull-right" (click)="onExpandToggle(displayTitle)">
+    <i class="material-icons md-18 align-middle">{{getExpandToggleIcon()}}</i>
+  </button>
   </div>
   <ul class="list-group list-group-flush">
     <div *ngFor="let data of displayData" class="list-group-item">

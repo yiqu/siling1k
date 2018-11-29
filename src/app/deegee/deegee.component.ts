@@ -1,10 +1,12 @@
-import { Component, SimpleChange, Input, OnChanges } from '@angular/core';
+import { Component, SimpleChange, Input, OnChanges, Output } from '@angular/core';
 import { DataService } from '../service/data.service';
 import { HttpResponse } from '@angular/common/http';
 import { DataResponse } from '../shared/models/data.model'
 import { ItemDetail } from '../shared/models/data.model';
 import { CalcService } from '../service/calc.service';
 import { Utils } from '../shared/utils';
+import { ToggleAction } from '../shared/models/toggle-action.model';
+
 
 @Component({
   selector: 'app-deegee',
@@ -17,6 +19,7 @@ export class DeeGeeComponent implements OnChanges {
   @Input() 
   geeDeeData: ItemDetail[];
 
+
   displayImageUrl: string = "assets/images/fid_logo.jpg";
   displayTitle: string = "Fid";
 
@@ -27,6 +30,10 @@ export class DeeGeeComponent implements OnChanges {
     if(changes['geeDeeData'].currentValue) {
       this.cs.getReturnPercent(this.geeDeeData);
     }
+  }
+
+  onExpandToggleOutput(toggled: ToggleAction) {
+    console.log("1: ", toggled.toString());
   }
 
 }

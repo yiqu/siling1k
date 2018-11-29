@@ -21,3 +21,11 @@
 .m-top {
   margin-top: 10px;
 }
+
+.pull-right {
+  float: right;
+}
+
+.align-midle {
+  vertical-align: text-top;
+}

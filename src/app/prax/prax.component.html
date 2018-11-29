@@ -1,5 +1,6 @@
 <app-display 
   [displayImageUrl]="displayImageUrl"
   [displayData]="praxData"
-  [displayTitle]="displayTitle">
+  [displayTitle]="displayTitle"
+  (toggledItem)="onExpandToggleOutput($event)">
 </app-display>
