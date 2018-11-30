@@ -13,7 +13,8 @@
 }
 
 .img-fixed-height {
-  height: 100px;
+  max-height: 100px;
+  max-width: 350px;
 }
 
 .btn-custom-gray {

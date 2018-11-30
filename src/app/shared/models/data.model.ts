@@ -1,6 +1,6 @@
 export interface DataResponse {
   total_count: number;
-  items: Item;
+  items: any;
 }
 
 export interface Item {

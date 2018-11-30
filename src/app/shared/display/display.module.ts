@@ -11,7 +11,8 @@ import { DataService } from '../../service/data.service';
   ],
 
   exports: [
-    DisplayComponent
+    DisplayComponent,
+    CommonModule
   ],
 
   declarations: [

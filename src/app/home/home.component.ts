@@ -1,10 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, AfterViewInit } from '@angular/core';
 import { DataService } from '../service/data.service';
 import { HttpResponse } from '@angular/common/http';
 import { DataResponse } from '../shared/models/data.model';
 import { CalcService } from '../service/calc.service';
+import { ToggleService } from '../service/toggle.service';
+import { PanelItem } from '../shared/models/panel.model';
 
 import * as $ from 'jquery';
+import { ToggleAction } from '../shared/models/toggle-action.model';
 
 @Component({
   selector: 'app-home',
@@ -15,15 +18,27 @@ import * as $ from 'jquery';
 export class HomeComponent implements OnInit {
 
   rawData: DataResponse = null;
+  listOfPanels: string[] = [];
   loading: boolean = false;
 
-  constructor(private ds: DataService, private cs: CalcService) { }
+  fidDisplayImageUrl: string = "assets/images/fid_logo.jpg";
+  fidDisplayTitle: string = "Fidelity";
+  ascDisplayImageUrl: string = "assets/images/asc_logo.jpg";
+  ascDisplayTitle: string = "Ascensus";
+  empDisplayImageUrl: string = "assets/images/emp_logo.png";
+  empDisplayTitle: string = "Empower";
+
+  constructor(private ds: DataService, public cs: CalcService, public ts: ToggleService, private cdRef:ChangeDetectorRef) { 
+  }
+
+  ngAfterViewInit() {
+  }
 
   ngOnInit() {
     console.log("at Home");
     this.loadData();
     // have to do this everytime app switches back to this view
-    this.enableJqueryTooltip();
+    //this.enableJqueryTooltip();
   }
 
   loadData(): void {
@@ -35,9 +50,16 @@ export class HomeComponent implements OnInit {
         this.loading = false;
       },
       () => {
-        this.loading = false;
+        this.extraData();
       }
     );
+  }
+
+  extraData() {
+    Object.keys(this.rawData.items).forEach((panelKey) => {
+      this.listOfPanels.push(panelKey);
+    });
+    console.log(this.listOfPanels)
   }
 
   /**
@@ -48,9 +70,41 @@ export class HomeComponent implements OnInit {
       $('[data-toggle="tooltip"]').tooltip();
     },1000);
   }
+  
+  getPanelItemDetails(panelKey: string): PanelItem {
+    if (this.rawData) {
+      let result: PanelItem = new PanelItem("", "", null);
+      let data = this.rawData.items[panelKey];
+      switch (panelKey) {
+        case "gd": 
+          result.title = this.fidDisplayTitle;
+          result.displayUrl = this.fidDisplayImageUrl;
+          //result.dataArray = this.cs.getReturnPercent(data);
+          result.dataArray = data;
+          break;
+        case "prax": 
+          result.title = this.empDisplayTitle;
+          result.displayUrl = this.empDisplayImageUrl;
+          //result.dataArray = this.cs.getReturnPercent(data);
+          result.dataArray = data;
+          break;
+        
+        case "nom": 
+          result.title = this.ascDisplayTitle;
+          result.displayUrl = this.ascDisplayImageUrl;
+          //result.dataArray = this.cs.getReturnPercent(data);
+          result.dataArray = data;
+          break;
+        
+      };
+      console.log(panelKey, "dsd")
+      return result;
+    }
+  }
 
-  onExpandToggleOutput(panelTitle) {
-    console.log("hi ",panelTitle);
 
+  onPanelToggled(panelTitle: ToggleAction) {
+    this.ts.currentToggledPanel = panelTitle;
+    console.log(this.ts.currentToggledPanel);
   }
 }

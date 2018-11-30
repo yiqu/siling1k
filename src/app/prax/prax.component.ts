@@ -1,4 +1,4 @@
-import { Component, SimpleChange, Input, OnChanges } from '@angular/core';
+import { Component, SimpleChange, Input, OnChanges, Output, EventEmitter } from '@angular/core';
 import { CalcService } from '../service/calc.service';
 import { DataService } from '../service/data.service';
 import { ItemDetail } from '../shared/models/data.model';
@@ -15,6 +15,9 @@ export class PraxComponent implements OnChanges {
   @Input() 
   praxData: ItemDetail[];
 
+  @Output()
+  toggled: EventEmitter<ToggleAction> = new EventEmitter<ToggleAction>();
+
   displayImageUrl: string = "assets/images/emp_logo.png";
   displayTitle: string = "Empower";
 
@@ -28,6 +31,6 @@ export class PraxComponent implements OnChanges {
   }
 
   onExpandToggleOutput(toggled: ToggleAction) {
-    console.log("1: ", toggled.toString());
+    this.toggled.emit(toggled);
   }
 }

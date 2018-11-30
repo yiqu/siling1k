@@ -3,12 +3,12 @@ import { HomeComponent } from './home.component';
 import { NomModule } from '../nom/nom.module';
 import { DeeGeeModule } from '../deegee/deegee.module';
 import { PraxModule } from '../prax/prax.module';
+import { ToggleService } from '../service/toggle.service';
+import { DisplayModule } from '../shared/display/display.module';
 
 @NgModule({
   imports: [
-    NomModule,
-    DeeGeeModule,
-    PraxModule
+    DisplayModule
   ],
 
   exports: [
@@ -19,6 +19,8 @@ import { PraxModule } from '../prax/prax.module';
     HomeComponent
   ],
 
-  providers: [],
+  providers: [
+    ToggleService
+  ],
 })
 export class HomeModule { }

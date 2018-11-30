@@ -1,4 +1,4 @@
-import { Component, SimpleChange, Input, OnChanges, Output } from '@angular/core';
+import { Component, SimpleChange, Input, OnChanges, Output, EventEmitter } from '@angular/core';
 import { DataService } from '../service/data.service';
 import { HttpResponse } from '@angular/common/http';
 import { DataResponse } from '../shared/models/data.model'
@@ -19,9 +19,12 @@ export class DeeGeeComponent implements OnChanges {
   @Input() 
   geeDeeData: ItemDetail[];
 
+  @Output()
+  toggled: EventEmitter<ToggleAction> = new EventEmitter<ToggleAction>();
+
 
   displayImageUrl: string = "assets/images/fid_logo.jpg";
-  displayTitle: string = "Fid";
+  displayTitle: string = "Fidelity";
 
   constructor(public ds: DataService, public cs: CalcService) {
   }
@@ -33,7 +36,7 @@ export class DeeGeeComponent implements OnChanges {
   }
 
   onExpandToggleOutput(toggled: ToggleAction) {
-    console.log("1: ", toggled.toString());
+    this.toggled.emit(toggled);
   }
 
 }

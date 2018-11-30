@@ -1,11 +1,9 @@
-<div class="row">
-  <div class="col-md-4 center-text">
-    <app-deegee [geeDeeData]="rawData?.items.gd"></app-deegee>
-  </div>
-  <div class="col-md-4 center-text">
-    <app-prax [praxData]="rawData?.items.prax"></app-prax>
-  </div>
-  <div class="col-md-4 center-text">
-    <app-nom [nomData]="rawData?.items.nom"></app-nom>
+<div *ngIf="rawData" class="row">
+  <div *ngFor="let panelKey of listOfPanels" class="col-md center-text">
+    <app-display 
+      [displayImageUrl]="getPanelItemDetails(panelKey).displayUrl"
+      [displayData]="getPanelItemDetails(panelKey).dataArray"
+      [displayTitle]="getPanelItemDetails(panelKey).title">
+    </app-display>
   </div>
 </div>

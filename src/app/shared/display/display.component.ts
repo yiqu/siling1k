@@ -1,8 +1,9 @@
 import { Component, SimpleChange, Input, OnChanges, Output, EventEmitter } from '@angular/core';
 import { ItemDetail } from '../models/data.model';
 import { Utils } from '../utils';
-import { DataService } from 'src/app/service/data.service';
+import { CalcService } from '../../service/calc.service';
 import { ToggleAction } from '../models/toggle-action.model';
+
 
 @Component({
   selector: 'app-display',
@@ -15,9 +16,12 @@ export class DisplayComponent implements OnChanges {
   @Input()
   displayImageUrl: string;
   @Input()
-  displayData: ItemDetail;
+  displayData: ItemDetail[];
   @Input()
   displayTitle: string;
+  @Input()
+  reset: boolean;
+  
   @Output()
   toggledItem: EventEmitter<ToggleAction> = new EventEmitter<ToggleAction>();
 
@@ -25,9 +29,13 @@ export class DisplayComponent implements OnChanges {
   toggleAction: ToggleAction;
 
   ngOnChanges(changes: {[propKey: string]: SimpleChange}) {
+    //console.log("changes", changes['displayData'])
+    console.log(this.displayData)
+    this.displayData = this.cs.getReturnPercent(this.displayData);
+
   }
 
-  constructor() {
+  constructor(private cs: CalcService) {
     this.toggleAction = new ToggleAction(null, null);
   }
 
@@ -46,7 +54,6 @@ export class DisplayComponent implements OnChanges {
     this.toggleAction.setItemId(panelToggled);
     this.toggleAction.setActionId(this.isPanelExpanded ? "expand" : "collapse");
     this.toggledItem.emit(this.toggleAction);
-
   }
 
   getExpandToggleIcon(): string {

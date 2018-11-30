@@ -12,9 +12,9 @@ export class CalcService {
   }
 
   getReturnPercent(data: ItemDetail[]) {
+    console.log(data)
     if (data) {
       for (let i=1; i<data.length; i++) {
-        data[i].profit = 0.5;
         let profit: number = data[i].balance - data[i-1].balance;
         data[i].profit = profit;
         let percent = (profit / data[i-1].balance);
@@ -25,6 +25,7 @@ export class CalcService {
         data[i].ageInDays = moment(this.today).diff(dateCreated, 'days');
       }
       this.reverseArray(data);
+      return data;
     }
   }
 
