@@ -19,8 +19,6 @@ export class DisplayComponent implements OnChanges {
   displayData: ItemDetail[];
   @Input()
   displayTitle: string;
-  @Input()
-  reset: boolean;
   
   @Output()
   toggledItem: EventEmitter<ToggleAction> = new EventEmitter<ToggleAction>();

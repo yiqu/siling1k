@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, AfterViewInit, ChangeDetectionStrategy } from '@angular/core';
 import { DataService } from '../service/data.service';
 import { HttpResponse } from '@angular/common/http';
 import { DataResponse } from '../shared/models/data.model';
@@ -12,6 +12,7 @@ import { ToggleAction } from '../shared/models/toggle-action.model';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./home.component.css']
 })
 
@@ -38,7 +39,7 @@ export class HomeComponent implements OnInit {
     console.log("at Home");
     this.loadData();
     // have to do this everytime app switches back to this view
-    //this.enableJqueryTooltip();
+    this.enableJqueryTooltip();
   }
 
   loadData(): void {
@@ -51,6 +52,8 @@ export class HomeComponent implements OnInit {
       },
       () => {
         this.extraData();
+        // Manually run detection change after data is loaded
+        this.cdRef.markForCheck();
       }
     );
   }
@@ -59,7 +62,6 @@ export class HomeComponent implements OnInit {
     Object.keys(this.rawData.items).forEach((panelKey) => {
       this.listOfPanels.push(panelKey);
     });
-    console.log(this.listOfPanels)
   }
 
   /**
@@ -79,29 +81,25 @@ export class HomeComponent implements OnInit {
         case "gd": 
           result.title = this.fidDisplayTitle;
           result.displayUrl = this.fidDisplayImageUrl;
-          //result.dataArray = this.cs.getReturnPercent(data);
           result.dataArray = data;
           break;
         case "prax": 
           result.title = this.empDisplayTitle;
           result.displayUrl = this.empDisplayImageUrl;
-          //result.dataArray = this.cs.getReturnPercent(data);
           result.dataArray = data;
           break;
         
         case "nom": 
           result.title = this.ascDisplayTitle;
           result.displayUrl = this.ascDisplayImageUrl;
-          //result.dataArray = this.cs.getReturnPercent(data);
           result.dataArray = data;
           break;
         
       };
-      console.log(panelKey, "dsd")
+      console.log('Got details');
       return result;
     }
   }
-
 
   onPanelToggled(panelTitle: ToggleAction) {
     this.ts.currentToggledPanel = panelTitle;
