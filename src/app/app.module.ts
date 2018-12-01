@@ -11,6 +11,7 @@ import { NavBarModule } from './shared/nav-bar/nav-bar.module';
 import { AboutModule } from './about/about.module';
 import { HomeModule } from './home/home.module';
 import { NotFoundModule } from './404/404.module';
+import { LoadingModule } from './shared/loading/loading.module';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { NotFoundModule } from './404/404.module';
     AboutModule,
     HomeModule,
     NotFoundModule,
+    LoadingModule,
     AppRoutingModule
   ],
 

@@ -1,4 +1,4 @@
-<div *ngIf="rawData" class="row">
+<div *ngIf="rawData; else loading" class="row">
   <div *ngFor="let panelKey of listOfPanels" class="col-md center-text">
     <app-display 
       [displayImageUrl]="getPanelItemDetails(panelKey).displayUrl"
@@ -8,3 +8,7 @@
     </app-display>
   </div>
 </div>
+
+<ng-template #loading>
+  <app-loading></app-loading>
+</ng-template>

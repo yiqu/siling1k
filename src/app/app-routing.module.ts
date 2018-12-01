@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { NotFoundComponent } from './404/404.component';
+import { LoadingComponent } from './shared/loading/loading.component';
 
  //Root routes for app
 const routes: Routes = [
@@ -13,6 +14,10 @@ const routes: Routes = [
   {
     path: 'about', 
     component: AboutComponent
+  },
+  {
+    path: 'loading',
+    component: LoadingComponent
   },
   { 
     path: '', 

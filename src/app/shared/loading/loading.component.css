@@ -1,0 +1,15 @@
+.indie-font-large {
+  font-family: 'Indie Flower', cursive;
+  font-size: 70px;
+  vertical-align: bottom;
+}
+
+.indie-font-med {
+  font-family: 'Indie Flower', cursive;
+  font-size: 40px;
+}
+
+.center-text {
+  text-align: center;
+  padding-top: 20vh;
+}
