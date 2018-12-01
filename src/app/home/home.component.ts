@@ -29,7 +29,8 @@ export class HomeComponent implements OnInit {
   empDisplayImageUrl: string = "assets/images/emp_logo.png";
   empDisplayTitle: string = "Empower";
 
-  constructor(private ds: DataService, public cs: CalcService, public ts: ToggleService, private cdRef:ChangeDetectorRef) { 
+  constructor(private ds: DataService, public cs: CalcService, public ts: ToggleService, 
+    private cdRef:ChangeDetectorRef) { 
   }
 
   ngAfterViewInit() {
@@ -96,13 +97,13 @@ export class HomeComponent implements OnInit {
           break;
         
       };
-      console.log('Got details');
+      //console.log('Got details');
       return result;
     }
   }
 
-  onPanelToggled(panelTitle: ToggleAction) {
-    this.ts.currentToggledPanel = panelTitle;
+  onPanelToggle(panel: ToggleAction) {
+    this.ts.currentToggledPanel = panel;
     console.log(this.ts.currentToggledPanel);
   }
 }

@@ -4,12 +4,9 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http'; 
 import { FormsModule } from '@angular/forms';
-import { DeeGeeModule } from './deegee/deegee.module';
 import { HttpErrorHandler } from './service/error-handler.service';
 import { MessageService } from './service/message.service';
 import { DataService } from './service/data.service';
-import { NomModule } from './nom/nom.module';
-import { PraxModule } from './prax/prax.module';
 import { NavBarModule } from './shared/nav-bar/nav-bar.module';
 import { AboutModule } from './about/about.module';
 import { HomeModule } from './home/home.module';
@@ -24,9 +21,6 @@ import { NotFoundModule } from './404/404.module';
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    DeeGeeModule,
-    NomModule,
-    PraxModule,
     NavBarModule,
     AboutModule,
     HomeModule,

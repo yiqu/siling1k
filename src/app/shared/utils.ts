@@ -10,6 +10,11 @@ export class Utils {
     return num.toFixed(decimal);
   }
 
+  /**
+   * Round to 2 digit, and insert comma seperator
+   * @param num 
+   * @param decimal 
+   */
   public static toLocalFormatting(num: number, decimal: number = 2): string {
     return num.toLocaleString(undefined, {minimumFractionDigits: 2});
   }

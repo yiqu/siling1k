@@ -5,7 +5,6 @@ import { ToggleAction } from '../shared/models/toggle-action.model';
 export class ToggleService {
 
   currentToggledPanel: ToggleAction;
-  public panelItemsList: string[] = ["Fidelity", "Empower", "Ascensus"];
 
   constructor() {
   }

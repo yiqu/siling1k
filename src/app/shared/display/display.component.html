@@ -1,5 +1,7 @@
 <div class="card text-left border-secondary mb-1 mt-1">
-  <img class="card-img-top img-fixed-height img-center" [src]="displayImageUrl" alt="SiLing Co. Logo Img">
+  <div class="img-center" [ngStyle]="{'background-color': (displayTitle === 'Fidelity'?'#67941e':'#fff')}">
+    <img class="card-img-top img-fixed-height" [src]="displayImageUrl" alt="SiLing Co. Logo Img"
+  ></div>
   <div class="card-header">
     {{displayTitle}} {{displayData ? "" : "'s data loading ..."}}
   <button class="btn btn-custom-gray pull-right" (click)="onExpandToggle(displayTitle)">

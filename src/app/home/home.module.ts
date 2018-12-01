@@ -1,8 +1,5 @@
 import { NgModule } from '@angular/core';
 import { HomeComponent } from './home.component';
-import { NomModule } from '../nom/nom.module';
-import { DeeGeeModule } from '../deegee/deegee.module';
-import { PraxModule } from '../prax/prax.module';
 import { ToggleService } from '../service/toggle.service';
 import { DisplayModule } from '../shared/display/display.module';
 

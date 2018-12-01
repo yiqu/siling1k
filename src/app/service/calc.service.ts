@@ -12,7 +12,6 @@ export class CalcService {
   }
 
   getReturnPercent(data: ItemDetail[]) {
-    console.log(data)
     if (data) {
       for (let i=1; i<data.length; i++) {
         let profit: number = data[i].balance - data[i-1].balance;

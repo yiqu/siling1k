@@ -21,14 +21,14 @@ export class DisplayComponent implements OnChanges {
   displayTitle: string;
   
   @Output()
-  toggledItem: EventEmitter<ToggleAction> = new EventEmitter<ToggleAction>();
+  toggledPanel: EventEmitter<ToggleAction> = new EventEmitter<ToggleAction>();
 
   isPanelExpanded: boolean = false;
   toggleAction: ToggleAction;
 
   ngOnChanges(changes: {[propKey: string]: SimpleChange}) {
     //console.log("changes", changes['displayData'])
-    console.log(this.displayData)
+    console.log('Changes')
     this.displayData = this.cs.getReturnPercent(this.displayData);
 
   }
@@ -51,7 +51,7 @@ export class DisplayComponent implements OnChanges {
     this.isPanelExpanded = !this.isPanelExpanded;
     this.toggleAction.setItemId(panelToggled);
     this.toggleAction.setActionId(this.isPanelExpanded ? "expand" : "collapse");
-    this.toggledItem.emit(this.toggleAction);
+    this.toggledPanel.emit(this.toggleAction);
   }
 
   getExpandToggleIcon(): string {

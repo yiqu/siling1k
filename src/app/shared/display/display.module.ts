@@ -3,6 +3,7 @@ import { DisplayComponent } from './display.component';
 import { CommonModule } from '@angular/common';
 import { PipeModule } from '../../pipes/pipe-barrel.module';
 import { DataService } from '../../service/data.service';
+import { CalcService } from '../../service/calc.service';
 
 @NgModule({
   imports: [
@@ -20,7 +21,8 @@ import { DataService } from '../../service/data.service';
   ],
 
   providers: [
-    DataService
+    DataService,
+    CalcService
   ],
 })
 export class DisplayModule { }

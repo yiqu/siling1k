@@ -23,5 +23,9 @@
 }
 
 .img-center {
-  margin: 0 auto;
+  text-align: center;
+}
+
+.fid-background-green {
+  background-color: #67941e;
 }
