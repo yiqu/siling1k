@@ -8,7 +8,7 @@
       see {{expandText}} <i class="material-icons md-18">{{getExpandToggleIcon()}}</i>
     </button>
   </div>
-  <ul class="list-group list-group-flush">
+  <ul *ngIf="displayData" class="list-group list-group-flush">
     <div *ngFor="let data of displayData.slice().reverse()" class="list-group-item font-roboto">
       <div class="d-flex w-100 justify-content-between">
         <p class="mb-1" data-toggle="tooltip" data-html="true" data-placement="top" 
