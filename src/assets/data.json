@@ -1,7 +1,7 @@
 {
   "total_count": 1,
   "items": {
-    "gd": [
+    "Fidelity": [
       {
         "date": "07/08/2013",
         "balance": 1.00
@@ -52,7 +52,7 @@
       }
       
     ],
-    "prax": [
+    "Empower": [
       {
         "date": "12/31/2016",
         "balance": 1383.81
@@ -106,7 +106,7 @@
         "balance": 27381.24
       }
     ],
-    "nom": [
+    "Ascensus": [
       {
         "date": "09/30/2018",
         "balance": 1337.42
