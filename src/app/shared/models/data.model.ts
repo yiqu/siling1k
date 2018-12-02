@@ -3,12 +3,6 @@ export interface DataResponse {
   items: any;
 }
 
-export interface Item {
-  gd: ItemDetail[];
-  prax: ItemDetail[];
-  nom: ItemDetail[];
-}
-
 export class ItemDetail {
   date: string;
   balance: number;

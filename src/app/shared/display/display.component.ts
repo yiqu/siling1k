@@ -2,15 +2,16 @@ import { Component, SimpleChange, Input, OnChanges, Output, EventEmitter } from 
 import { ItemDetail } from '../models/data.model';
 import { Utils } from '../utils';
 import { CalcService } from '../../service/calc.service';
+import { ToggleService } from '../../service/toggle.service';
 import { ToggleAction } from '../models/toggle-action.model';
 
 
 @Component({
   selector: 'app-display',
   templateUrl: 'display.component.html',
-  styleUrls: ['display.component.css', '../../app.component.css']
+  styleUrls: ['display.component.css', '../../app.component.css',
+  '../loading/loading.component.css']
 })
-
 export class DisplayComponent implements OnChanges {
   
   @Input()
@@ -19,18 +20,30 @@ export class DisplayComponent implements OnChanges {
   displayData: ItemDetail[];
   @Input()
   displayTitle: string;
+  @Input()
+  isExpanded: boolean;
   
   @Output()
   toggledPanel: EventEmitter<ToggleAction> = new EventEmitter<ToggleAction>();
 
   isPanelExpanded: boolean = false;
   toggleAction: ToggleAction;
+  expandText: string = "details";
+  data: ItemDetail[];
+  rev: ItemDetail[]
 
   ngOnChanges(changes: {[propKey: string]: SimpleChange}) {
-    //console.log("changes", changes['displayData'])
-    console.log('Changes')
-    this.displayData = this.cs.getReturnPercent(this.displayData);
-
+    console.log("is it ",changes.isExpanded.currentValue)
+    
+    // check if the current rendered Display Component is a detailed (expanded) version
+    if (changes.isExpanded.currentValue) {
+      this.isPanelExpanded = true;
+      this.expandText = "less";
+    }
+    if (changes.displayData.currentValue) {
+      console.log("chang")
+      this.displayData = this.cs.getReturnPercent(this.displayData);
+    }
   }
 
   constructor(private cs: CalcService) {

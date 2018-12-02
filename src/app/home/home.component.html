@@ -1,11 +1,27 @@
-<div *ngIf="rawData; else loading" class="row">
-  <div *ngFor="let panelKey of listOfPanels" class="col-md center-text">
-    <app-display 
-      [displayImageUrl]="getPanelItemDetails(panelKey).displayUrl"
-      [displayData]="getPanelItemDetails(panelKey).dataArray"
-      [displayTitle]="getPanelItemDetails(panelKey).title"
+<div *ngIf="rawData; else loading">
+  <div *ngIf="!getShowPanelDetail()" class="row">
+    <div *ngFor="let panelKey of listOfPanels" class="col-md center-text">
+      <app-display 
+        [displayImageUrl]="getPanelItemDetails(panelKey).displayUrl"
+        [displayData]="getPanelItemDetails(panelKey).dataArray"
+        [displayTitle]="getPanelItemDetails(panelKey).title"
+        [isExpanded]="false"
+        (toggledPanel)="onPanelToggle($event)">
+      </app-display>
+    </div>
+  </div>
+
+  <div *ngIf="getShowPanelDetail()" class="row">
+    <app-display class="col-md-6"
+      [displayImageUrl]="getPanelItemDetails(ts.currentToggledPanel.getItemId()).displayUrl"
+      [displayData]="getPanelItemDetails(ts.currentToggledPanel.getItemId()).dataArray"
+      [displayTitle]="getPanelItemDetails(ts.currentToggledPanel.getItemId()).title"
+      [isExpanded]="true"
       (toggledPanel)="onPanelToggle($event)">
     </app-display>
+    <div class="col-md-6">
+      Details!
+    </div>
   </div>
 </div>
 

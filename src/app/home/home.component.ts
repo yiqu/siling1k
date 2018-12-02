@@ -13,13 +13,12 @@ import { ToggleAction } from '../shared/models/toggle-action.model';
   selector: 'app-home',
   templateUrl: 'home.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
 })
-
 export class HomeComponent implements OnInit {
 
   rawData: DataResponse = null;
-  listOfPanels: string[] = [];
+  listOfPanels: Set<string> = new Set();
   loading: boolean = false;
 
   fidDisplayImageUrl: string = "assets/images/fid_logo.jpg";
@@ -37,7 +36,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log("at Home");
+    //console.log("at Home", this.ts.currentToggledPanel);
     this.loadData();
     // have to do this everytime app switches back to this view
     this.enableJqueryTooltip();
@@ -59,9 +58,12 @@ export class HomeComponent implements OnInit {
     );
   }
 
+  /**
+   * Get number of panels in response
+   */
   extraData() {
     Object.keys(this.rawData.items).forEach((panelKey) => {
-      this.listOfPanels.push(panelKey);
+      this.listOfPanels.add(panelKey);
     });
   }
 
@@ -79,31 +81,36 @@ export class HomeComponent implements OnInit {
       let result: PanelItem = new PanelItem("", "", null);
       let data = this.rawData.items[panelKey];
       switch (panelKey) {
-        case "gd": 
+        case "Fidelity": 
           result.title = this.fidDisplayTitle;
           result.displayUrl = this.fidDisplayImageUrl;
           result.dataArray = data;
           break;
-        case "prax": 
+        case "Empower": 
           result.title = this.empDisplayTitle;
           result.displayUrl = this.empDisplayImageUrl;
           result.dataArray = data;
           break;
-        
-        case "nom": 
+        case "Ascensus": 
           result.title = this.ascDisplayTitle;
           result.displayUrl = this.ascDisplayImageUrl;
           result.dataArray = data;
           break;
-        
+        default:
+          result.title = "New Title";
+          result.displayUrl = "";
+          result.dataArray = null;
       };
-      //console.log('Got details');
+      //console.log('Got details', result);
       return result;
     }
   }
 
   onPanelToggle(panel: ToggleAction) {
     this.ts.currentToggledPanel = panel;
-    console.log(this.ts.currentToggledPanel);
+  }
+
+  getShowPanelDetail(): boolean {
+    return this.ts.currentToggledPanel && this.ts.currentToggledPanel.getActionId() === 'expand';
   }
 }

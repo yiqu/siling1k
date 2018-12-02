@@ -22,7 +22,7 @@ export class DataService {
     let url: string = this.baseUrl + this.getDataSet();
     return this.http.get<DataResponse>(url, {observe: 'response', responseType: "json"})
       .pipe(
-       // delay(1000)
+        delay(environment.restDelay)
       );
   }
 

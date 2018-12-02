@@ -22,10 +22,27 @@
   background-color: #a6a6a6;
 }
 
+.btn-custom-gray:hover {
+  color: #595959;
+}
+
 .img-center {
   text-align: center;
 }
 
 .fid-background-green {
   background-color: #67941e;
+}
+
+.panel-header {
+  font-family: 'Roboto', sans-serif;
+  font-size: 24px;
+}
+
+.card-header.header {
+  color: #8c8c8c;
+}
+
+.header:hover {
+  color: #595959;
 }

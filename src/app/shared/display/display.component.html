@@ -1,15 +1,15 @@
 <div class="card text-left border-secondary mb-1 mt-1">
   <div class="img-center" [ngStyle]="{'background-color': (displayTitle === 'Fidelity'?'#67941e':'#fff')}">
-    <img class="card-img-top img-fixed-height" [src]="displayImageUrl" alt="SiLing Co. Logo Img"
-  ></div>
-  <div class="card-header">
-    {{displayTitle}} {{displayData ? "" : "'s data loading ..."}}
-  <button class="btn btn-custom-gray pull-right" (click)="onExpandToggle(displayTitle)">
-    <i class="material-icons md-18 align-middle">{{getExpandToggleIcon()}}</i>
-  </button>
+    <img class="card-img-top img-fixed-height" [src]="displayImageUrl" alt="SiLing Co. Img">
+  </div>
+  <div class="card-header header">
+    <span class="panel-header">{{displayTitle}} {{displayData ? "" : "'s data loading ..."}}</span>
+    <button class="btn btn-custom-gray pull-right" (click)="onExpandToggle(displayTitle)">
+      see {{expandText}} <i class="material-icons md-18">{{getExpandToggleIcon()}}</i>
+    </button>
   </div>
   <ul class="list-group list-group-flush">
-    <div *ngFor="let data of displayData" class="list-group-item">
+    <div *ngFor="let data of displayData.slice().reverse()" class="list-group-item font-roboto">
       <div class="d-flex w-100 justify-content-between">
         <p class="mb-1" data-toggle="tooltip" data-html="true" data-placement="top" 
           [title]="'<i>' + data.date + '</i>'">

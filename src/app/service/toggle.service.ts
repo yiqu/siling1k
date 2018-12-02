@@ -4,7 +4,7 @@ import { ToggleAction } from '../shared/models/toggle-action.model';
 @Injectable()
 export class ToggleService {
 
-  currentToggledPanel: ToggleAction;
+  currentToggledPanel: ToggleAction = null;
 
   constructor() {
   }
