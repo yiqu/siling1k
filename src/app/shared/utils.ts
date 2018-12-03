@@ -1,6 +1,8 @@
 /**
  * Utils class containing util methods
  */
+import * as $ from 'jquery';
+
 export class Utils {
 
   /**
@@ -17,5 +19,11 @@ export class Utils {
    */
   public static toLocalFormatting(num: number, decimal: number = 2): string {
     return num.toLocaleString(undefined, {minimumFractionDigits: 2});
+  }
+
+  public static enableJqueryTooltip(): void {
+    setTimeout(()=> {
+      $('[data-toggle="tooltip"]').tooltip();
+    },2000);
   }
 }

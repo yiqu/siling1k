@@ -5,9 +5,8 @@ import { DataResponse } from '../shared/models/data.model';
 import { CalcService } from '../service/calc.service';
 import { ToggleService } from '../service/toggle.service';
 import { PanelItem } from '../shared/models/panel.model';
-
-import * as $ from 'jquery';
 import { ToggleAction } from '../shared/models/toggle-action.model';
+import { Utils } from '../shared/utils';
 
 @Component({
   selector: 'app-home',
@@ -39,7 +38,7 @@ export class HomeComponent implements OnInit {
     //console.log("at Home", this.ts.currentToggledPanel);
     this.loadData();
     // have to do this everytime app switches back to this view
-    this.enableJqueryTooltip();
+    Utils.enableJqueryTooltip();
   }
 
   loadData(): void {
@@ -67,15 +66,6 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  /**
-   * Enable tooltip for BS
-   */
-  enableJqueryTooltip(): void {
-    setTimeout(()=> {
-      $('[data-toggle="tooltip"]').tooltip();
-    },1000);
-  }
-  
   getPanelItemDetails(panelKey: string): PanelItem {
     if (this.rawData) {
       let result: PanelItem = new PanelItem("", "", null);

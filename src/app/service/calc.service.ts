@@ -13,7 +13,6 @@ export class CalcService {
 
   getReturnPercent(data: ItemDetail[], reverse: boolean = true) {
     if (data) {
-      console.log(data)
       for (let i=1; i<data.length; i++) {
         let profit: number = data[i].balance - data[i-1].balance;
         data[i].profit = profit;
@@ -24,15 +23,8 @@ export class CalcService {
         data[i].age = age;
         data[i].ageInDays = moment(this.today).diff(dateCreated, 'days');
       }
-      if (reverse) {
-        //this.reverseArray(data);
-      }
       return data;
     }
-  }
-
-  reverseArray(arr: any[]): any[] {
-    return arr.reverse();
   }
 
 }

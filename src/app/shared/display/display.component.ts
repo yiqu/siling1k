@@ -33,7 +33,8 @@ export class DisplayComponent implements OnChanges {
   rev: ItemDetail[]
 
   ngOnChanges(changes: {[propKey: string]: SimpleChange}) {
-    console.log("is it ",changes.isExpanded.currentValue)
+    // Enable jq tooltip
+    Utils.enableJqueryTooltip();
     
     // check if the current rendered Display Component is a detailed (expanded) version
     if (changes.isExpanded.currentValue) {
@@ -41,7 +42,6 @@ export class DisplayComponent implements OnChanges {
       this.expandText = "less";
     }
     if (changes.displayData.currentValue) {
-      console.log("chang")
       this.displayData = this.cs.getReturnPercent(this.displayData);
     }
   }
