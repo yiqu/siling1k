@@ -1,4 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
@@ -20,6 +22,23 @@ import { LoadingModule } from './shared/loading/loading.module';
 
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 5000,
+      extendedTimeOut: 1000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: false,
+      closeButton: true,
+      enableHtml: true,
+      progressBar: true,
+      newestOnTop: true,
+      iconClasses : {
+        error: 'toast-error',
+        info: 'toast-info',
+        success: 'toast-success',
+        warning: 'toast-warning'
+      }
+    }),
     FormsModule,
     HttpClientModule,
     NavBarModule,

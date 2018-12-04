@@ -7,6 +7,7 @@ import { ToggleService } from '../service/toggle.service';
 import { PanelItem } from '../shared/models/panel.model';
 import { ToggleAction } from '../shared/models/toggle-action.model';
 import { Utils } from '../shared/utils';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-home',
@@ -28,7 +29,7 @@ export class HomeComponent implements OnInit {
   empDisplayTitle: string = "Empower";
 
   constructor(private ds: DataService, public cs: CalcService, public ts: ToggleService, 
-    private cdRef:ChangeDetectorRef) { 
+    private cdRef:ChangeDetectorRef, public as: ToastrService) { 
   }
 
   ngAfterViewInit() {
@@ -53,6 +54,7 @@ export class HomeComponent implements OnInit {
         this.extraData();
         // Manually run detection change after data is loaded
         this.cdRef.markForCheck();
+        this.as.success('Data loaded successfully.', 'Success')
       }
     );
   }
@@ -103,4 +105,5 @@ export class HomeComponent implements OnInit {
   getShowPanelDetail(): boolean {
     return this.ts.currentToggledPanel && this.ts.currentToggledPanel.getActionId() === 'expand';
   }
+
 }
