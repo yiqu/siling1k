@@ -10,6 +10,14 @@
   font-family: 'Roboto', sans-serif;
 }
 
+.font-indie {
+  font-family: 'Indie Flower', cursive;
+}
+
+.indie-font-25 {
+  font-size: 25px;
+}
+
 .no-border-right {
   border-right: 0 !important;
 }

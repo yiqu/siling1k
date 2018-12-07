@@ -93,7 +93,7 @@ export class HomeComponent implements OnInit {
           result.displayUrl = "";
           result.dataArray = null;
       };
-      //console.log('Got details', result);
+      console.log('Got details');
       return result;
     }
   }
