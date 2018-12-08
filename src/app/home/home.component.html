@@ -22,7 +22,7 @@
       (toggledPanel)="onPanelToggle($event)">
     </app-display>
     <app-home-details class="col-md-6">
-      <div class="font-indie indie-font-25 center-text">
+      <div class="font-indie indie-font-25 center-text" #detailsTitle>
         {{getPanelItemDetails(ts.currentToggledPanel.getItemId()).title}}'s details
       </div>
     </app-home-details>

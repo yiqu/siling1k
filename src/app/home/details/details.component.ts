@@ -1,4 +1,5 @@
-import { Component, OnInit, OnChanges, SimpleChange } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChange, 
+  ContentChild, ElementRef, AfterViewInit } from '@angular/core';
 
 @Component({
   selector: 'app-home-details',
@@ -6,15 +7,20 @@ import { Component, OnInit, OnChanges, SimpleChange } from '@angular/core';
   styleUrls: ['./details.component.css']
 })
 
-export class DetailsComponent implements OnChanges {
+export class DetailsComponent implements OnChanges, AfterViewInit {
+
+  @ContentChild("detailsTitle") detailTitle: ElementRef;
 
   constructor() {
-
   }
 
   ngOnChanges(changes: {[propKey: string]: SimpleChange}) {
-    console.log(changes)
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+  }
+
+  ngAfterViewInit() {
+    console.log(this.detailTitle.nativeElement.textContent);
+  }
 }
