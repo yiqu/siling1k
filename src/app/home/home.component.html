@@ -1,5 +1,3 @@
-<ng-content></ng-content>
-
 <div *ngIf="rawData; else loading">
   <div *ngIf="!getShowPanelDetail()" class="row">
     <div *ngFor="let panelKey of listOfPanels" class="col-md center-text">
@@ -21,7 +19,7 @@
       [isExpanded]="true"
       (toggledPanel)="onPanelToggle($event)">
     </app-display>
-    <app-home-details class="col-md-6">
+    <app-home-details class="col-md-6" [panelData]="rawData.items[ts.currentToggledPanel.getItemId()]">
       <div class="font-indie indie-font-25 center-text" #detailsTitle>
         {{getPanelItemDetails(ts.currentToggledPanel.getItemId()).title}}'s details
       </div>

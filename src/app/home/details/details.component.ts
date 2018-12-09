@@ -1,5 +1,5 @@
 import { Component, OnInit, OnChanges, SimpleChange, 
-  ContentChild, ElementRef, AfterViewInit } from '@angular/core';
+  ContentChild, ElementRef, AfterViewInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-home-details',
@@ -9,12 +9,17 @@ import { Component, OnInit, OnChanges, SimpleChange,
 
 export class DetailsComponent implements OnChanges, AfterViewInit {
 
-  @ContentChild("detailsTitle") detailTitle: ElementRef;
+  @Input()
+  panelData;
+
+  @ContentChild("detailsTitle") 
+  detailTitle: ElementRef;
 
   constructor() {
   }
 
   ngOnChanges(changes: {[propKey: string]: SimpleChange}) {
+    console.log("Panel data:",this.panelData);
   }
 
   ngOnInit() {
