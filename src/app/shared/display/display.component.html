@@ -1,15 +1,23 @@
 <div class="card text-left border-secondary mb-1 mt-1">
+
   <div class="img-center" [ngStyle]="{'background-color': (displayTitle === 'Fidelity'?'#67941e':'#fff')}">
     <img class="card-img-top img-fixed-height" [src]="displayImageUrl" alt="SiLing Co. Img">
   </div>
+
   <div class="card-header header">
-    <span class="panel-header">{{displayTitle}} {{displayData ? "" : "'s data loading ..."}}</span>
-    <button class="btn btn-custom-gray pull-right" (click)="onExpandToggle(displayTitle)">
+    <span [hightlight]="'#595959'" innerHTMLOnly="true" class="panel-header">
+      {{displayTitle}} {{displayData ? "" : "'s data loading ..."}}
+    </span>
+
+    <button class="btn btn-custom-gray pull-right" (click)="onExpandToggle(displayTitle)"
+      [hightlight]="'#595959'">
       see {{expandText}} <i class="material-icons md-18">{{getExpandToggleIcon()}}</i>
     </button>
   </div>
+
   <ul *ngIf="displayData" class="list-group list-group-flush">
     <div *ngFor="let data of displayData.slice().reverse()" class="list-group-item font-roboto">
+
       <div class="d-flex w-100 justify-content-between">
         <p class="mb-1" data-toggle="tooltip" data-html="true" data-placement="top" 
           [title]="'<i>' + data.date + '</i>'">
@@ -18,6 +26,7 @@
         <small data-toggle="tooltip" data-html="true" data-placement="top" 
           [title]="'<b>' + data.ageInDays + ' days ago </b>'">{{data.age}}</small>
       </div> 
+
       <div class="data-info row">
         <h3 class="col-md dollar-amount numbers med-number">${{formatCurrency(data.balance)}}</h3>
 
@@ -27,6 +36,7 @@
 
       </div>
       <small [className]="'text-muted' + ' numbers small-number'">{{data.profit | profit}}</small>
+
     </div>
   </ul>
 </div>
