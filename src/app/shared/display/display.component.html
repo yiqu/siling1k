@@ -29,12 +29,11 @@
 
       <div class="data-info row">
         <h3 class="col-md dollar-amount numbers med-number">${{formatCurrency(data.balance)}}</h3>
-
         <h3 [className]="getGainsClass(data.profitPercent)">
             {{data.profitPercent | profitPercent}}
         </h3>
-
       </div>
+
       <small [className]="'text-muted' + ' numbers small-number'">{{data.profit | profit}}</small>
 
     </div>
