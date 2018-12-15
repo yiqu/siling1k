@@ -7,9 +7,14 @@ export class ProfitPipe implements PipeTransform {
     let result;
     if (isNaN(value)) {
       return "N/A";
-    } else if (value > 0) {
+    } 
+    else if (value === 0) {
+      result = "No Change"
+    }
+    else if (value > 0) {
       result = "+$" + Utils.toLocalFormatting(value);
-    } else {
+    } 
+    else {
       result = "-$" + Utils.toLocalFormatting(Math.abs(value));
     }
     return result;
