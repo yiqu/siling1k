@@ -1,7 +1,10 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { Utils } from '../shared/utils';
 
-@Pipe({name: 'profit'})
+@Pipe({
+  name: 'profit',
+  pure: true
+})
 export class ProfitPipe implements PipeTransform {
   transform(value: number): string {
     let result;
