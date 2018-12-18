@@ -6,7 +6,7 @@
     "type": "git",
     "url": "https://github.com/yiqu/siling1k.git"
   },
-  "license": "Apache",
+  "license": "Apache-2.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -28,6 +28,7 @@
     "@angular/platform-browser-dynamic": "~7.0.3",
     "@angular/router": "~7.0.3",
     "bootstrap": "^4.1.3",
+    "chart.js": "^2.7.3",
     "core-js": "^2.5.4",
     "jquery": "~3.3.1",
     "moment": "~2.22.2",

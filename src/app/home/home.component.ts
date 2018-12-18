@@ -1,4 +1,5 @@
-import { Component, OnInit, ChangeDetectorRef, AfterViewInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, AfterViewInit, 
+  ChangeDetectionStrategy, ViewChild } from '@angular/core';
 import { DataService } from '../service/data.service';
 import { HttpResponse } from '@angular/common/http';
 import { DataResponse } from '../shared/models/data.model';
@@ -8,6 +9,7 @@ import { PanelItem } from '../shared/models/panel.model';
 import { ToggleAction } from '../shared/models/toggle-action.model';
 import { Utils } from '../shared/utils';
 import { ToastrService } from 'ngx-toastr';
+import { Chart } from 'chart.js';
 
 @Component({
   selector: 'app-home',
@@ -27,6 +29,9 @@ export class HomeComponent implements OnInit {
   ascDisplayTitle: string = "Ascensus";
   empDisplayImageUrl: string = "assets/images/emp_logo.png";
   empDisplayTitle: string = "Empower";
+
+  @ViewChild('lineChart') private chartRef;
+  chart = [];
 
   constructor(private ds: DataService, public cs: CalcService, public ts: ToggleService, 
     private cdRef:ChangeDetectorRef, public as: ToastrService) { 

@@ -1,3 +1,7 @@
+<div *ngIf="false">
+  <canvas #lineChart>{{ chart }}</canvas>
+</div>
+
 <div *ngIf="rawData; else loading">
   <div *ngIf="!getShowPanelDetail()" class="row">
     <div *ngFor="let panelKey of listOfPanels" class="col-md center-text">
