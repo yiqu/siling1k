@@ -9,7 +9,7 @@ import { PanelItem } from '../shared/models/panel.model';
 import { ToggleAction } from '../shared/models/toggle-action.model';
 import { Utils } from '../shared/utils';
 import { ToastrService } from 'ngx-toastr';
-import { Chart } from 'chart.js';
+
 
 @Component({
   selector: 'app-home',
@@ -29,9 +29,6 @@ export class HomeComponent implements OnInit {
   ascDisplayTitle: string = "Ascensus";
   empDisplayImageUrl: string = "assets/images/emp_logo.png";
   empDisplayTitle: string = "Empower";
-
-  @ViewChild('lineChart') private chartRef;
-  chart = [];
 
   constructor(private ds: DataService, public cs: CalcService, public ts: ToggleService, 
     private cdRef:ChangeDetectorRef, public as: ToastrService) { 
