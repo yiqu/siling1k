@@ -22,6 +22,8 @@ export class HomeComponent implements OnInit {
   rawData: DataResponse = null;
   listOfPanels: Set<string> = new Set();
   loading: boolean = false;
+  graphData: any;
+  graphConfig: any;
 
   fidDisplayImageUrl: string = "assets/images/fid_logo.jpg";
   fidDisplayTitle: string = "Fidelity";
@@ -56,7 +58,8 @@ export class HomeComponent implements OnInit {
         this.extraData();
         // Manually run detection change after data is loaded
         this.cdRef.markForCheck();
-        this.as.success('Data loaded successfully.', 'Success')
+        this.as.success('Data loaded successfully.', 'Success');
+        this.getOverviewGraphData();
       }
     );
   }
@@ -106,6 +109,41 @@ export class HomeComponent implements OnInit {
 
   getShowPanelDetail(): boolean {
     return this.ts.currentToggledPanel && this.ts.currentToggledPanel.getActionId() === 'expand';
+  }
+
+  getOverviewGraphData(): any {
+    let overviewData;
+    overviewData = {
+      datasets: [{
+        label: "US Dates",
+        data: [{
+            x: "04/01/2014", y: 175
+        }, {
+            x: "10/01/2014", y: 175
+        }, {
+            x: "04/01/2015", y: 178
+        }, {
+            x: "10/01/2015", y: 178
+        }],
+        fill: false,
+        borderColor: 'red'
+    },
+    {
+        label: "UK Dates",
+        data:  [{
+            x: "01/04/2014", y: 175
+        }, {
+            x: "10/10/2014", y: 235
+        }, {
+            x: "01/04/2015", y: 178
+        }, {
+            x: "01/10/2015", y: 178
+        }],
+        fill:  false,
+        borderColor: 'blue'
+    }]
+  }
+  this.graphData = overviewData;
   }
 
 }

@@ -1,8 +1,7 @@
-<div *ngIf="false">
-  <app-graph></app-graph>
-</div>
-
 <div *ngIf="rawData; else loading">
+
+  <app-graph [graphData]="graphData" [graphConfig]="graphConfig"></app-graph>
+
   <div *ngIf="!getShowPanelDetail()" class="row">
     <div *ngFor="let panelKey of listOfPanels" class="col-md center-text">
       <app-display
