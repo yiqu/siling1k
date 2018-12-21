@@ -1,9 +1,26 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Output, EventEmitter } from '@angular/core';
 import { ItemDetail } from '../shared/models/data.model';
+import { PanelItem } from '../shared/models/panel.model';
+import { DataResponse } from '../shared/models/data.model';
 import * as moment from 'moment';
+import * as _ from 'lodash';
+
+const fidDisplayImageUrl: string = "assets/images/fid_logo.jpg";
+const fidDisplayTitle: string = "Fidelity";
+const ascDisplayImageUrl: string = "assets/images/asc_logo.jpg";
+const ascDisplayTitle: string = "Ascensus";
+const empDisplayImageUrl: string = "assets/images/emp_logo.png";
+const empDisplayTitle: string = "Empower";
 
 @Injectable()
 export class CalcService {
+
+  @Output()
+  onDataReloaded: EventEmitter<PanelItem[]> = new EventEmitter<PanelItem[]>();
+
+  rawData: DataResponse;
+  listOfPanels: Set<string> = new Set<string>();
+  allPanelData: PanelItem[] = [];
 
   today: any;
 
@@ -25,6 +42,58 @@ export class CalcService {
       }
       return data;
     }
+  }
+
+  resetPanelData() {
+    this.listOfPanels = new Set<string>();
+    this.allPanelData = [];
+  }
+
+  setRawData(rawData: DataResponse): void {
+    this.resetPanelData();
+    this.rawData = rawData;
+    this.extraData(this.rawData);
+  }
+
+  extraData(rawData: DataResponse) {
+    Object.keys(rawData.items).forEach((panelKey: string) => {
+      this.listOfPanels.add(panelKey);
+      this.allPanelData.push(this.getPanelItemDetails(panelKey));
+    });
+    this.onDataReloaded.emit(this.allPanelData);
+  }
+
+  getPanelItemDetails(panelKey: string): PanelItem {
+    if (this.rawData) {
+      let result: PanelItem = new PanelItem("", "", null);
+      let data = this.rawData.items[panelKey];
+      switch (panelKey) {
+        case "Fidelity": 
+          result.title = fidDisplayTitle;
+          result.displayUrl = fidDisplayImageUrl;
+          result.dataArray = data;
+          break;
+        case "Empower": 
+          result.title = empDisplayTitle;
+          result.displayUrl = empDisplayImageUrl;
+          result.dataArray = data;
+          break;
+        case "Ascensus": 
+          result.title = ascDisplayTitle;
+          result.displayUrl = ascDisplayImageUrl;
+          result.dataArray = data;
+          break;
+        default:
+          result.title = "New Title";
+          result.displayUrl = "";
+          result.dataArray = null;
+      };
+      return result;
+    }
+  }
+
+  getPanelDetailByName(panelId: string): PanelItem {
+    return _.find(this.allPanelData, ["title", panelId]);
   }
 
 }

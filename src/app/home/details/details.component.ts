@@ -19,13 +19,13 @@ export class DetailsComponent implements OnChanges, AfterViewInit {
   }
 
   ngOnChanges(changes: {[propKey: string]: SimpleChange}) {
-    console.log("Panel data:",this.panelData);
+    //console.log("Panel data:",this.panelData);
   }
 
   ngOnInit() {
   }
 
   ngAfterViewInit() {
-    console.log(this.detailTitle.nativeElement.textContent);
+    //console.log(this.detailTitle.nativeElement.textContent);
   }
 }

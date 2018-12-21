@@ -32,8 +32,8 @@ export class GraphComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: {[propKey: string]: SimpleChange}) {
-    console.log("data: ", changes.data.currentValue);
-    console.log("config: ", changes.config.currentValue);
+   // console.log("data: ", changes.data.currentValue);
+   // console.log("config: ", changes.config.currentValue);
 
   }
 
@@ -51,7 +51,7 @@ export class GraphComponent implements OnInit, OnChanges {
           xAxes: [{
               type:       "time",
               time:       {
-                  format: 'MM/DD/YYYY',
+                  parser: 'MM/DD/YYYY',
                   tooltipFormat: 'll'
               },
               scaleLabel: {
@@ -68,7 +68,7 @@ export class GraphComponent implements OnInit, OnChanges {
         }
       }
     });
-    console.log(this.chart)
+    //console.log(this.chart)
   }
   
 }

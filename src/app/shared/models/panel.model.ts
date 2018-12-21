@@ -11,4 +11,8 @@ export class PanelItem {
   getTitle() {
     return this.title;
   }
+
+  getDataArray() {
+    return this.dataArray;
+  }
 }

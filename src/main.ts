@@ -12,7 +12,7 @@ if (environment.production) {
   console.log("Prod Mode");
   enableProdMode();
 } else {
-  console.log("Dev Mode");
+  //console.log("Dev Mode");
 }
 
 platformBrowserDynamic().bootstrapModule(AppModule)
