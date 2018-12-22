@@ -4,6 +4,7 @@ import { PanelItem } from '../shared/models/panel.model';
 import { DataResponse } from '../shared/models/data.model';
 import * as moment from 'moment';
 import * as _ from 'lodash';
+import { GraphService } from './graph.service';
 
 const fidDisplayImageUrl: string = "assets/images/fid_logo.jpg";
 const fidDisplayTitle: string = "Fidelity";
@@ -24,7 +25,7 @@ export class CalcService {
 
   today: any;
 
-  constructor() { 
+  constructor(public gs: GraphService) { 
     this.today = moment();
   }
 
@@ -61,6 +62,9 @@ export class CalcService {
       this.allPanelData.push(this.getPanelItemDetails(panelKey));
     });
     this.onDataReloaded.emit(this.allPanelData);
+    // set graph data and emit the changes
+    this.setDataForGraph();
+    
   }
 
   getPanelItemDetails(panelKey: string): PanelItem {
@@ -94,6 +98,11 @@ export class CalcService {
 
   getPanelDetailByName(panelId: string): PanelItem {
     return _.find(this.allPanelData, ["title", panelId]);
+  }
+
+  setDataForGraph() {
+    this.gs.setGraphConfig();
+    this.gs.setGraphData();
   }
 
 }

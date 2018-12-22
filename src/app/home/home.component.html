@@ -1,8 +1,9 @@
 <div *ngIf="rawData; else loading">
 
-  <app-graph *ngIf="false" [graphData]="graphData" [graphConfig]="graphConfig"></app-graph>
+  <app-graph *ngIf="true" [graphData]="graphData" [graphConfig]="graphConfig"
+    [size]="graphSize"></app-graph>
 
-  <div *ngIf="!getShowPanelDetail()" class="row">
+  <div *ngIf="!(ts.currentToggledPanel && (ts.currentToggledPanel.getActionId() === 'expand'))" class="row">
     <div *ngFor="let panelData of allPanelData" class="col-md center-text">
       <app-display
         [displayImageUrl]="panelData.displayUrl"
@@ -14,7 +15,7 @@
     </div>
   </div>
 
-  <div *ngIf="getShowPanelDetail()" class="row">
+  <div *ngIf="(ts.currentToggledPanel && (ts.currentToggledPanel.getActionId() === 'expand'))" class="row">
     <app-display class="col-md-6"
       [displayImageUrl]="selectedPanelDetail.displayUrl"
       [displayData]="selectedPanelDetail.dataArray"

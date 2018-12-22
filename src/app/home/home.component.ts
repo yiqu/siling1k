@@ -10,12 +10,13 @@ import { ToggleAction } from '../shared/models/toggle-action.model';
 import { Utils } from '../shared/utils';
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
+import { GraphService } from '../service/graph.service';
 
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.component.html',
-  //changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.Default,
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit, OnDestroy {
@@ -23,33 +24,63 @@ export class HomeComponent implements OnInit, OnDestroy {
   rawData: DataResponse = null;
   graphData: any;
   graphConfig: any;
-  panelDataSub: Subject<any> = new Subject<any>();
+  graphSize: string;
+
+  panelDataSub$: Subject<PanelItem[]> = new Subject<PanelItem[]>();
+  graphDataSub$: Subject<any> = new Subject<any>();
+  graphConfigSub$: Subject<any> = new Subject<any>();
+  graphSizeSub$: Subject<any> = new Subject<any>();
 
   // holds all of the panel data (caluclated already) to be displayed
   allPanelData: PanelItem[] = [];
   selectedPanelDetail: PanelItem = null;
-
+  mainGraphSize: any = {height: "400px", width: "400px"};
 
   /**
    * Constructor
    */
   constructor(private ds: DataService, public cs: CalcService, public ts: ToggleService, 
-    private cdRef:ChangeDetectorRef, public as: ToastrService) { 
+    private cdRef:ChangeDetectorRef, public as: ToastrService, 
+    public gs: GraphService) { 
   }
 
   ngAfterViewInit() {
   }
 
   ngOnDestroy() {
-    this.panelDataSub.unsubscribe();
+    this.panelDataSub$.unsubscribe();
+    this.graphConfigSub$.unsubscribe();
+    this.graphDataSub$.unsubscribe();
+    this.graphSizeSub$.unsubscribe();
   }
 
   ngOnInit() {
     // set subscription for panel data 
-    this.panelDataSub = this.cs.onDataReloaded.subscribe(
+    this.panelDataSub$ = this.cs.onDataReloaded.subscribe(
       (data: PanelItem[]) => {
         this.allPanelData = data;
         this.as.success('Data calculated.', 'Success');
+      }
+    );
+
+    this.graphDataSub$ = this.gs.onGraphDataChange.subscribe(
+      (graphData: any) => {
+        this.graphData = graphData;
+        this.as.info('Graph data loaded.', 'Info.');
+      }
+    );
+
+    this.graphConfigSub$ = this.gs.onGraphConfigChange.subscribe(
+      (graphConfig: any) => {
+        this.graphConfig = graphConfig;
+        this.as.info('Graph configuration loaded.', 'Info.');
+      }
+    );
+
+    this.graphSizeSub$ = this.gs.onGraphSizeChange.subscribe(
+      (graphSize: string) => {
+        this.graphSize = graphSize;
+        this.as.info('Graph size updated to: ' + this.graphSize, 'Info.');
       }
     );
 
@@ -64,11 +95,11 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.rawData = res.body;
       },
       error => {
+        this.as.error("Error loading data. Reason: " + error + "Error");
       },
       () => {
-        this.cs.setRawData(this.rawData);
         this.as.success('Data loaded successfully.', 'Success');
-        this.getOverviewGraphData();
+        this.cs.setRawData(this.rawData);
       }
     );
   }
@@ -77,48 +108,11 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.ts.currentToggledPanel = panel;
     if (panel.getActionId() === "expand") {
       this.selectedPanelDetail = this.cs.getPanelDetailByName(panel.getItemId());
+      this.gs.setDetailMode(true);
     } else {
       this.selectedPanelDetail = null;
+      this.gs.setDetailMode(false);
     }
-  }
-
-  getShowPanelDetail(): boolean {
-    return this.ts.currentToggledPanel && (this.selectedPanelDetail !== null);
-  }
-
-  getOverviewGraphData(): any {
-    let overviewData;
-    overviewData = {
-      datasets: [{
-        label: "US Dates",
-        data: [{
-            x: "04/01/2014", y: 175
-        }, {
-            x: "10/01/2014", y: 175
-        }, {
-            x: "04/01/2015", y: 178
-        }, {
-            x: "10/01/2015", y: 178
-        }],
-        fill: false,
-        borderColor: 'red'
-    },
-    {
-        label: "UK Dates",
-        data:  [{
-            x: "01/04/2014", y: 175
-        }, {
-            x: "10/10/2014", y: 235
-        }, {
-            x: "01/04/2015", y: 178
-        }, {
-            x: "01/10/2015", y: 178
-        }],
-        fill:  false,
-        borderColor: 'blue'
-    }]
-  }
-  this.graphData = overviewData;
   }
 
 }

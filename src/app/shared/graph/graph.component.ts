@@ -7,33 +7,34 @@ import { Chart } from 'chart.js';
   templateUrl: 'graph.component.html',
   styleUrls: ['./graph.component.css']
 })
-
 export class GraphComponent implements OnInit, OnChanges {
 
   @Input("graphData")
   data: any;
-
   @Input("graphConfig")
   config: any
-
+  @Input()
+  size: string;
   @ViewChild('lineChart') 
   private chartRef;
 
   chart: any;
-
+  graphData: any;
+  graphConfig: any;
+  graphSize: string;
 
   /**
    * Constructor
    */
-  constructor() {}
+  constructor() {
+  }
 
   ngOnInit() {
     this.createGraph();
   }
 
   ngOnChanges(changes: {[propKey: string]: SimpleChange}) {
-   // console.log("data: ", changes.data.currentValue);
-   // console.log("config: ", changes.config.currentValue);
+    console.log("In graph: ", changes)
 
   }
 
@@ -41,34 +42,8 @@ export class GraphComponent implements OnInit, OnChanges {
     this.chart = new Chart(this.chartRef.nativeElement, {
       type: 'line',
       data: this.data,
-      options: {
-        responsive: true,
-        title:      {
-            display: true,
-            text:    "Overview"
-        },
-        scales:     {
-          xAxes: [{
-              type:       "time",
-              time:       {
-                  parser: 'MM/DD/YYYY',
-                  tooltipFormat: 'll'
-              },
-              scaleLabel: {
-                  display:     true,
-                  labelString: 'Date'
-              }
-          }],
-          yAxes: [{
-              scaleLabel: {
-                  display:     true,
-                  labelString: 'value'
-              }
-          }]
-        }
-      }
+      options: this.config
     });
-    //console.log(this.chart)
   }
   
 }

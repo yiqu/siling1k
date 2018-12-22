@@ -5,6 +5,8 @@ import { DisplayModule } from '../shared/display/display.module';
 import { LoadingModule } from '../shared/loading/loading.module';
 import { DetailsComponent } from './details/details.component';
 import { GraphModule } from '../shared/graph/graph.module';
+import { CalcService } from '../service/calc.service';
+import { GraphService } from '../service/graph.service';
 
 @NgModule({
   imports: [
@@ -23,7 +25,9 @@ import { GraphModule } from '../shared/graph/graph.module';
   ],
 
   providers: [
-    ToggleService
+    ToggleService,
+    CalcService,
+    GraphService
   ],
 })
 export class HomeModule { }
