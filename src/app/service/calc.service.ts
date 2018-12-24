@@ -112,7 +112,8 @@ export class CalcService {
         label: data.getTitle(),
         fill: false,
         borderColor: data.getColor(),
-        data: this.convertGraphData(data.getDataArray())
+        data: this.convertGraphData(data.getDataArray()),
+        hidden: (data.getTitle() === "Ascensus" ? true : false)
       })
     }
     //console.log(resultGraphData);
