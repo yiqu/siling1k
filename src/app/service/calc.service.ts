@@ -5,6 +5,8 @@ import { DataResponse } from '../shared/models/data.model';
 import * as moment from 'moment';
 import * as _ from 'lodash';
 import { GraphService } from './graph.service';
+import { ChartGraphData } from '../shared/models/graph-data.model';
+import { ChartDataPoint } from '../shared/models/graph-datapoint.model'
 
 const fidDisplayImageUrl: string = "assets/images/fid_logo.jpg";
 const fidDisplayTitle: string = "Fidelity";
@@ -63,7 +65,7 @@ export class CalcService {
     });
     this.onDataReloaded.emit(this.allPanelData);
     // set graph data and emit the changes
-    this.setDataForGraph();
+    this.setDataForGraph(this.allPanelData);
     
   }
 
@@ -76,16 +78,19 @@ export class CalcService {
           result.title = fidDisplayTitle;
           result.displayUrl = fidDisplayImageUrl;
           result.dataArray = data;
+          result.color = "green";
           break;
         case "Empower": 
           result.title = empDisplayTitle;
           result.displayUrl = empDisplayImageUrl;
           result.dataArray = data;
+          result.color = "red";
           break;
         case "Ascensus": 
           result.title = ascDisplayTitle;
           result.displayUrl = ascDisplayImageUrl;
           result.dataArray = data;
+          result.color = "blue";
           break;
         default:
           result.title = "New Title";
@@ -100,9 +105,31 @@ export class CalcService {
     return _.find(this.allPanelData, ["title", panelId]);
   }
 
-  setDataForGraph() {
+  setDataForGraph(graphData: PanelItem[], graphConfig?: any) {
+    let resultGraphData: ChartGraphData = new ChartGraphData([]);
+    for (let data of graphData) {
+      resultGraphData.datasets.push({
+        label: data.getTitle(),
+        fill: false,
+        borderColor: data.getColor(),
+        data: this.convertGraphData(data.getDataArray())
+      })
+    }
+    //console.log(resultGraphData);
     this.gs.setGraphConfig();
-    this.gs.setGraphData();
+    this.gs.setGraphData(resultGraphData);
+  }
+
+  /**
+   * Returns an array of x, y data points
+   * @param dataArray 
+   */
+  convertGraphData(dataArray: ItemDetail[]): ChartDataPoint[] {
+    let dataPointsArray: ChartDataPoint[] = [];
+    for (let data of dataArray) {
+      dataPointsArray.push(new ChartDataPoint(data.date, data.balance));
+    }
+    return dataPointsArray;
   }
 
 }
