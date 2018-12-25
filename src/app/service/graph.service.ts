@@ -63,7 +63,7 @@ const DEFAULT_GRAPH_CONFIG = {
     yAxes: [{
       scaleLabel: {
         display: true,
-        labelString: 'value'
+        labelString: 'value',
       },
       ticks: {
         //min: 0,
@@ -71,7 +71,20 @@ const DEFAULT_GRAPH_CONFIG = {
         //stepSize: 100,
       }
     }]
-  }
+  },
+  tooltips: {
+		position: 'average',
+		mode: 'nearest',
+    intersect: false,
+    yPadding: 10,
+    xPadding: 10,
+    caretSize: 4,
+    backgroundColor: '#cce6ff',
+    titleFontColor: "#000",
+    bodyFontColor: "#000",
+    borderColor: '#001a33',
+    borderWidth: 2
+  },
 };
 
 const DEFAULT_GRAPH_DATA = {

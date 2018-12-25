@@ -2,7 +2,7 @@ import { ItemDetail } from "./data.model";
 
 export class PanelItem {
   constructor(public title: string, public displayUrl: string, public dataArray: ItemDetail[],
-    public color?: string) {
+    public hidden: boolean = false, public color: string = "black") {
   }
 
   getDisplayUrl() {
@@ -19,5 +19,9 @@ export class PanelItem {
 
   getColor() {
     return this.color;
+  }
+
+  getHidden() {
+    return this.hidden;
   }
 }

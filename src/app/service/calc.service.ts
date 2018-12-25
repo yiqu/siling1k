@@ -79,18 +79,21 @@ export class CalcService {
           result.displayUrl = fidDisplayImageUrl;
           result.dataArray = data;
           result.color = "green";
+          result.hidden = false;
           break;
         case "Empower": 
           result.title = empDisplayTitle;
           result.displayUrl = empDisplayImageUrl;
           result.dataArray = data;
           result.color = "red";
+          result.hidden = false;
           break;
         case "Ascensus": 
           result.title = ascDisplayTitle;
           result.displayUrl = ascDisplayImageUrl;
           result.dataArray = data;
           result.color = "blue";
+          result.hidden = true;
           break;
         default:
           result.title = "New Title";
@@ -113,7 +116,7 @@ export class CalcService {
         fill: false,
         borderColor: data.getColor(),
         data: this.convertGraphData(data.getDataArray()),
-        hidden: (data.getTitle() === "Ascensus" ? true : false)
+        hidden: data.getHidden()
       })
     }
     //console.log(resultGraphData);
