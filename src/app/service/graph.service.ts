@@ -63,12 +63,12 @@ const DEFAULT_GRAPH_CONFIG = {
     yAxes: [{
       scaleLabel: {
         display: true,
-        labelString: 'value',
+        labelString: 'Dollar $',
       },
       ticks: {
-        //min: 0,
-        //max: 300,
-        //stepSize: 100,
+        callback: function(value, index, values) {
+          return '$' + (value / 1000) + "k";
+        }
       }
     }]
   },
@@ -83,7 +83,14 @@ const DEFAULT_GRAPH_CONFIG = {
     titleFontColor: "#000",
     bodyFontColor: "#000",
     borderColor: '#001a33',
-    borderWidth: 2
+    borderWidth: 2,
+    callbacks: {
+      title: function(toolTipItems, data) {
+        console.log(toolTipItems, data)
+        return toolTipItems[0]['xLabel'] +
+         " : ~ $" + (Math.floor(toolTipItems[0]['yLabel']* 1000) / 100000).toString().slice(0,-2) + "k";
+      }
+    }
   },
 };
 
