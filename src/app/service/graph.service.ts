@@ -86,7 +86,6 @@ const DEFAULT_GRAPH_CONFIG = {
     borderWidth: 2,
     callbacks: {
       title: function(toolTipItems, data) {
-        console.log(toolTipItems, data)
         return toolTipItems[0]['xLabel'] +
          " : ~ $" + (Math.floor(toolTipItems[0]['yLabel']* 1000) / 100000).toString().slice(0,-2) + "k";
       }
