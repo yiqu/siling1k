@@ -19,6 +19,11 @@ const routes: Routes = [
     path: 'loading',
     component: LoadingComponent
   },
+  
+  /**
+  *Since the default matching strategy is "prefix" , Angular checks if the path you entered in the URL does start with the path specified in the route. Of course every path starts with ''  (Important: That's no whitespace, it's simply "nothing").
+  *To fix this behavior, you need to change the matching strategy to "full"
+  */
   { 
     path: '', 
     redirectTo: '/home', 
