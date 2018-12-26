@@ -34,8 +34,6 @@ export class GraphComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: {[propKey: string]: SimpleChange}) {
-    console.log("In graph: ", changes)
-
   }
 
   createGraph() {

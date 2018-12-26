@@ -2,7 +2,7 @@ import { ItemDetail } from "./data.model";
 
 export class PanelItem {
   constructor(public title: string, public displayUrl: string, public dataArray: ItemDetail[],
-    public hidden: boolean = false, public color: string = "black") {
+    public hidden: boolean = false, public color: string = "#000", public active: boolean = false) {
   }
 
   getDisplayUrl() {
@@ -21,7 +21,11 @@ export class PanelItem {
     return this.color;
   }
 
-  getHidden() {
+  isHidden() {
     return this.hidden;
+  }
+
+  isActive() {
+    return this.active;
   }
 }

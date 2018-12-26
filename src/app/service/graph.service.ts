@@ -42,11 +42,14 @@ export class GraphService {
 
 }
 
+/*************************
+ * CONSTANTS
+ **************************/
 const DEFAULT_GRAPH_CONFIG = {
   responsive: true,
   title: {
     display: true,
-    text: "Overview"
+    text: "SiLing Graph"
   },
   scales: {
     xAxes: [{
@@ -87,7 +90,7 @@ const DEFAULT_GRAPH_CONFIG = {
     callbacks: {
       title: function(toolTipItems, data) {
         return toolTipItems[0]['xLabel'] +
-         " : ~ $" + (Math.floor(toolTipItems[0]['yLabel']* 1000) / 100000).toString().slice(0,-2) + "k";
+         " : ~ $" + (Math.floor(toolTipItems[0]['yLabel']* 100) / 100000).toString().slice(0,-3) + "k";
       }
     }
   },
