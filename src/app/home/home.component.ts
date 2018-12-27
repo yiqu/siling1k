@@ -1,5 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef, AfterViewInit, 
   ChangeDetectionStrategy, ViewChild, OnDestroy } from '@angular/core';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+import { environment } from '../../environments/environment';
 import { DataService } from '../service/data.service';
 import { HttpResponse } from '@angular/common/http';
 import { DataResponse } from '../shared/models/data.model';
@@ -35,13 +37,14 @@ export class HomeComponent implements OnInit, OnDestroy {
   allPanelData: PanelItem[] = [];
   selectedPanelDetail: PanelItem = null;
   mainGraphSize: any = {height: "400px", width: "400px"};
+  showOverviewGraph: boolean = true;
 
   /**
    * Constructor
    */
   constructor(private ds: DataService, public cs: CalcService, public ts: ToggleService, 
     private cdRef:ChangeDetectorRef, public as: ToastrService, 
-    public gs: GraphService) { 
+    public gs: GraphService, public router: Router, public route: ActivatedRoute) { 
   }
 
   ngAfterViewInit() {
@@ -55,6 +58,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.showOverviewGraph = environment.production;
+    
     // set subscription for panel data 
     this.panelDataSub$ = this.cs.onDataReloaded.subscribe(
       (data: PanelItem[]) => {
@@ -84,6 +89,14 @@ export class HomeComponent implements OnInit, OnDestroy {
       }
     );
 
+    console.log(this.route)  
+    this.route.params.subscribe(
+      (params: Params) => {
+        console.log("params at Home: ", params)
+      }
+    )
+    
+
     this.loadData();
     // have to do this everytime app switches back to this view
     Utils.enableJqueryTooltip();
@@ -106,12 +119,17 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   onPanelToggle(panel: ToggleAction) {
     this.ts.currentToggledPanel = panel;
+    console.log(this.ts.currentToggledPanel)
+    
+
     if (panel.getActionId() === "expand") {
       this.selectedPanelDetail = this.cs.getPanelDetailByName(panel.getItemId());
       this.gs.setDetailMode(true);
+      this.router.navigate([panel.getItemId()], {relativeTo: this.route});
     } else {
       this.selectedPanelDetail = null;
       this.gs.setDetailMode(false);
+      this.router.navigate(['/home']);
     }
   }
 

@@ -1,6 +1,6 @@
 <div *ngIf="rawData; else loading">
 
-  <app-graph *ngIf="true" [graphData]="graphData" [graphConfig]="graphConfig"
+  <app-graph *ngIf="showOverviewGraph" [graphData]="graphData" [graphConfig]="graphConfig"
     [size]="graphSize"></app-graph>
 
   <div *ngIf="!(ts.currentToggledPanel && (ts.currentToggledPanel.getActionId() === 'expand'))" class="row">
@@ -23,12 +23,15 @@
       [isExpanded]="true"
       (toggledPanel)="onPanelToggle($event)">
     </app-display>
-    <app-home-details class="col-md-6" [panelData]="">
+    <!-- <app-home-details class="col-md-6" [panelData]="">
       <div class="font-indie indie-font-25 center-text" #detailsTitle>
         {{selectedPanelDetail.title}}'s details
       </div>
-    </app-home-details>
+    </app-home-details> -->
   </div>
+
+  <router-outlet></router-outlet>
+
 </div>
 
 <ng-template #loading>
