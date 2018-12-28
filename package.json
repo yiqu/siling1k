@@ -15,7 +15,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "build.prod": "ng build --prod --base-href=siling1k/",
-    "postinstall": "ng build --prod --base-href=/"
+    "postinstall": "ng build --prod"
   },
   "private": false,
   "dependencies": {
