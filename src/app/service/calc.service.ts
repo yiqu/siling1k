@@ -56,24 +56,27 @@ export class CalcService {
   setRawData(rawData: DataResponse): void {
     this.resetPanelData();
     this.rawData = rawData;
-    this.extraData(this.rawData);
+    this.constructPanelData(this.rawData);
   }
 
-  extraData(rawData: DataResponse) {
+  constructPanelData(rawData: DataResponse) {
     Object.keys(rawData.items).forEach((panelKey: string) => {
       this.listOfPanels.add(panelKey);
-      this.allPanelData.push(this.getPanelItemDetails(panelKey));
+      this.allPanelData.push(this.getPanelItemDetails(rawData, panelKey));
     });
     this.onDataReloaded.emit(this.allPanelData);
     // set graph data and emit the changes
     this.setDataForGraph(this.allPanelData);
-    
   }
 
-  getPanelItemDetails(panelKey: string): PanelItem {
-    if (this.rawData) {
+  getSinglePanelData(rawData: DataResponse, panelId: string): PanelItem {
+    return this.getPanelItemDetails(rawData, panelId);
+  }
+
+  getPanelItemDetails(rawData: DataResponse, panelKey: string): PanelItem {
+    if (rawData) {
       let result: PanelItem = new PanelItem("", "", null);
-      let data = this.rawData.items[panelKey];
+      let data = rawData.items[panelKey];
       switch (panelKey) {
         case "Fidelity": 
           result.title = fidDisplayTitle;
@@ -106,10 +109,6 @@ export class CalcService {
       };
       return result;
     }
-  }
-
-  getPanelDetailByName(panelId: string): PanelItem {
-    return _.find(this.allPanelData, ["title", panelId]);
   }
 
   setDataForGraph(graphData: PanelItem[], graphConfig?: any) {

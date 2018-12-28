@@ -9,9 +9,9 @@
       {{displayTitle}} {{displayData ? "" : "'s data loading ..."}}
     </span>
 
-    <button class="btn btn-custom-gray pull-right" (click)="onExpandToggle(displayTitle)"
+    <button class="btn btn-custom-gray pull-right" (click)="onExpandToggle()"
       [hightlight]="'#595959'">
-      see {{expandText}} <i class="material-icons md-18">{{getExpandToggleIcon()}}</i>
+      {{expandText}} <i class="material-icons md-18">{{getExpandToggleIcon()}}</i>
     </button>
   </div>
 

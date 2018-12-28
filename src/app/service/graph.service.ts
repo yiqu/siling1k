@@ -6,13 +6,10 @@ export class GraphService {
   onGraphDataChange: EventEmitter<any> = new EventEmitter<any>();
   @Output()
   onGraphConfigChange: EventEmitter<any> = new EventEmitter<any>();
-  @Output()
-  onGraphSizeChange: EventEmitter<string> = new EventEmitter<string>();
 
   graphData: any;
   graphConfig: any;
   graphSize: string;
-  detailMode: boolean = false;
 
   constructor() {
     this.onInit();
@@ -22,12 +19,6 @@ export class GraphService {
   }
 
   setDetailMode(detail: boolean = false) {
-    this.detailMode = detail;
-    if (this.detailMode) {
-      this.onGraphSizeChange.emit("SMALL");
-    } else {
-      this.onGraphSizeChange.emit("BIG");
-    }
   }
 
   setGraphData(graphData: any = DEFAULT_GRAPH_DATA) {

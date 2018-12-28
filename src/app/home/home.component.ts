@@ -31,11 +31,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   panelDataSub$: Subject<PanelItem[]> = new Subject<PanelItem[]>();
   graphDataSub$: Subject<any> = new Subject<any>();
   graphConfigSub$: Subject<any> = new Subject<any>();
-  graphSizeSub$: Subject<any> = new Subject<any>();
 
   // holds all of the panel data (caluclated already) to be displayed
-  allPanelData: PanelItem[] = [];
-  selectedPanelDetail: PanelItem = null;
+  allPanelData: PanelItem[] = null;
   mainGraphSize: any = {height: "400px", width: "400px"};
   showOverviewGraph: boolean = true;
 
@@ -54,12 +52,11 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.panelDataSub$.unsubscribe();
     this.graphConfigSub$.unsubscribe();
     this.graphDataSub$.unsubscribe();
-    this.graphSizeSub$.unsubscribe();
   }
 
   ngOnInit() {
     this.showOverviewGraph = environment.production;
-    
+
     // set subscription for panel data 
     this.panelDataSub$ = this.cs.onDataReloaded.subscribe(
       (data: PanelItem[]) => {
@@ -82,21 +79,6 @@ export class HomeComponent implements OnInit, OnDestroy {
       }
     );
 
-    this.graphSizeSub$ = this.gs.onGraphSizeChange.subscribe(
-      (graphSize: string) => {
-        this.graphSize = graphSize;
-        this.as.info('Graph size updated to: ' + this.graphSize, 'Info.');
-      }
-    );
-
-    console.log(this.route)  
-    this.route.params.subscribe(
-      (params: Params) => {
-        console.log("params at Home: ", params)
-      }
-    )
-    
-
     this.loadData();
     // have to do this everytime app switches back to this view
     Utils.enableJqueryTooltip();
@@ -117,20 +99,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     );
   }
 
-  onPanelToggle(panel: ToggleAction) {
-    this.ts.currentToggledPanel = panel;
-    console.log(this.ts.currentToggledPanel)
-    
-
-    if (panel.getActionId() === "expand") {
-      this.selectedPanelDetail = this.cs.getPanelDetailByName(panel.getItemId());
-      this.gs.setDetailMode(true);
-      this.router.navigate([panel.getItemId()], {relativeTo: this.route});
-    } else {
-      this.selectedPanelDetail = null;
-      this.gs.setDetailMode(false);
-      this.router.navigate(['/home']);
-    }
+  onPanelToggle(panelId: string) {
+      this.router.navigate(['/details', panelId]);
   }
 
 }

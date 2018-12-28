@@ -8,11 +8,10 @@ import { DetailsComponent } from './home/details/details.component';
 
  //Root routes for app
 const routes: Routes = [
-  { path: 'home', component: HomeComponent, children: [
-      {path: ":panelId", component: DetailsComponent}]
-  },
+  { path: 'home', component: HomeComponent },
   { path: 'about', component: AboutComponent },
-  { path: 'details', component: HomeComponent },
+  { path: 'details', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'details/:panelId', component: DetailsComponent, data: {pageTitle: "Details"} },
   { path: 'loading', component: LoadingComponent },
   /**
   * Since the default matching strategy is "prefix" , Angular checks if the path you entered in 
@@ -21,7 +20,7 @@ const routes: Routes = [
   * To fix this behavior, you need to change the matching strategy to "full"
   */
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  //{ path: '**', component: NotFoundComponent }
+  { path: '**', component: NotFoundComponent }
 ];
 
 

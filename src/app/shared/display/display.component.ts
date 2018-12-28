@@ -24,11 +24,11 @@ export class DisplayComponent implements OnChanges {
   isExpanded: boolean;
   
   @Output()
-  toggledPanel: EventEmitter<ToggleAction> = new EventEmitter<ToggleAction>();
+  toggledPanel: EventEmitter<any> = new EventEmitter<any>();
 
   isPanelExpanded: boolean = false;
   toggleAction: ToggleAction;
-  expandText: string = "details";
+  expandText: string = "See details";
   data: ItemDetail[];
   rev: ItemDetail[]
 
@@ -39,7 +39,7 @@ export class DisplayComponent implements OnChanges {
     // check if the current rendered Display Component is a detailed (expanded) version
     if (changes.isExpanded.currentValue) {
       this.isPanelExpanded = true;
-      this.expandText = "less";
+      this.expandText = "Go back";
     }
     if (changes.displayData.currentValue) {
       this.displayData = this.cs.getReturnPercent(this.displayData);
@@ -62,9 +62,7 @@ export class DisplayComponent implements OnChanges {
 
   onExpandToggle(panelToggled) {
     this.isPanelExpanded = !this.isPanelExpanded;
-    this.toggleAction.setItemId(panelToggled);
-    this.toggleAction.setActionId(this.isPanelExpanded ? "expand" : "collapse");
-    this.toggledPanel.emit(this.toggleAction);
+    this.toggledPanel.emit();
   }
 
   getExpandToggleIcon(): string {

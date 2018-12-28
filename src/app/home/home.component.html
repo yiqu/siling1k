@@ -1,37 +1,18 @@
-<div *ngIf="rawData; else loading">
-
+<div *ngIf="allPanelData; else loading">
   <app-graph *ngIf="showOverviewGraph" [graphData]="graphData" [graphConfig]="graphConfig"
     [size]="graphSize"></app-graph>
 
-  <div *ngIf="!(ts.currentToggledPanel && (ts.currentToggledPanel.getActionId() === 'expand'))" class="row">
+  <div class="row">
     <div *ngFor="let panelData of allPanelData" class="col-md center-text">
       <app-display
         [displayImageUrl]="panelData.displayUrl"
         [displayData]="panelData.dataArray"
         [displayTitle]="panelData.title"
         [isExpanded]="false"
-        (toggledPanel)="onPanelToggle($event)">
+        (toggledPanel)="onPanelToggle(panelData.title)">
       </app-display>
     </div>
   </div>
-
-  <div *ngIf="(ts.currentToggledPanel && (ts.currentToggledPanel.getActionId() === 'expand'))" class="row">
-    <app-display class="col-md-6"
-      [displayImageUrl]="selectedPanelDetail.displayUrl"
-      [displayData]="selectedPanelDetail.dataArray"
-      [displayTitle]="selectedPanelDetail.title"
-      [isExpanded]="true"
-      (toggledPanel)="onPanelToggle($event)">
-    </app-display>
-    <!-- <app-home-details class="col-md-6" [panelData]="">
-      <div class="font-indie indie-font-25 center-text" #detailsTitle>
-        {{selectedPanelDetail.title}}'s details
-      </div>
-    </app-home-details> -->
-  </div>
-
-  <router-outlet></router-outlet>
-
 </div>
 
 <ng-template #loading>

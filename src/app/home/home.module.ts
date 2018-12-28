@@ -10,6 +10,7 @@ import { CalcService } from '../service/calc.service';
 import { GraphService } from '../service/graph.service';
 import { AppRoutingModule } from '../app-routing.module';
 
+
 @NgModule({
   imports: [
     DisplayModule,

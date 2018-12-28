@@ -1,1 +1,21 @@
-Details
+<div *ngIf="panelItemData; else loading">
+  <div class="row">
+    <app-display class="col-md-6"
+      [displayImageUrl]="panelItemData.displayUrl"
+      [displayData]="panelItemData.dataArray"
+      [displayTitle]="panelItemData.title"
+      [isExpanded]="true"
+      (toggledPanel)="onPanelToggle($event)">
+    </app-display>
+   
+    <div class="col-md-6">
+      <div class="font-indie indie-font-25 center-text">
+        {{panelItemData.title}}'s details
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #loading>
+  <app-loading title="{{panelId}}'s details"></app-loading>
+</ng-template>
+
