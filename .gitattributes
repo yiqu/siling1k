@@ -1,0 +1,5 @@
+package.json merge=ours
+Procfile merge=ours
+server.js merge=ours
+package-lock.json merge=ours
+
