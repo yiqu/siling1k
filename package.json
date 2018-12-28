@@ -9,15 +9,18 @@
   "license": "Apache-2.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "node server.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build.prod": "ng build --prod --base-href=siling1k/"
+    "build.prod": "ng build --prod --base-href=siling1k/",
+    "postinstall": "ng build --prod"
   },
   "private": false,
   "dependencies": {
+    "@angular/cli": "~7.0.3",
+    "@angular/compiler-cli": "~7.0.3",
     "@angular/animations": "~7.0.3",
     "@angular/common": "~7.0.3",
     "@angular/compiler": "~7.0.3",
@@ -34,13 +37,12 @@
     "lodash": "^4.17.11",
     "moment": "~2.22.2",
     "ngx-toastr": "^9.1.1",
+    "typescript": "~3.1.1",
     "rxjs": "~6.3.3",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.10.0",
-    "@angular/cli": "~7.0.3",
-    "@angular/compiler-cli": "~7.0.3",
     "@angular/language-service": "~7.0.3",
     "@types/node": "~8.9.4",
     "@types/jasmine": "~2.8.8",
@@ -61,7 +63,10 @@
     "protractor": "~5.4.0",
     "popper.js": "~1.14.3",
     "ts-node": "~7.0.1",
-    "tslint": "~5.11.0",
-    "typescript": "~3.1.1"
+    "tslint": "~5.11.0"
+  },
+  "engines": {
+    "node": "10.6.0",
+    "npm": "6.4.1"
   }
 }
