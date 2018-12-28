@@ -60,7 +60,7 @@ export class DisplayComponent implements OnChanges {
     return Utils.toLocalFormatting(num);
   }
 
-  onExpandToggle(panelToggled) {
+  onExpandToggle() {
     this.isPanelExpanded = !this.isPanelExpanded;
     this.toggledPanel.emit();
   }
