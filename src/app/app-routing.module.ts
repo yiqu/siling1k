@@ -5,13 +5,17 @@ import { AboutComponent } from './about/about.component';
 import { NotFoundComponent } from './404/404.component';
 import { LoadingComponent } from './shared/loading/loading.component';
 import { DetailsComponent } from './home/details/details.component';
+import { DetailsResolver } from './home/details/details-resolver.service';
 
  //Root routes for app
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'about', component: AboutComponent },
   { path: 'details', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'details/:panelId', component: DetailsComponent, data: {pageTitle: "Details"} },
+  { path: 'details/:panelId', component: DetailsComponent, 
+    data: {pageTitle: "Details"},
+    //resolve: {panelItemInfo: DetailsResolver} 
+  },
   { path: 'loading', component: LoadingComponent },
   /**
   * Since the default matching strategy is "prefix" , Angular checks if the path you entered in 

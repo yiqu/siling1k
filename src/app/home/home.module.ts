@@ -9,6 +9,7 @@ import { GraphModule } from '../shared/graph/graph.module';
 import { CalcService } from '../service/calc.service';
 import { GraphService } from '../service/graph.service';
 import { AppRoutingModule } from '../app-routing.module';
+import { DetailsResolver } from "./details/details-resolver.service";
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { AppRoutingModule } from '../app-routing.module';
   providers: [
     ToggleService,
     CalcService,
-    GraphService
+    GraphService,
+    DetailsResolver
   ],
 })
 export class HomeModule { }

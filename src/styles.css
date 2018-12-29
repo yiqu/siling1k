@@ -48,6 +48,10 @@
   letter-spacing: 0.5px;
 }
 
+.list-item {
+  padding: .35rem 1.35rem !important;
+}
+
 /* Rules for sizing the icon. */
 .material-icons.md-18 { font-size: 18px; }
 .material-icons.md-24 { font-size: 24px; }
