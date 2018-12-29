@@ -1,4 +1,5 @@
 <div *ngIf="panelItemData; else loading">
+
   <div class="row">
     <app-display class="col-md-6"
       [displayImageUrl]="panelItemData.displayUrl"
@@ -12,6 +13,11 @@
       <div class="font-indie indie-font-25 center-text">
         {{panelItemData.title}}'s details
       </div>
+      <app-graph *ngIf="true" [graphData]="" [graphConfig]=""
+        [size]=""></app-graph>
+      <p>
+        Details under construction.
+      </p>
     </div>
   </div>
 </div>

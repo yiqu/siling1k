@@ -22,6 +22,7 @@ export class DetailsComponent implements OnInit, AfterViewInit {
   panelId: string = null;
   panelItemData: PanelItem = null;
   rawData: DataResponse = null;
+  allPanelItems: PanelItem[];
 
   constructor(public router: Router, public route: ActivatedRoute, 
     public ts: ToggleService, public ds: DataService, public as: ToastrService,
@@ -35,12 +36,6 @@ export class DetailsComponent implements OnInit, AfterViewInit {
         this.getSinglePanelData();
       }
     );
-
-    this.route.data.subscribe(
-      (data: Data) => {
-        //console.log(data)
-      }
-    )
   }
 
   ngAfterViewInit() {
@@ -57,6 +52,15 @@ export class DetailsComponent implements OnInit, AfterViewInit {
       () => {
         this.as.success('Data loaded successfully.', 'Success');
         this.panelItemData = this.cs.getSinglePanelData(this.rawData, this.panelId);
+      }
+    );
+  }
+
+  getResolvedData() {
+    this.route.data.subscribe(
+      (resolvedData: Data) => {
+        console.log(resolvedData);
+        this.allPanelItems = resolvedData['panelItemInfo'];
       }
     );
   }
