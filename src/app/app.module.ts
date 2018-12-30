@@ -27,7 +27,7 @@ import { TitleService } from './service/title.service';
     ToastrModule.forRoot({
       timeOut: 3000,
       extendedTimeOut: 1000,
-      positionClass: 'toast-bottom-left',
+      positionClass: 'toast-bottom-right',
       preventDuplicates: false,
       closeButton: true,
       enableHtml: true,
