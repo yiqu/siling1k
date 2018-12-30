@@ -10,7 +10,7 @@ import { CalcService } from '../service/calc.service';
 import { GraphService } from '../service/graph.service';
 import { AppRoutingModule } from '../app-routing.module';
 import { DetailsResolver } from "./details/details-resolver.service";
-
+import { TitleService } from '../service/title.service';
 
 @NgModule({
   imports: [
@@ -33,7 +33,8 @@ import { DetailsResolver } from "./details/details-resolver.service";
     ToggleService,
     CalcService,
     GraphService,
-    DetailsResolver
+    DetailsResolver,
+    TitleService
   ],
 })
 export class HomeModule { }

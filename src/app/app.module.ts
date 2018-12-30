@@ -14,6 +14,7 @@ import { AboutModule } from './about/about.module';
 import { HomeModule } from './home/home.module';
 import { NotFoundModule } from './404/404.module';
 import { LoadingModule } from './shared/loading/loading.module';
+import { TitleService } from './service/title.service';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { LoadingModule } from './shared/loading/loading.module';
   providers: [
     HttpErrorHandler,
     MessageService,
-    DataService
+    DataService,
+    TitleService
   ],
 
   bootstrap: [

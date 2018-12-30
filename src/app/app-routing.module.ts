@@ -9,14 +9,14 @@ import { DetailsResolver } from './home/details/details-resolver.service';
 
  //Root routes for app
 const routes: Routes = [
-  { path: 'home', component: HomeComponent },
-  { path: 'about', component: AboutComponent },
+  { path: 'home', component: HomeComponent, data: {title: 'Home'} },
+  { path: 'about', component: AboutComponent, data: {title: 'About'} },
   { path: 'details', redirectTo: '/home', pathMatch: 'full' },
   { path: 'details/:panelId', component: DetailsComponent, 
     data: {pageTitle: "Details"},
     //resolve: {panelItemInfo: DetailsResolver} 
   },
-  { path: 'loading', component: LoadingComponent },
+  { path: 'loading', component: LoadingComponent, data: {title: 'Loading'} },
   /**
   * Since the default matching strategy is "prefix" , Angular checks if the path you entered in 
   * the URL does start with the path specified in the route. Of course every path starts with ''  

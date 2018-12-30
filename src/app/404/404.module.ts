@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 
 import { NotFoundComponent } from './404.component';
+import { TitleService } from '../service/title.service';
 
 @NgModule({
   imports: [],

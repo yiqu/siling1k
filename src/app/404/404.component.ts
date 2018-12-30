@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, Data } from '@angular/router';
+import { TitleService } from '../service/title.service';
 
 @Component({
   selector: 'app-notfound',
@@ -7,7 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class NotFoundComponent implements OnInit {
-  constructor() { }
 
-  ngOnInit() { }
+  constructor(public ts: TitleService, public router: Router, public route: ActivatedRoute) { }
+
+  ngOnInit() {
+    this.route.data.subscribe(
+      (data: Data) => {
+        this.ts.setPageTitle(data.title);
+      }
+    );
+  }
 }
