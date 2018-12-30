@@ -12,8 +12,12 @@
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
       <a *ngFor="let item of navItemsList" 
-      [ngClass]="{'nav-item':true, 'nav-link':true, 'disabled-link disabled':item.disabled}" [routerLink]="item.url" 
-      routerLinkActive="active active-ul">{{item.display}}</a>
+        [ngClass]="{'nav-item':true, 'nav-link':true, 'disabled-link disabled':item.disabled}" 
+        [routerLink]="item.url"
+        [preserveFragment]="false"
+        [queryParamsHandling]=""
+        routerLinkActive="active active-ul">{{item.display}}
+      </a>
     </div>
   </div>
 </nav>

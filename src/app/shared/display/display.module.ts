@@ -4,12 +4,13 @@ import { CommonModule } from '@angular/common';
 import { PipeModule } from '../../pipes/pipe-barrel.module';
 import { DataService } from '../../service/data.service';
 import { CalcService } from '../../service/calc.service';
-import { HighlightDirective } from '../directives/highlight-directive/hightlight.directive';
+import { DirectivesModule } from '../directives/directives-barrel.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    PipeModule
+    PipeModule,
+    DirectivesModule
   ],
 
   exports: [
@@ -18,8 +19,7 @@ import { HighlightDirective } from '../directives/highlight-directive/hightlight
   ],
 
   declarations: [
-    DisplayComponent,
-    HighlightDirective
+    DisplayComponent
   ],
 
   providers: [

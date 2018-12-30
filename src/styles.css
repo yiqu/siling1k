@@ -52,6 +52,10 @@
   padding: .35rem 1.35rem !important;
 }
 
+.anchor-text {
+  color: #cccccc;
+}
+
 /* Rules for sizing the icon. */
 .material-icons.md-18 { vertical-align: sub; font-size: 18px; }
 .material-icons.md-24 { vertical-align: sub; font-size: 24px; }
