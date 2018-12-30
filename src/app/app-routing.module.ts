@@ -24,7 +24,7 @@ const routes: Routes = [
   * To fix this behavior, you need to change the matching strategy to "full"
   */
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: '**', component: NotFoundComponent }
+  { path: '**', component: NotFoundComponent, data: {title: 'Not Found'} }
 ];
 
 
