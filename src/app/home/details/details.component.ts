@@ -10,6 +10,7 @@ import { PanelItem } from 'src/app/shared/models/panel.model';
 import { ToastrService } from 'ngx-toastr';
 import { CalcService } from 'src/app/service/calc.service';
 import { GraphService } from 'src/app/service/graph.service';
+import { TitleService } from 'src/app/service/title.service';
 
 @Component({
   selector: 'app-home-details',
@@ -26,16 +27,18 @@ export class DetailsComponent implements OnInit, AfterViewInit {
 
   constructor(public router: Router, public route: ActivatedRoute, 
     public ts: ToggleService, public ds: DataService, public as: ToastrService,
-    public cs: CalcService, public gs: GraphService) {
+    public cs: CalcService, public gs: GraphService, public titleService: TitleService) {
   }
 
   ngOnInit() {
     this.route.params.subscribe(
       (params: Params) => {
         this.panelId = params.panelId;
+        this.titleService.setPageTitle(this.panelId);
         this.getSinglePanelData();
       }
     );
+
   }
 
   ngAfterViewInit() {

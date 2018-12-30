@@ -66,6 +66,6 @@ export class DisplayComponent implements OnChanges {
   }
 
   getExpandToggleIcon(): string {
-    return this.isPanelExpanded ? "call_received" : "call_made";
+    return this.isPanelExpanded ? "arrow_back" : "call_made";
   }
 }

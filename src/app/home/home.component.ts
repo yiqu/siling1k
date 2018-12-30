@@ -13,6 +13,7 @@ import { Utils } from '../shared/utils';
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
 import { GraphService } from '../service/graph.service';
+import { TitleService } from '../service/title.service';
 
 
 @Component({
@@ -42,7 +43,8 @@ export class HomeComponent implements OnInit, OnDestroy {
    */
   constructor(private ds: DataService, public cs: CalcService, public ts: ToggleService, 
     private cdRef:ChangeDetectorRef, public as: ToastrService, 
-    public gs: GraphService, public router: Router, public route: ActivatedRoute) { 
+    public gs: GraphService, public router: Router, public route: ActivatedRoute,
+    public titleService: TitleService) { 
   }
 
   ngAfterViewInit() {
@@ -79,6 +81,12 @@ export class HomeComponent implements OnInit, OnDestroy {
       }
     );
 
+    this.route.data.subscribe(
+      (data) => {
+        this.titleService.setPageTitle(data.title);
+      }
+    );
+    
     this.loadData();
     // have to do this everytime app switches back to this view
     Utils.enableJqueryTooltip();
