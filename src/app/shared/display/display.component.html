@@ -5,7 +5,8 @@
   </div>
 
   <div class="card-header header">
-    <span [hightlight]="'#595959'" innerHTMLOnly="true" class="panel-header">
+    <span [hightlight]="'#595959'" innerHTMLOnly="true" class="panel-header page-anchor"
+      [paramAnchor]="displayTitle">
       {{displayTitle}} {{displayData ? "" : "'s data loading ..."}}
     </span>
 

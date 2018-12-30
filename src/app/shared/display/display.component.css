@@ -39,3 +39,7 @@
 .card-header.header {
   color: #8c8c8c;
 }
+
+.page-anchor {
+  cursor: pointer;
+}

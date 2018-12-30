@@ -1,7 +1,7 @@
 import { Component, OnInit, OnChanges, SimpleChange, 
   ContentChild, ElementRef, AfterViewInit, Input } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
-import { Router, ActivatedRoute, Params, Data } from "@angular/router";
+import { Router, ActivatedRoute, Params, Data, NavigationExtras } from "@angular/router";
 import { ToggleService } from 'src/app/service/toggle.service';
 import { ToggleAction } from 'src/app/shared/models/toggle-action.model';
 import { DataService } from 'src/app/service/data.service';
@@ -69,6 +69,9 @@ export class DetailsComponent implements OnInit, AfterViewInit {
   }
 
   onPanelToggle() {
-    this.router.navigate(["/home"]);
+    let navigationExtras: NavigationExtras = {
+      queryParams: { 'lastDetail': this.panelId }
+    };
+    this.router.navigate(["/home"], navigationExtras);
   }
 }

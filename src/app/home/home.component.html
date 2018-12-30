@@ -4,7 +4,7 @@
 
   <div class="row">
     <div *ngFor="let panelData of allPanelData" class="col-md center-text">
-      <app-display
+      <app-display [id]="panelData.title"
         [displayImageUrl]="panelData.displayUrl"
         [displayData]="panelData.dataArray"
         [displayTitle]="panelData.title"
@@ -13,6 +13,7 @@
       </app-display>
     </div>
   </div>
+  
 </div>
 
 <ng-template #loading>
