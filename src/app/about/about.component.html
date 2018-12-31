@@ -1,9 +1,26 @@
 <div class="center-text">
   <span class="font-indie indie-font-25">About Us</span>
 </div>
-
 <div>
   <p class="font-indie">
     {{aboutText}}
   </p>
+</div>
+
+<div class="row">
+  <div class="col-md-4">
+    <div class="list-group">
+      <a *ngFor="let item of aboutItems"
+        class="list-group-item list-group-item-action list-group-item-info about-item"
+        [routerLink]="item.id"
+        [preserveFragment]="false"
+        [queryParamsHandling]=""
+        routerLinkActive="active">
+        {{item.title}}
+      </a>
+    </div>
+  </div>
+  <div class="col-md-8">
+    <router-outlet></router-outlet>
+  </div>
 </div>

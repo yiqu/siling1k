@@ -4,9 +4,8 @@ import { HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { HttpErrorHandler, HandleError } from './error-handler.service';
-import { DataResponse } from '../shared/models/data.model';
 import { environment } from '../../environments/environment';
-import { ItemDetail } from '../shared/models/data.model';
+import { DataResponse, ItemDetail, AboutItem } from '../shared/models/data.model';
 
 @Injectable()
 export class DataService {
@@ -24,6 +23,14 @@ export class DataService {
       .pipe(
         delay(environment.restDelay)
       );
+  }
+
+  getAboutData$(): Observable<HttpResponse<DataResponse>> {
+    let url: string = this.baseUrl + "about-data.json";
+    return this.http.get<DataResponse>(url, {observe: 'response', responseType: "json"})
+      .pipe(
+        delay(environment.restDelay)
+      ); 
   }
 
   /**

@@ -1,0 +1,15 @@
+<div *ngIf="aboutItem; else loading" class="card">
+  <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+  <div class="card-body">
+    <h5 class="card-title">{{aboutItem.title}}</h5>
+    <p class="card-text">
+      {{aboutItem.description}}
+    </p>
+    <a [routerLink]="['../']" class="btn btn-primary">Back</a>
+  </div>
+</div>
+
+<ng-template #loading>
+  loading
+  <!-- <app-loading></app-loading> -->
+</ng-template>

@@ -18,3 +18,23 @@ export class ItemDetail {
     this.profitPercent = 0
   }
 }
+
+export class AboutItem {
+  //id: string;
+  //description: string
+
+  constructor(public id: string, public description: string, public title: string) {
+  }
+
+  getId() {
+    return this.id;
+  }
+
+  getDescription() {
+    return this.description;
+  }
+
+  getTitle() {
+    return this.title;
+  }
+}
