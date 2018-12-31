@@ -6,11 +6,22 @@ import { NotFoundComponent } from './404/404.component';
 import { LoadingComponent } from './shared/loading/loading.component';
 import { DetailsComponent } from './home/details/details.component';
 import { DetailsResolver } from './home/details/details-resolver.service';
+import { AboutLandingComponent } from './about/about-landing/about-landing.component';
+import { AboutCreationComponent } from './about/about-new/about-new.component';
+import { AboutDetailComponent } from './about/about-detail/about-detail.component';
+import { AboutEditComponent } from './about/about-edit/about-edit.component';
 
  //Root routes for app
 const routes: Routes = [
   { path: 'home', component: HomeComponent, data: {title: 'Home'} },
-  { path: 'about', component: AboutComponent, data: {title: 'About'} },
+  { path: 'about', component: AboutComponent, data: {title: 'About'}, 
+    children: [
+      {path: '', component: AboutLandingComponent },
+      {path: 'new', component: AboutCreationComponent },
+      {path: ':id', component: AboutDetailComponent },
+      {path: ':id/edit', component: AboutEditComponent }
+    ] 
+  },
   { path: 'details', redirectTo: '/home', pathMatch: 'full' },
   { path: 'details/:panelId', component: DetailsComponent, 
     data: {pageTitle: "Details"},

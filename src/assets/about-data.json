@@ -1,0 +1,20 @@
+{
+  "total_count": 3,
+  "items": [
+    {
+      "id": "dow",
+      "title": "Dow Jones Industrial Average",
+      "description": "The Dow Jones Industrial Average (DJIA), or simply the Dow (/ˈdaʊ/), is a stock market index that indicates the value of 30 large, publicly owned companies based in the United States, and how they have traded in the stock market during various periods of time. The value of the Dow is not a weighted arithmetic mean and does not represent its component companies' market capitalization, but rather the sum of the price of one share of stock for each component company. The sum is corrected by a factor which changes whenever one of the component stocks has a stock split or stock dividend, so as to generate a consistent value for the index."
+    },
+    {
+      "id": "sp500",
+      "title": "The Standard & Poor's 500",
+      "description": "The Standard & Poor's 500, often abbreviated as the S&P 500, or just the S&P, is an American stock market index based on the market capitalizations of 500 large companies having common stock listed on the NYSE or NASDAQ. The S&P 500 index components and their weightings are determined by S&P Dow Jones Indices. It differs from other U.S. stock market indices, such as the Dow Jones Industrial Average or the NASDAQ Composite index, because of its diverse constituency and weighting methodology. It is one of the most commonly followed equity indices, and many consider it one of the best representations of the U.S. stock market, and a bellwether for the U.S. economy. The National Bureau of Economic Research has classified common stocks as a leading indicator of business cycles."
+    },
+    {
+      "id": "nasdaq",
+      "title": "The NASDAQ Composite",
+      "description": "The NASDAQ Composite (ticker symbol ^IXIC) is a stock market index of the common stocks and similar securities (e.g. ADRs, tracking stocks, limited partnership interests) listed on the NASDAQ stock market. Along with the Dow Jones Average and S&P 500 it is one of the three most-followed indices in US stock markets. The composition of the NASDAQ Composite is heavily weighted towards information technology companies."
+    }
+  ]
+}
