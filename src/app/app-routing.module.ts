@@ -16,10 +16,10 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent, data: {title: 'Home'} },
   { path: 'about', component: AboutComponent, data: {title: 'About'}, 
     children: [
-      {path: '', component: AboutLandingComponent },
-      {path: 'new', component: AboutCreationComponent },
-      {path: ':id', component: AboutDetailComponent },
-      {path: ':id/edit', component: AboutEditComponent }
+      { path: '', component: AboutLandingComponent },
+      { path: 'new', component: AboutCreationComponent },
+      { path: ':id', component: AboutDetailComponent },
+      { path: ':id/edit', component: AboutEditComponent }
     ] 
   },
   { path: 'details', redirectTo: '/home', pathMatch: 'full' },

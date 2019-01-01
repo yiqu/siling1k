@@ -5,11 +5,13 @@
     <p class="card-text">
       {{aboutItem.description}}
     </p>
-    <a [routerLink]="['../']" class="btn btn-primary">Back</a>
+    <a [routerLink]="['../']" class="btn btn-primary fixed-width">Back to About</a>
+    <button class="btn btn-info fixed-width">Edit</button>
   </div>
 </div>
 
 <ng-template #loading>
-  loading
   <!-- <app-loading></app-loading> -->
+  <p class="font-indie indie-font-20">{{loadingText}}</p>
+  <button (click)="goBackToAbout()" class="btn btn-primary">Go back to About</button>
 </ng-template>

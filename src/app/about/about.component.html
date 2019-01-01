@@ -1,5 +1,5 @@
 <div class="center-text">
-  <span class="font-indie indie-font-25">About Us</span>
+  <span class="font-indie indie-font-25">What are Market Indices?</span>
 </div>
 <div>
   <p class="font-indie">
@@ -11,7 +11,8 @@
   <div class="col-md-4">
     <div class="list-group">
       <a *ngFor="let item of aboutItems"
-        class="list-group-item list-group-item-action list-group-item-info about-item"
+        [ngClass]="{'list-group-item':true, 'list-group-item-action':true, 
+          'list-group-item-info':true, 'about-item':true, 'disabled':false}"
         [routerLink]="item.id"
         [preserveFragment]="false"
         [queryParamsHandling]=""
@@ -19,7 +20,10 @@
         {{item.title}}
       </a>
     </div>
+    <button class="btn btn-success margin-top-button" (click)="onAddNewIndex()"
+      [disabled]="isLoading">Add New Index</button>
   </div>
+ 
   <div class="col-md-8">
     <router-outlet></router-outlet>
   </div>
