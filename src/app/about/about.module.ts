@@ -10,6 +10,7 @@ import { AboutCreationComponent } from './about-new/about-new.component';
 import { AboutEditComponent } from './about-edit/about-edit.component';
 import { AboutDetailComponent } from './about-detail/about-detail.component';
 import { LoadingModule } from '../shared/loading/loading.module';
+import { CanDeactivateGuard } from "./about-new/about-new-deactivate-guard.service";
 
 @NgModule({
   imports: [
@@ -37,7 +38,8 @@ import { LoadingModule } from '../shared/loading/loading.module';
 
   providers: [
     TitleService,
-    AboutService
+    AboutService,
+    CanDeactivateGuard
   ]
 })
 export class AboutModule { }

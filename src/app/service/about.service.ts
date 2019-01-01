@@ -11,17 +11,13 @@ import * as _ from 'lodash';
 export class AboutService {
 
   aboutItems: AboutItem[] = [];
-
-  // Since there is no backend, temp. store newly added entries here
-  inMemoryAddedItems: AboutItem[] = [];
+  inMemoryAddedItems: AboutItem[] = []; // Since there is no backend, temp. store newly added entries here
 
   allAboutDataSubj: Subject<AboutItem[]> = new Subject();
-  //singleAboutDataSubj: EventEmitter<AboutItem> = new EventEmitter<AboutItem>();
   singleAboutDataSubj: Subject<AboutItem> = new Subject();
+  isAboutLoading: Subject<boolean> = new Subject<boolean>();
 
   getAboutDataSub: Subscription = new Subscription();
-
-  isAboutLoading: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(public ds: DataService, public router: Router, public route: ActivatedRoute) {
   }

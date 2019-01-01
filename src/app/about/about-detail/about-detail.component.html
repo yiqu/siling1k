@@ -1,10 +1,12 @@
 <div *ngIf="aboutItem; else loading" class="card">
   <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
   <div class="card-body">
-    <h5 class="card-title">{{aboutItem.title}}</h5>
-    <p class="card-text">
+    <h5 class="card-title font-roboto">{{aboutItem.title}}</h5>
+    <hr>
+    <p class="card-text font-roboto font-thin">
       {{aboutItem.description}}
     </p>
+    <hr>
     <a [routerLink]="['../']" class="btn btn-primary fixed-width">Back to About</a>
     <button class="btn btn-info fixed-width">Edit</button>
   </div>
@@ -12,6 +14,6 @@
 
 <ng-template #loading>
   <!-- <app-loading></app-loading> -->
-  <p class="font-indie indie-font-20">{{loadingText}}</p>
+  <p class="">{{loadingText}}</p>
   <button (click)="goBackToAbout()" class="btn btn-primary">Go back to About</button>
 </ng-template>

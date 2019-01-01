@@ -1,18 +1,19 @@
 <div class="center-text">
   <span class="font-indie indie-font-25">What are Market Indices?</span>
 </div>
+<hr>
 <div>
-  <p class="font-indie">
+  <p class="font-roboto font-thin">
     {{aboutText}}
   </p>
 </div>
 
 <div class="row">
-  <div class="col-md-4">
+  <div class="col-md-4" *ngIf="aboutItems; else loadingAboutItems">
     <div class="list-group">
       <a *ngFor="let item of aboutItems"
         [ngClass]="{'list-group-item':true, 'list-group-item-action':true, 
-          'list-group-item-info':true, 'about-item':true, 'disabled':false}"
+          'list-group-item-info':true, 'about-item':true, 'disabled':isLoading, 'font-roboto':true}"
         [routerLink]="item.id"
         [preserveFragment]="false"
         [queryParamsHandling]=""
@@ -23,6 +24,12 @@
     <button class="btn btn-success margin-top-button" (click)="onAddNewIndex()"
       [disabled]="isLoading">Add New Index</button>
   </div>
+
+  <ng-template #loadingAboutItems>
+    <div class="col-md-4">
+      Loading...
+    </div>
+  </ng-template>
  
   <div class="col-md-8">
     <router-outlet></router-outlet>
