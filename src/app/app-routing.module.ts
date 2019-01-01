@@ -10,6 +10,7 @@ import { AboutLandingComponent } from './about/about-landing/about-landing.compo
 import { AboutCreationComponent } from './about/about-new/about-new.component';
 import { AboutDetailComponent } from './about/about-detail/about-detail.component';
 import { AboutEditComponent } from './about/about-edit/about-edit.component';
+import { CanDeactivateGuard } from './about/about-new/about-new-deactivate-guard.service';
 
  //Root routes for app
 const routes: Routes = [
@@ -17,7 +18,7 @@ const routes: Routes = [
   { path: 'about', component: AboutComponent, data: {title: 'About'}, 
     children: [
       { path: '', component: AboutLandingComponent },
-      { path: 'new', component: AboutCreationComponent },
+      { path: 'new', component: AboutCreationComponent, canDeactivate:[CanDeactivateGuard] },
       { path: ':id', component: AboutDetailComponent },
       { path: ':id/edit', component: AboutEditComponent }
     ] 

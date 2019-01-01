@@ -20,16 +20,18 @@ export class AboutDetailComponent implements OnInit, OnDestroy {
   loadingText: string = "Loading...";
 
   constructor(public router: Router, public route: ActivatedRoute, public as: AboutService,
-    public ts: ToastrService) {
-  }
-
-  ngOnInit() {
+              public ts: ToastrService) {
+                
+    // prevent value being changed after detection changed has occured in About Home Component
     this.route.params.subscribe(
       (param: Params) => {
         this.itemId = param.id;
         this.getAboutDetail(param.id);
       }
     );
+  }
+
+  ngOnInit() {
   }
 
   getAboutDetail(itemId: string) {
