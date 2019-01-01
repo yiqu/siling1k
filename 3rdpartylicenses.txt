@@ -568,10 +568,10 @@ SOFTWARE.
 @angular/router
 MIT
 
-@angular/animations
+@angular/forms
 MIT
 
-@angular/forms
+@angular/animations
 MIT
 
 zone.js
