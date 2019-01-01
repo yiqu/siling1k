@@ -18,6 +18,10 @@
   font-size: 25px;
 }
 
+.indie-font-20 {
+  font-size: 20px;
+}
+
 .no-border-right {
   border-right: 0 !important;
 }
@@ -54,6 +58,20 @@
 
 .anchor-text {
   color: #cccccc;
+}
+
+.fixed-width {
+  min-width: 80px;
+  margin-right: 10px;
+}
+
+.margin-top-button {
+  margin-top: 5px;
+}
+
+a.disabled {
+  pointer-events: none;
+  cursor: default;
 }
 
 /* Rules for sizing the icon. */

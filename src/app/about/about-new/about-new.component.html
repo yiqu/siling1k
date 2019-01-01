@@ -1,1 +1,33 @@
-New
+<div class="card">
+  <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+  <div class="card-body">
+    <h5 class="card-title">Add a New Market Index Entry</h5>
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="market-index-name">Market Name:</span>
+      </div>
+      <input type="text" class="form-control" placeholder="E.g. S&P 500" 
+        [(ngModel)]="currentEntryName">
+    </div>
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="market-index-name">Market ID (unique):</span>
+      </div>
+      <input type="text" class="form-control" placeholder="E.g. sp500" 
+        [(ngModel)]="currentEntryId">
+    </div>
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Market Description:</span>
+      </div>
+      <textarea class="form-control" aria-label="With textarea" 
+        [(ngModel)]="currentEntryDescription"></textarea>
+    </div>
+
+    <button (click)="onEntrySubmit()" class="btn btn-primary fixed-width">Submit</button>
+
+  </div>
+</div>

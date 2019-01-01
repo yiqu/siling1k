@@ -4,6 +4,7 @@ import { AboutService } from '../../service/about.service';
 import { AboutItem, DataResponse } from '../../shared/models/data.model';
 import { Subscription } from 'rxjs';
 import { HttpResponse } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'about-detail',
@@ -16,8 +17,10 @@ export class AboutDetailComponent implements OnInit, OnDestroy {
   itemId: string;
   aboutItem: AboutItem;
   aboutItem$: Subscription = new Subscription();
+  loadingText: string = "Loading...";
 
-  constructor(public router: Router, public route: ActivatedRoute, public as: AboutService) {
+  constructor(public router: Router, public route: ActivatedRoute, public as: AboutService,
+    public ts: ToastrService) {
   }
 
   ngOnInit() {
@@ -27,22 +30,32 @@ export class AboutDetailComponent implements OnInit, OnDestroy {
         this.getAboutDetail(param.id);
       }
     );
-
-    
   }
 
   getAboutDetail(itemId: string) {
-    this.as.getSingleAboutData(itemId);
-    this.aboutItem$ = this.as.getSingleAboutData$.subscribe(
-      (item: AboutItem) => {
-        //console.log("item: ",item);
-        this.aboutItem = item;
+    this.loadingText = "Loading...";
+    this.as.isAboutLoading.next(true);
+    this.aboutItem$.unsubscribe();
+    this.as.getSingleAboutData2(itemId);
+    this.aboutItem$ = this.as.singleAboutDataSubj.subscribe(
+      (data: AboutItem) => {
+        this.as.isAboutLoading.next(false);
+        this.aboutItem = data;
+        //console.log(this.aboutItem, "ITEM!")
+        if (!this.aboutItem) {
+          this.loadingText = "This Market Index does not exist.";
+          this.ts.error(this.loadingText);
+        }
       }
     );
   }
 
+  goBackToAbout() {
+    this.router.navigate(['../'], {relativeTo: this.route});
+    this.loadingText = "Loading...";
+  }
+
   ngOnDestroy() {
     this.aboutItem$.unsubscribe();
-    console.log("unsub in detail")
   }
 }

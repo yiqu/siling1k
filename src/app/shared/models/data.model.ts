@@ -23,7 +23,7 @@ export class AboutItem {
   //id: string;
   //description: string
 
-  constructor(public id: string, public description: string, public title: string) {
+  constructor(public id: string = "untitled", public description: string = "None", public title: string = "Untitled") {
   }
 
   getId() {
