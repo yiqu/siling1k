@@ -2,7 +2,8 @@ import { Component, OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRe
 import { TitleService } from '../service/title.service';
 import { Router, ActivatedRoute, Data } from '@angular/router';
 import { AboutService } from '../service/about.service';
-import { AboutItem, DataResponse } from '../shared/models/data.model';
+import { DataResponse } from '../shared/models/data.model';
+import { MarketIndex } from '../shared/models/market-index.model';
 import { Subscription } from 'rxjs';
 import { HttpResponse } from '@angular/common/http';
 
@@ -18,7 +19,7 @@ export class AboutComponent implements OnInit, OnDestroy {
   aboutDataSub: Subscription = new Subscription();
   isLoadingSub: Subscription = new Subscription();
 
-  aboutItems: AboutItem[];
+  aboutItems: MarketIndex[];
   isLoading: boolean = false; 
 
   constructor(public ts: TitleService, public router: Router, public route: ActivatedRoute,
@@ -55,7 +56,7 @@ export class AboutComponent implements OnInit, OnDestroy {
     this.as.getAllAboutData();
     this.aboutDataSub.unsubscribe();
     this.aboutDataSub = this.as.allAboutDataSubj.subscribe(
-      (data: AboutItem[]) => {
+      (data: MarketIndex[]) => {
         this.aboutItems = data;
       }
     );

@@ -11,13 +11,15 @@ import { AboutEditComponent } from './about-edit/about-edit.component';
 import { AboutDetailComponent } from './about-detail/about-detail.component';
 import { LoadingModule } from '../shared/loading/loading.module';
 import { CanDeactivateGuard } from "./about-new/about-new-deactivate-guard.service";
+import { ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     RouterModule,
-    LoadingModule
+    LoadingModule,
+    ReactiveFormsModule
   ],
 
   exports: [

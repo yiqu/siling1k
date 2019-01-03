@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { HttpErrorHandler, HandleError } from './error-handler.service';
 import { environment } from '../../environments/environment';
-import { DataResponse, ItemDetail, AboutItem } from '../shared/models/data.model';
+import { DataResponse, ItemDetail } from '../shared/models/data.model';
 
 @Injectable()
 export class DataService {

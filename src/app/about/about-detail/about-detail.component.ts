@@ -1,7 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute, Data, Params } from '@angular/router';
 import { AboutService } from '../../service/about.service';
-import { AboutItem, DataResponse } from '../../shared/models/data.model';
+import { DataResponse } from '../../shared/models/data.model';
+import { MarketIndex, MarketIndeFact } from '../../shared/models/market-index.model';
 import { Subscription } from 'rxjs';
 import { HttpResponse } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
@@ -15,7 +16,7 @@ import { ToastrService } from 'ngx-toastr';
 export class AboutDetailComponent implements OnInit, OnDestroy {
 
   itemId: string;
-  aboutItem: AboutItem;
+  aboutItem: MarketIndex;
   aboutItem$: Subscription = new Subscription();
   loadingText: string = "Loading...";
 
@@ -40,7 +41,7 @@ export class AboutDetailComponent implements OnInit, OnDestroy {
     this.aboutItem$.unsubscribe();
     this.as.getSingleAboutData2(itemId);
     this.aboutItem$ = this.as.singleAboutDataSubj.subscribe(
-      (data: AboutItem) => {
+      (data: MarketIndex) => {
         this.as.isAboutLoading.next(false);
         this.aboutItem = data;
         //console.log(this.aboutItem, "ITEM!")
