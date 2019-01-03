@@ -7,6 +7,15 @@
       {{aboutItem.description}}
     </p>
     <hr>
+    <h6 class="card-title font-roboto">Fun Facts:</h6>
+      <ul>
+        <li *ngFor="let fact of aboutItem.facts"
+          class="card-text font-roboto font-thin mb-3">{{fact.text}}
+          <div class="fact-author">source: {{fact.author}}</div>
+        </li>
+        
+      </ul>
+    <hr>
     <a [routerLink]="['../']" class="btn btn-primary fixed-width">Back to About</a>
     <button class="btn btn-info fixed-width">Edit</button>
   </div>

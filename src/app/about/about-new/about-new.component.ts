@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AboutService } from 'src/app/service/about.service';
-import { AboutItem } from 'src/app/shared/models/data.model';
+import { MarketIndex } from '../../shared/models/market-index.model';
 import { CanComponentDeactivate } from './about-new-deactivate-guard.service';
+import { FormGroup, FormArray, FormControl, Validators } from "@angular/forms"
 import { Observable } from 'rxjs';
 
 @Component({
@@ -24,7 +25,7 @@ export class AboutCreationComponent implements OnInit, CanComponentDeactivate {
   ngOnInit() { }
 
   onEntrySubmit() {
-    let newEntry = new AboutItem(this.currentEntryId, this.currentEntryDescription, this.currentEntryName);
+    let newEntry = new MarketIndex(this.currentEntryId, this.currentEntryDescription, this.currentEntryName);
     this.entrySubmitted = true;
     this.as.addNewEntry(newEntry);
   }
