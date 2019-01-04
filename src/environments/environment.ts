@@ -4,5 +4,6 @@
 
 export const environment = {
   production: false,
-  restDelay: 500
+  restDelay: 500,
+  shortDelay: 100
 };

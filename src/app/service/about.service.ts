@@ -14,11 +14,13 @@ export class AboutService {
 
   aboutItems: MarketIndex[] = [];
   inMemoryAddedItems: MarketIndex[] = []; // Since there is no backend, temp. store newly added entries here
+  newMarketIndexFormObj: MarketIndex[] = [];
 
   allAboutDataSubj: Subject<MarketIndex[]> = new Subject();
   singleAboutDataSubj: Subject<MarketIndex> = new Subject();
   isAboutLoading: Subject<boolean> = new Subject<boolean>();
 
+  marketIndexFormObjSub: Subscription = new Subscription();
   getAboutDataSub: Subscription = new Subscription();
 
   constructor(public ds: DataService, public router: Router, public route: ActivatedRoute,
@@ -52,6 +54,22 @@ export class AboutService {
       }
     );
   }
+
+  getNewMarketIndexFormObj() {
+    this.marketIndexFormObjSub.unsubscribe();
+    this.marketIndexFormObjSub = this.ds.getMarketIndexForm$().subscribe(
+      (data: HttpResponse<DataResponse>) => {
+        this.newMarketIndexFormObj = data.body.items;
+      },
+      (error) => {
+      },
+      () => {
+        console.log(this.newMarketIndexFormObj)
+      }
+    )
+  }
+
+  
 
   /**
    * Mock a backend server with In Memory List. This list will be
