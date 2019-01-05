@@ -37,7 +37,7 @@ export class AboutCreationComponent implements OnInit, CanComponentDeactivate {
     );
   }
 
-  onEntrySubmit() {
+  onSubmit() {
     console.log(this.newFormFg.value)
   }
 
