@@ -41,8 +41,7 @@
           </div>
         </div>
       </div>
-      <button (click)="onEntrySubmit()" [disabled]="!newFormFg.valid"
-        class="btn btn-primary fixed-width">Submit</button>
+      <button [disabled]="!newFormFg.valid" class="btn btn-primary fixed-width">Submit</button>
       <span *ngIf="!newFormFg.valid" class="text-muted">Fill in required fields *</span>
     </form>
   </div>
