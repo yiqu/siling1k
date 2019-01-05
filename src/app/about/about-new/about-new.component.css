@@ -1,0 +1,18 @@
+.fact-label {
+  margin: 0 auto;
+}
+
+/* AFTER TOUCH: valid + required */
+.ng-valid[required], .ng-valid.required  {
+  border-left: 5px solid #42A948; /* green */
+}
+
+/*AFTER TOUCH:  Invalid */
+input.ng-invalid:not(form).ng-touched  {
+  border-left: 5px solid #a94442; /* red */
+}
+
+/* AFTER TOUCH: valid + touched */
+input.ng-valid.ng-touched.ng-dirty  {
+  border-left: 5px solid #42A948; /* green */
+}

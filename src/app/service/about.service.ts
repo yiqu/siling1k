@@ -69,8 +69,6 @@ export class AboutService {
     )
   }
 
-  
-
   /**
    * Mock a backend server with In Memory List. This list will be
    * concat'd whenever retrieving all about items.
@@ -81,26 +79,45 @@ export class AboutService {
     this.router.navigate(['../about', entry.getId()], {relativeTo: this.route});
   }
 
-  createNewMarketIndexMetaFG(): FormGroup {
+  createNewMarketIndexMetaFG(objData): FormGroup {
+    console.log("Data:",objData)
     let fgObject = {
-      "name": this.createNewFormControl("", false),
-      "id": this.createNewFormControl("", false),
-      "description": this.createNewFormControl("Description here..", false),
-      "facts": this.fb.array(
-        [
-          this.createNewMarketIndexFactControl()
-        ]
-      )
+      "title": this.createNewFormControl(objData['title'].value, 
+        false, 
+        this.getValidators(objData['title'].required)),
+      "id": this.createNewFormControl(objData['id'].value, 
+        false, 
+        this.getValidators(objData['id'].required)),
+      "description": this.createNewFormControl(objData['description'].value, 
+        false, 
+        this.getValidators(objData['description'].required))
     };
+    fgObject['facts'] = this.createFormFactsObj(objData['facts']);
     return this.fb.group(fgObject);
   }
 
-  createNewMarketIndexFactControl(): FormGroup {
-    let fgObject = {
-      "text": this.createNewFormControl("Fact description..."),
-      "author": this.createNewFormControl("")
+  createFormFactsObj(factObj): FormArray {
+    let fga = new FormArray([]);
+    for (let fact of factObj.value) {
+      let fg = new FormGroup({
+        "text": this.createNewFormControl(fact['text'].value, 
+          false, 
+          this.getValidators(fact['text'].required)),
+        "author": this.createNewFormControl(fact['author'].value, 
+          false, 
+          this.getValidators(fact['author'].required))
+      });
+      fga.push(fg);
     }
-    return this.fb.group(fgObject);
+    return fga;
+  }
+
+  getValidators(req: boolean) {
+    let validatorList = [];
+    if (req) {
+      validatorList.push(Validators.required);
+    }
+    return validatorList;
   }
 
   createNewFormControl(value: string, disabled: boolean = false, validators?: any[]) {
