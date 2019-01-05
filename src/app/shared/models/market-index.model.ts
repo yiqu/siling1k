@@ -1,8 +1,8 @@
 export class MarketIndex {
-  constructor(public name: string = "Untitled", 
-    public id: string = "none", 
-    public description: string = "N/A",
-    public facts?: MarketIndeFact[]) {
+  constructor(public name: MarketIndexValue = new MarketIndexValue(), 
+    public id: MarketIndexValue = new MarketIndexValue(), 
+    public description: MarketIndexValue = new MarketIndexValue("Description here.."),
+    public facts?: MarketIndexValue[]) {
 
   } 
 
@@ -24,6 +24,14 @@ export class MarketIndex {
 }
 
 export class MarketIndeFact {
-  constructor(public text: string, public author: string) {
+  constructor(public text: MarketIndexValue = new MarketIndexValue(), 
+    public author: MarketIndexValue = new MarketIndexValue()) {
+  }
+}
+
+export class MarketIndexValue {
+  constructor(public value: any = null, public required: boolean = false, public label: string = "Label",
+    defaultValue: string = "default") {
+    
   }
 }

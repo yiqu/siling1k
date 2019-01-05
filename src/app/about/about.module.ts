@@ -12,6 +12,7 @@ import { AboutDetailComponent } from './about-detail/about-detail.component';
 import { LoadingModule } from '../shared/loading/loading.module';
 import { CanDeactivateGuard } from "./about-new/about-new-deactivate-guard.service";
 import { ReactiveFormsModule } from "@angular/forms";
+import { MarketIndexFormResolver } from "./about-new/market-index.resolver.service";
 
 @NgModule({
   imports: [
@@ -41,7 +42,8 @@ import { ReactiveFormsModule } from "@angular/forms";
   providers: [
     TitleService,
     AboutService,
-    CanDeactivateGuard
+    CanDeactivateGuard,
+    MarketIndexFormResolver
   ]
 })
 export class AboutModule { }

@@ -33,6 +33,14 @@ export class DataService {
       ); 
   }
 
+  getMarketIndexForm$(): Observable<HttpResponse<DataResponse>> {
+    let url: string = this.baseUrl + "new-market-index.json";
+    return this.http.get<DataResponse>(url, {observe: 'response', responseType: "json"})
+      .pipe(
+        delay(environment.shortDelay)
+      ); 
+  }
+
   /**
    * Construct URL based on Prod/Dev mode
    */

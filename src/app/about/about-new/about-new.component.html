@@ -2,32 +2,48 @@
   <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
   <div class="card-body">
     <h5 class="card-title">Add a New Market Index Entry</h5>
+    <form [formGroup]="newFormFg" (ngSubmit)="onSubmit()">
+      <div [formArrayName]="'dataArray'">
+        <div *ngFor="let formfg of newFormObj; let i = index">
+          #{{i}}
+          <div [formGroupName]="i" *ngFor="let fgKey of getObjectKeys(formfg)">
+            
+            <div *ngIf="!isObjectArray(fgKey, formfg)" class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <span *ngIf="this.newFormFg.get('dataArray').at(i).get(fgKey).invalid">
+                    {{formfg[fgKey]['required'] ? "*":""}}
+                  </span>
+                  {{formfg[fgKey]['label']}}:
+                </span>
+              </div>
+              <input type="text" class="form-control" [placeholder]="formfg[fgKey]['defaultValue']" 
+                [formControlName]="fgKey">
+            </div>
 
-    <div class="input-group mb-3">
-      <div class="input-group-prepend">
-        <span class="input-group-text" id="market-index-name">Market Name:</span>
+            <div *ngIf="isObjectArray(fgKey, formfg)" class="input-group mb-3" [formArrayName]="fgKey">
+              <div class="fact-label">
+                <span class="input-group-text">{{formfg[fgKey].label}}:</span>
+              </div>
+              <div *ngFor="let fact of (formfg[fgKey]['value']); let j=index" class="input-group" [formGroupName]="j">
+                <div class="">
+                  #{{j}}
+                </div>
+                <div class="input-group mb-3" *ngFor="let factKey of getObjectKeys(fact)">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">{{fact[factKey]['label']}}:</span>
+                  </div>
+                  <input type="text" class="form-control" [placeholder]="fact[factKey]['defaultValue']" 
+                    [formControlName]="factKey">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <input type="text" class="form-control" placeholder="E.g. S&P 500" 
-        [(ngModel)]="currentEntryName">
-    </div>
-
-    <div class="input-group mb-3">
-      <div class="input-group-prepend">
-        <span class="input-group-text" id="market-index-name">Market ID (unique):</span>
-      </div>
-      <input type="text" class="form-control" placeholder="E.g. sp500" 
-        [(ngModel)]="currentEntryId">
-    </div>
-
-    <div class="input-group mb-3">
-      <div class="input-group-prepend">
-        <span class="input-group-text">Market Description:</span>
-      </div>
-      <textarea class="form-control" aria-label="With textarea" 
-        [(ngModel)]="currentEntryDescription"></textarea>
-    </div>
-
-    <button (click)="onEntrySubmit()" class="btn btn-primary fixed-width">Submit</button>
-
+      <button (click)="onEntrySubmit()" [disabled]="!newFormFg.valid"
+        class="btn btn-primary fixed-width">Submit</button>
+      <span *ngIf="!newFormFg.valid" class="text-muted">Fill in required fields *</span>
+    </form>
   </div>
 </div>

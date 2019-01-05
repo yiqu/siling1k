@@ -1,0 +1,59 @@
+{
+  "total_count": 1,
+  "items": [
+    {
+      "id": {
+        "value": "",
+        "required": true,
+        "label": "ID",
+        "defaultValue": "Enter ID"
+      },
+      "title": {
+        "value": "",
+        "required": true,
+        "label": "Title",
+        "defaultValue": "Enter Title"
+      },
+      "description": {
+        "value": "",
+        "required": false,
+        "label": "Description",
+        "defaultValue": "Enter description"
+      },
+      "facts": {
+        "label": "Facts",
+        "required": false,
+        "value" : [
+          {
+            "text": {
+              "value": "",
+              "required": false,
+              "label": "Fact Summary",
+              "defaultValue": "Enter fact summary"
+            },
+            "author": {
+              "value": "",
+              "required": false,
+              "label": "Author",
+              "defaultValue": "Enter author"
+            }
+          },
+          {
+            "text": {
+              "value": "",
+              "required": false,
+              "label": "Fact Summary",
+              "defaultValue": "Enter fact summary"
+            },
+            "author": {
+              "value": "",
+              "required": false,
+              "label": "Author",
+              "defaultValue": "Enter author"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
