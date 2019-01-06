@@ -19,7 +19,8 @@
             <form-inputs *ngIf="isObjectArray(fgKey, formfg)"
               [formGroup]="newFormFg.get('dataArray').at(i).get(fgKey)"
               [formConfig]="formfg"
-              [controlName]="fgKey"></form-inputs>
+              [controlName]="fgKey">
+            </form-inputs>
 
           </div>
         </div>

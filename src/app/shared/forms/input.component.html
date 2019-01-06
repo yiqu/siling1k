@@ -1,19 +1,22 @@
-<div [formGroup]="formGroup">
-  <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text">
-        <span *ngIf="formGroup.get(fgKey)">
-          {{formConfig[controlName]['required'] ? "*":""}}
+<div [formGroup]="formGroup" class="form-row align-items-center">
+  <div class="col-md-12 mb-3">
+    <div class="input-group" [ngSwitch]="formConfig[controlName].type">
+      <div class="input-group-prepend">
+        <span class="input-group-text">
+          <span *ngIf="!formGroup.get(controlName).valid">
+            {{formConfig[controlName]['required'] ? "*":""}}
+          </span>
+            {{formConfig[controlName]['label']}}:
         </span>
-        {{formConfig[controlName]['label']}}:
-      </span>
-    </div>
-    <div [ngSwitch]="formConfig[controlName].type">
-      <input *ngSwitchCase="inputType" type="text" class="form-control"
-        [placeholder]="formConfig[controlName]['defaultValue']" 
+      </div>
+      <input *ngSwitchCase="inputType" type="text" class="form-control" 
+        [placeholder]="formConfig[controlName]['defaultValue']"
         [formControlName]="controlName">
-  
-      <textarea *ngSwitchCase="textAreaType" class="form-control" rows="3" [formControlName]="controlName"></textarea>
+      <textarea *ngSwitchCase="textAreaType" class="form-control" rows="3" 
+        [formControlName]="controlName"></textarea>
     </div>
+    <small class="form-text text-muted" *ngIf="formConfig[controlName].helptext">
+      {{formConfig[controlName].helptext}}
+    </small>
   </div>
 </div>

@@ -7,21 +7,24 @@
         "required": true,
         "label": "ID",
         "type": "input",
-        "defaultValue": "Enter ID"
+        "defaultValue": "Enter ID",
+        "helptext": "Your ID has to be unique, contains only characters and numbers, but not spaces."
       },
       "title": {
         "value": "",
         "required": true,
         "label": "Title",
         "type": "input",
-        "defaultValue": "Enter Title"
+        "defaultValue": "Enter Title",
+        "helptext": null
       },
       "description": {
         "value": "",
         "required": false,
         "label": "Description",
         "type": "textarea",
-        "defaultValue": "Enter description"
+        "defaultValue": "Enter description",
+        "helptext": null
       },
       "facts": {
         "label": "Facts",
