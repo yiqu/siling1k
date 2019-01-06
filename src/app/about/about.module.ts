@@ -11,8 +11,8 @@ import { AboutEditComponent } from './about-edit/about-edit.component';
 import { AboutDetailComponent } from './about-detail/about-detail.component';
 import { LoadingModule } from '../shared/loading/loading.module';
 import { CanDeactivateGuard } from "./about-new/about-new-deactivate-guard.service";
-import { ReactiveFormsModule } from "@angular/forms";
 import { MarketIndexFormResolver } from "./about-new/market-index.resolver.service";
+import { SilingFormModule } from '../shared/forms/form-barrel.module';
 
 @NgModule({
   imports: [
@@ -20,7 +20,7 @@ import { MarketIndexFormResolver } from "./about-new/market-index.resolver.servi
     FormsModule,
     RouterModule,
     LoadingModule,
-    ReactiveFormsModule
+    SilingFormModule
   ],
 
   exports: [

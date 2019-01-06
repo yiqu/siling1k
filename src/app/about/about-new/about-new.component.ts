@@ -8,6 +8,8 @@ import { ActivatedRoute } from "@angular/router";
 import { DataResponse } from '../../shared/models/data.model';
 import { HttpResponse } from '@angular/common/http';
 
+const newEntryImg: string = "assets/images/marketindex.jpg";
+
 @Component({
   selector: 'about-new',
   templateUrl: 'about-new.component.html',
@@ -19,6 +21,7 @@ export class AboutCreationComponent implements OnInit, CanComponentDeactivate {
   currentEntryName: string = "FTSE 100";
   currentEntryId: string = "ftse100";
   currentEntryDescription: string = "The Financial Times Stock Exchange 100 Index.";
+  newEntryImg: string = "assets/images/marketindex.jpg";
   entrySubmitted: boolean = false;
   newFormObj: MarketIndex[];
   newFormFg: FormGroup;
