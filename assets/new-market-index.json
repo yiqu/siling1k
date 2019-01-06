@@ -6,19 +6,25 @@
         "value": "",
         "required": true,
         "label": "ID",
-        "defaultValue": "Enter ID"
+        "type": "input",
+        "defaultValue": "Enter ID",
+        "helptext": "Your ID has to be unique, contains only characters and numbers, but not spaces."
       },
       "title": {
         "value": "",
         "required": true,
         "label": "Title",
-        "defaultValue": "Enter Title"
+        "type": "input",
+        "defaultValue": "Enter Title",
+        "helptext": null
       },
       "description": {
         "value": "",
         "required": false,
         "label": "Description",
-        "defaultValue": "Enter description"
+        "type": "textarea",
+        "defaultValue": "Enter description",
+        "helptext": null
       },
       "facts": {
         "label": "Facts",
@@ -29,12 +35,14 @@
               "value": "",
               "required": false,
               "label": "Fact Summary",
+              "type": "textarea",
               "defaultValue": "Enter fact summary"
             },
             "author": {
               "value": "",
               "required": false,
               "label": "Author",
+              "type": "input",
               "defaultValue": "Enter author"
             }
           },
@@ -43,12 +51,14 @@
               "value": "",
               "required": false,
               "label": "Fact Summary",
+              "type": "textarea",
               "defaultValue": "Enter fact summary"
             },
             "author": {
               "value": "",
               "required": false,
               "label": "Author",
+              "type": "input",
               "defaultValue": "Enter author"
             }
           }
