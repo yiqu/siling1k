@@ -1,0 +1,13 @@
+<div [ngSwitch]="inputType">
+
+  <input type="text" *ngSwitchCase="regInputType"
+    class="form-control" 
+    [placeholder]="placeHolderText" 
+    >
+
+  <textarea *ngSwitchCase="textAreaType" 
+    class="form-control" 
+    rows="3" 
+    ></textarea>
+
+</div>

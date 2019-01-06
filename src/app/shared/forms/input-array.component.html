@@ -1,0 +1,19 @@
+<div class="input-group mb-3" [formGroup]="formGroup">
+  <div class="fact-label">
+    <span class="input-group-text">{{formConfig[controlName].label}}:</span>
+  </div>
+  <div *ngFor="let fact of (formConfig[controlName]['value']); let j=index" class="input-group" [formGroupName]="j">
+    <div class="text-muted mb-3">
+      Entry #{{j+1}}
+    </div>
+    <div class="input-group mb-3" *ngFor="let factKey of getObjectKeys(fact)" 
+      [ngSwitch]="fact[factKey].type">
+      <div class="input-group-prepend">
+        <span class="input-group-text">{{fact[factKey]['label']}}:</span>
+      </div>
+      <input *ngSwitchCase="inputType" type="text" class="form-control" [placeholder]="fact[factKey]['defaultValue']" 
+        [formControlName]="factKey">
+      <textarea *ngSwitchCase="textAreaType" class="form-control" rows="3" [formControlName]="factKey"></textarea>
+    </div>
+  </div>
+</div>

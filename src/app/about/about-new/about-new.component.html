@@ -1,43 +1,26 @@
 <div class="card">
-  <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+  <!-- <img class="card-img-top" [src]="newEntryImg" alt="new entry img"> -->
   <div class="card-body">
     <h5 class="card-title">Add a New Market Index Entry</h5>
     <form [formGroup]="newFormFg" (ngSubmit)="onSubmit()">
       <div [formArrayName]="'dataArray'">
         <div *ngFor="let formfg of newFormObj; let i = index">
-          #{{i}}
-          <div [formGroupName]="i" *ngFor="let fgKey of getObjectKeys(formfg)">
+          <div class="text-muted mb-3" *ngIf="newFormObj.length>1">
+            Adding entry #{{i+1}}
+          </div>
+          <div *ngFor="let fgKey of getObjectKeys(formfg)" class="ml-3">
             
-            <div *ngIf="!isObjectArray(fgKey, formfg)" class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text">
-                  <span *ngIf="this.newFormFg.get('dataArray').at(i).get(fgKey).invalid">
-                    {{formfg[fgKey]['required'] ? "*":""}}
-                  </span>
-                  {{formfg[fgKey]['label']}}:
-                </span>
-              </div>
-              <input type="text" class="form-control" [placeholder]="formfg[fgKey]['defaultValue']" 
-                [formControlName]="fgKey">
-            </div>
+            <form-input *ngIf="!isObjectArray(fgKey, formfg)" 
+              [formGroup]="newFormFg.get('dataArray').at(i)" 
+              [formConfig]="formfg" 
+              [controlName]="fgKey">
+            </form-input>
 
-            <div *ngIf="isObjectArray(fgKey, formfg)" class="input-group mb-3" [formArrayName]="fgKey">
-              <div class="fact-label">
-                <span class="input-group-text">{{formfg[fgKey].label}}:</span>
-              </div>
-              <div *ngFor="let fact of (formfg[fgKey]['value']); let j=index" class="input-group" [formGroupName]="j">
-                <div class="">
-                  #{{j}}
-                </div>
-                <div class="input-group mb-3" *ngFor="let factKey of getObjectKeys(fact)">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">{{fact[factKey]['label']}}:</span>
-                  </div>
-                  <input type="text" class="form-control" [placeholder]="fact[factKey]['defaultValue']" 
-                    [formControlName]="factKey">
-                </div>
-              </div>
-            </div>
+            <form-inputs *ngIf="isObjectArray(fgKey, formfg)"
+              [formGroup]="newFormFg.get('dataArray').at(i).get(fgKey)"
+              [formConfig]="formfg"
+              [controlName]="fgKey"></form-inputs>
+
           </div>
         </div>
       </div>
