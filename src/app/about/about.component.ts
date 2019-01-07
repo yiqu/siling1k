@@ -30,7 +30,6 @@ export class AboutComponent implements OnInit, OnDestroy {
     this.setPageTitle();
     this.getAboutText();
     this.loadAboutData();
-    this.getIsLoading();
   }
 
   ngOnDestroy() {

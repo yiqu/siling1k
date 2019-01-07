@@ -11,6 +11,9 @@ export class LoadingComponent implements OnInit, OnChanges {
   @Input()
   title: string = "";
 
+  @Input()
+  small: boolean;
+
   constructor() {
   }
 
