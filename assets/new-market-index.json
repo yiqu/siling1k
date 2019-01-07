@@ -8,7 +8,7 @@
         "label": "ID",
         "type": "input",
         "defaultValue": "Enter ID",
-        "helptext": "Your ID has to be unique, contains only characters and numbers, but not spaces."
+        "helptext": "The ID has to be unique, contains only characters and numbers, but not spaces."
       },
       "title": {
         "value": "",
