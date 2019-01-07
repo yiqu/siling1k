@@ -19,43 +19,54 @@ export class AboutDetailComponent implements OnInit, OnDestroy {
   aboutItem: MarketIndex;
   aboutItem$: Subscription = new Subscription();
   loadingText: string = "Loading...";
+  previousParamId: string = "";
 
   constructor(public router: Router, public route: ActivatedRoute, public as: AboutService,
               public ts: ToastrService) {
                 
-    // prevent value being changed after detection changed has occured in About Home Component
     this.route.params.subscribe(
       (param: Params) => {
+        this.resetCurrentAboutItem(param.id);
         this.itemId = param.id;
         this.getAboutDetail(param.id);
       }
     );
   }
 
+  /**
+   * Subscribe to about item details
+   */
   ngOnInit() {
-  }
-
-  getAboutDetail(itemId: string) {
-    this.loadingText = "Loading...";
-    this.as.isAboutLoading.next(true);
-    this.aboutItem$.unsubscribe();
-    this.as.getSingleAboutData2(itemId);
     this.aboutItem$ = this.as.singleAboutDataSubj.subscribe(
       (data: MarketIndex) => {
-        this.as.isAboutLoading.next(false);
         this.aboutItem = data;
-        //console.log(this.aboutItem, "ITEM!")
         if (!this.aboutItem) {
-          this.loadingText = "This Market Index does not exist.";
-          this.ts.error(this.loadingText);
+          this.ts.error("This Market Index does not exist.");
         }
       }
     );
   }
 
+  /**
+   * Resetting the AboutItem will trigger the #loading component to display
+   * @param currentId 
+   */
+  resetCurrentAboutItem(currentId: string) {
+    if (this.itemId !== currentId) {
+      this.aboutItem = null;
+    }
+  }
+
+  /**
+   * Triggered by param path change (AboutItem ID)
+   * @param itemId 
+   */
+  getAboutDetail(itemId: string) {
+    this.as.getSingleAboutData2(itemId);
+  }
+
   goBackToAbout() {
     this.router.navigate(['../'], {relativeTo: this.route});
-    this.loadingText = "Loading...";
   }
 
   ngOnDestroy() {
