@@ -1,5 +1,5 @@
 export class MarketIndex {
-  constructor(public name: MarketIndexValue = new MarketIndexValue(), 
+  constructor(public title: MarketIndexValue = new MarketIndexValue(), 
     public id: MarketIndexValue = new MarketIndexValue(), 
     public description: MarketIndexValue = new MarketIndexValue("Description here.."),
     public facts?: MarketIndexValue[]) {
@@ -11,7 +11,7 @@ export class MarketIndex {
   }
 
   getName() {
-    return this.name;
+    return this.title;
   }
 
   getDescription() {
@@ -20,12 +20,6 @@ export class MarketIndex {
 
   getFacts() {
     return this.facts;
-  }
-}
-
-export class MarketIndeFact {
-  constructor(public text: MarketIndexValue = new MarketIndexValue(), 
-    public author: MarketIndexValue = new MarketIndexValue()) {
   }
 }
 

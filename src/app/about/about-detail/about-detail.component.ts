@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute, Data, Params } from '@angular/router';
 import { AboutService } from '../../service/about.service';
-import { DataResponse } from '../../shared/models/data.model';
-import { MarketIndex, MarketIndeFact } from '../../shared/models/market-index.model';
+import { DataResponse, AboutItem } from '../../shared/models/data.model';
+import { MarketIndex } from '../../shared/models/market-index.model';
 import { Subscription } from 'rxjs';
 import { HttpResponse } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
@@ -16,7 +16,7 @@ import { ToastrService } from 'ngx-toastr';
 export class AboutDetailComponent implements OnInit, OnDestroy {
 
   itemId: string;
-  aboutItem: MarketIndex;
+  aboutItem: AboutItem;
   aboutItem$: Subscription = new Subscription();
   loadingText: string = "Loading...";
   previousParamId: string = "";
@@ -38,10 +38,11 @@ export class AboutDetailComponent implements OnInit, OnDestroy {
    */
   ngOnInit() {
     this.aboutItem$ = this.as.singleAboutDataSubj.subscribe(
-      (data: MarketIndex) => {
+      (data: AboutItem) => {
         this.aboutItem = data;
         if (!this.aboutItem) {
-          this.ts.error("This Market Index does not exist.");
+          this.ts.error("This Market Index does not exist. Taking you back.");
+          this.router.navigate(['../'], {relativeTo: this.route});
         }
       }
     );

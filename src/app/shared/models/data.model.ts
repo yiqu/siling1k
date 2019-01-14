@@ -20,13 +20,14 @@ export class ItemDetail {
 }
 
 export class AboutItem {
-  //id: string;
-  //description: string
 
-  constructor(public id: string = "untitled", public description: string = "None", public title: string = "Untitled") {
+  constructor(public id: string = "untitled", 
+    public description: string = "None", 
+    public title: string = "Untitled",
+    public facts: AboutItemFact[]) {
   }
 
-  getId() {
+  public getId() {
     return this.id;
   }
 
@@ -36,5 +37,14 @@ export class AboutItem {
 
   getTitle() {
     return this.title;
+  }
+
+  getFacts() {
+    return this.facts;
+  }
+}
+
+export class AboutItemFact {
+  constructor(public text: string, public author: string) {
   }
 }

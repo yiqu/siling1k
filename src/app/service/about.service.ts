@@ -1,30 +1,32 @@
-import { Injectable, Output, EventEmitter } from '@angular/core';
+import { Injectable, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { DataService } from './data.service';
 import { DataResponse, ItemDetail } from '../shared/models/data.model';
 import { HttpResponse } from '@angular/common/http';
-import { MarketIndex, MarketIndeFact } from '../shared/models/market-index.model';
+import { MarketIndex } from '../shared/models/market-index.model';
+import { AboutItem } from '../shared/models/data.model';
 import { Subject } from "rxjs";
 import { FormGroup, FormArray, FormControl, Validators, FormBuilder } from "@angular/forms"
+import { ToastrService } from 'ngx-toastr';
 import * as _ from 'lodash';
 
 @Injectable()
 export class AboutService {
 
-  aboutItems: MarketIndex[] = [];
-  inMemoryAddedItems: MarketIndex[] = []; // Since there is no backend, temp. store newly added entries here
+  aboutItems: AboutItem[] = [];
+  inMemoryAddedItems: AboutItem[] = []; // Since there is no backend, temp. store newly added entries here
   newMarketIndexFormObj: MarketIndex[] = [];
 
-  allAboutDataSubj: Subject<MarketIndex[]> = new Subject();
-  singleAboutDataSubj: Subject<MarketIndex> = new Subject();
+  allAboutDataSubj: Subject<AboutItem[]> = new Subject();
+  singleAboutDataSubj: Subject<AboutItem> = new Subject();
   isAboutLoading: Subject<boolean> = new Subject<boolean>();
 
   marketIndexFormObjSub: Subscription = new Subscription();
   getAboutDataSub: Subscription = new Subscription();
 
   constructor(public ds: DataService, public router: Router, public route: ActivatedRoute,
-    public fb: FormBuilder) {
+    public fb: FormBuilder, public ts: ToastrService) {
   }
 
   getAllAboutData() {
@@ -45,7 +47,7 @@ export class AboutService {
       (data: HttpResponse<DataResponse>) => {
         this.aboutItems = data.body.items;
         this.allAboutDataSubj.next(this.aboutItems.concat(this.inMemoryAddedItems));
-        let item: MarketIndex = _.find(this.aboutItems.concat(this.inMemoryAddedItems), ['id', itemId]);
+        let item: AboutItem = _.find(this.aboutItems.concat(this.inMemoryAddedItems), ['id', itemId]);
         
         this.singleAboutDataSubj.next(item);
       },
@@ -64,7 +66,7 @@ export class AboutService {
       (error) => {
       },
       () => {
-        console.log(this.newMarketIndexFormObj)
+        //console.log(this.newMarketIndexFormObj)
       }
     )
   }
@@ -74,9 +76,11 @@ export class AboutService {
    * concat'd whenever retrieving all about items.
    * @param entry 
    */
-  addNewEntry(entry: MarketIndex) {
+  addNewEntry(entry: AboutItem) {
+    console.log(entry, entry.id);
+    this.ts.success("Entry successfully added.", "Success");
     this.inMemoryAddedItems.push(entry);
-    this.router.navigate(['../about', entry.getId()], {relativeTo: this.route});
+    this.router.navigate(['../about', entry.id], {relativeTo: this.route});
   }
 
   createNewMarketIndexMetaFG(objData): FormGroup {
