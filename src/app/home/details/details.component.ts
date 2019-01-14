@@ -62,7 +62,7 @@ export class DetailsComponent implements OnInit, AfterViewInit {
   getResolvedData() {
     this.route.data.subscribe(
       (resolvedData: Data) => {
-        console.log(resolvedData);
+        //console.log(resolvedData);
         this.allPanelItems = resolvedData['panelItemInfo'];
       }
     );

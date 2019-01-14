@@ -16,7 +16,6 @@ export class ParamAnchorDirective implements OnInit {
 
   @HostListener('click') 
   onMouseClick() {
-    console.log(this.paramAnchor);
     this.setAnchor(this.paramAnchor);
   }
 

@@ -5,8 +5,9 @@ import { CanComponentDeactivate } from './about-new-deactivate-guard.service';
 import { FormGroup, FormArray, FormControl, Validators, FormBuilder } from "@angular/forms"
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from "@angular/router";
-import { DataResponse } from '../../shared/models/data.model';
+import { DataResponse, AboutItem } from '../../shared/models/data.model';
 import { HttpResponse } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
 
 const newEntryImg: string = "assets/images/marketindex.jpg";
 
@@ -26,7 +27,8 @@ export class AboutCreationComponent implements OnInit, CanComponentDeactivate {
   newFormObj: MarketIndex[];
   newFormFg: FormGroup;
 
-  constructor(public as: AboutService, public route: ActivatedRoute, public fb: FormBuilder) {
+  constructor(public as: AboutService, public route: ActivatedRoute, 
+    public fb: FormBuilder, public ts: ToastrService) {
 
   }
 
@@ -34,14 +36,23 @@ export class AboutCreationComponent implements OnInit, CanComponentDeactivate {
     this.route.data.subscribe(
       (resolvedData: HttpResponse<DataResponse>) => {
         this.newFormObj = resolvedData['newFormLayout'].body.items;
-        console.log("whole: ",this.newFormObj)
+        //console.log("whole: ",this.newFormObj)
         this.createFormGroupForNew();
       }
     );
   }
 
   onSubmit() {
-    console.log(this.newFormFg.value)
+    let submitCount: number = 0;
+    submitCount = this.newFormFg.value['dataArray'].length;
+    console.log("count" + submitCount);
+    this.entrySubmitted = true;
+    if (submitCount > 0) {
+      this.ts.info("Adding " + submitCount + " entries.", "Info.");
+      for (let marketIndex of this.newFormFg.value['dataArray']) {
+        this.as.addNewEntry(marketIndex);
+      }
+    }
   }
 
   /**
@@ -66,7 +77,7 @@ export class AboutCreationComponent implements OnInit, CanComponentDeactivate {
       "dataArray": newMarketIndexFgArray
     });
 
-    console.log(this.newFormFg)
+    //console.log(this.newFormFg)
   }
 
   getObjectKeys(obj: any): string[] {
@@ -76,10 +87,6 @@ export class AboutCreationComponent implements OnInit, CanComponentDeactivate {
 
   isObjectArray(key, obj): boolean {
     return obj[key].value instanceof Array;
-  }
-
-  getLabel(obj, key){
-    console.log(obj[key])
   }
 
 }

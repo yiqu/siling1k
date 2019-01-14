@@ -4,7 +4,7 @@
   </div>
   <div *ngFor="let fact of (formConfig[controlName]['value']); let j=index" class="input-group" [formGroupName]="j">
     <div class="text-muted mb-3">
-      Entry #{{j+1}}
+      {{formConfig[controlName].label}} #{{j+1}}
     </div>
     <div class="input-group mb-3" *ngFor="let factKey of getObjectKeys(fact)" 
       [ngSwitch]="fact[factKey].type">
@@ -13,7 +13,8 @@
       </div>
       <input *ngSwitchCase="inputType" type="text" class="form-control" [placeholder]="fact[factKey]['defaultValue']" 
         [formControlName]="factKey">
-      <textarea *ngSwitchCase="textAreaType" class="form-control" rows="3" [formControlName]="factKey"></textarea>
+      <textarea *ngSwitchCase="textAreaType" class="form-control" rows="3" [formControlName]="factKey"
+        [placeholder]="fact[factKey]['defaultValue']"></textarea>
     </div>
   </div>
 </div>
