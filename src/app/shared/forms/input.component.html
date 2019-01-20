@@ -3,10 +3,8 @@
     <div class="input-group" [ngSwitch]="formConfig[controlName].type">
       <div class="input-group-prepend">
         <span class="input-group-text">
-          <span *ngIf="!formGroup.get(controlName).valid">
-            {{formConfig[controlName]['required'] ? "*":""}}
-          </span>
-            {{formConfig[controlName]['label']}}:
+          {{formConfig[controlName]['required'] ? "*":""}}
+          {{formConfig[controlName]['label']}}:
         </span>
       </div>
       <input *ngSwitchCase="inputType" type="text" class="form-control" 
@@ -17,6 +15,20 @@
     </div>
     <small class="form-text text-muted" *ngIf="formConfig[controlName].helptext">
       {{formConfig[controlName].helptext}}
+    </small>
+    <small class="form-text red-text"> 
+      <span *ngIf="formGroup.get(controlName).touched && !formGroup.get(controlName).valid && formGroup.get(controlName).errors">
+          Error:
+        <span *ngIf="formGroup.get(controlName).errors['idIsNotAlphaNum']">
+          Only alpha-numeric IDs are allowed.
+        </span>
+        <span *ngIf="formGroup.get(controlName).errors['idAlreadyExist']">
+          This ID already exist, please choose another one.
+        </span>
+        <span *ngIf="formGroup.get(controlName).errors['required']">
+          ID is required.
+        </span>
+      </span>
     </small>
   </div>
 </div>

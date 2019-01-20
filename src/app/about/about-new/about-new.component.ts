@@ -26,6 +26,7 @@ export class AboutCreationComponent implements OnInit, CanComponentDeactivate {
   entrySubmitted: boolean = false;
   newFormObj: MarketIndex[];
   newFormFg: FormGroup;
+  formStatus: string = "";
 
   constructor(public as: AboutService, public route: ActivatedRoute, 
     public fb: FormBuilder, public ts: ToastrService) {
@@ -40,6 +41,13 @@ export class AboutCreationComponent implements OnInit, CanComponentDeactivate {
         this.createFormGroupForNew();
       }
     );
+    
+    this.newFormFg.statusChanges.subscribe(
+      (status: string) => {
+        this.formStatus = status;
+      }
+    )
+
   }
 
   onSubmit() {
