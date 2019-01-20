@@ -90,8 +90,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.loadData();
     // have to do this everytime app switches back to this view
     Utils.enableJqueryTooltip();
-
-    //this.loadData2();
   }
 
   loadData(): void {

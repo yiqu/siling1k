@@ -74,6 +74,6 @@ export class DataService {
    * Construct URL based on Prod/Dev mode
    */
   getBaseUrl(): string {
-    return environment.production ? "https://siling1k.firebaseio.com/" : "https://kq-1-1a499.firebaseio.com/"
+    return environment.production ? "https://siling1k.firebaseio.com/panel/" : "https://kq-1-1a499.firebaseio.com/"
   }
 }
