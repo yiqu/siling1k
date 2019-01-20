@@ -9,6 +9,7 @@ import { AboutItem } from '../shared/models/data.model';
 import { Subject } from "rxjs";
 import { FormGroup, FormArray, FormControl, Validators, FormBuilder } from "@angular/forms"
 import { ToastrService } from 'ngx-toastr';
+import { map } from 'rxjs/operators';
 import * as _ from 'lodash';
 
 @Injectable()
@@ -77,21 +78,21 @@ export class AboutService {
    * @param entry 
    */
   addNewEntry(entry: AboutItem) {
-    console.log(entry, entry.id);
+    //console.log(entry, entry.id);
     this.ts.success("Entry successfully added.", "Success");
     this.inMemoryAddedItems.push(entry);
     this.router.navigate(['../about', entry.id], {relativeTo: this.route});
   }
 
   createNewMarketIndexMetaFG(objData): FormGroup {
-    console.log("Data:",objData)
+    //console.log("Data:",objData)
     let fgObject = {
       "title": this.createNewFormControl(objData['title'].value, 
         false, 
         this.getValidators(objData['title'].required)),
       "id": this.createNewFormControl(objData['id'].value, 
         false, 
-        this.getValidators(objData['id'].required)),
+        [Validators.required, this.alphaNumericOnlyValidator], [this.isIdUniqueValidator.bind(this)]),
       "description": this.createNewFormControl(objData['description'].value, 
         false, 
         this.getValidators(objData['description'].required))
@@ -124,10 +125,42 @@ export class AboutService {
     return validatorList;
   }
 
-  createNewFormControl(value: string, disabled: boolean = false, validators?: any[]) {
+  createNewFormControl(value: string, disabled: boolean = false, validators?: any[], asyncValidators?: any[]) {
     return new FormControl({
       value: value,
       disabled: disabled
-    }, validators ? validators : null);
+    }, validators ? validators : null, asyncValidators? asyncValidators : null);
+  }
+
+  /**
+   * Custom validator to check for alpha numeric only
+   * @param control 
+   */
+  alphaNumericOnlyValidator(control: FormControl): {[s: string]:boolean} {
+    let alphaNumRegex = RegExp('^[a-zA-Z0-9]*$');
+    if (!alphaNumRegex.test(control.value)) {
+      return {'idIsNotAlphaNum': true};
+    } 
+    return null;
+  }
+
+  /**
+   * Custom Async Validator. 
+   * Reaches to backend and check if ID exists
+   * @param control 
+   */
+  isIdUniqueValidator(control: FormControl): Observable<any> {
+    let aboutData$ = this.ds.getAboutData$().pipe(
+      map(
+        (val: HttpResponse<DataResponse>) => {
+          let item = _.find(val.body.items, ['id', control.value]);
+          if (item) {
+            return {'idAlreadyExist' : true};
+          }
+          return null;
+        }
+      )
+    )
+    return aboutData$; 
   }
 }
