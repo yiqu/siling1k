@@ -93,10 +93,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   loadData(): void {
-    this.ds.getAllData$().subscribe(
-      (res: HttpResponse<DataResponse>) => {
-        console.log("Loaded all data", res)
-        this.rawData = res.body;
+    this.ds.getAllData2$().subscribe(
+      (data: DataResponse) => {
+        this.rawData = data;
       },
       error => {
         this.as.error("Error loading data. Reason: " + error + "Error");

@@ -13,7 +13,7 @@ import { ToastrService } from 'ngx-toastr';
  * Resolver for Details route
  */
 @Injectable()
-export class DetailsResolver implements Resolve<HttpResponse<DataResponse>> {
+export class DetailsResolver implements Resolve<DataResponse> {
 
   rawData: DataResponse = null;
   
@@ -25,9 +25,9 @@ export class DetailsResolver implements Resolve<HttpResponse<DataResponse>> {
    * This is run before route component view is created.
    */
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): 
-    Observable<HttpResponse<DataResponse>> | HttpResponse<DataResponse> {
+    Observable<DataResponse> | DataResponse {
       let panelId = route.params['panelId'];
-      let obs$: Observable<HttpResponse<DataResponse>> = this.ds.getAllData$();
+      let obs$: Observable<DataResponse> = this.ds.getAllData2$();
       return obs$;
   }
 }

@@ -45,9 +45,9 @@ export class DetailsComponent implements OnInit, AfterViewInit {
   }
 
   getSinglePanelData() {
-    this.ds.getAllData$().subscribe(
-      (res: HttpResponse<DataResponse>) => {
-        this.rawData = res.body;
+    this.ds.getAllData2$().subscribe(
+      (data: DataResponse) => {
+        this.rawData = data;
       },
       error => {
         this.as.error("Error loading data. Reason: " + error + "Error");
