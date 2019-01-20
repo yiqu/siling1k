@@ -64,6 +64,8 @@ export class CalcService {
       this.listOfPanels.add(panelKey);
       this.allPanelData.push(this.getPanelItemDetails(rawData, panelKey));
     });
+    // reverse the order of items
+    this.allPanelData.reverse();
     this.onDataReloaded.emit(this.allPanelData);
     // set graph data and emit the changes
     this.setDataForGraph(this.allPanelData);

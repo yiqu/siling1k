@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { delay } from 'rxjs/operators';
+import { delay, map } from 'rxjs/operators';
 import { HttpErrorHandler, HandleError } from './error-handler.service';
 import { environment } from '../../environments/environment';
 import { DataResponse, ItemDetail } from '../shared/models/data.model';
@@ -25,13 +25,33 @@ export class DataService {
     this.handleError = httpErrorHandler.createHandleError('DataService');
   }
 
-  getAllData$(): Observable<HttpResponse<DataResponse>> {
-    let url: string = this.baseUrl + this.getDataSet();
-    return this.http.get<DataResponse>(url, {headers: headers, observe: 'response', 
+  getAllData2$(): Observable<DataResponse> {
+    let url: string = this.getBaseUrl()+ "items.json";
+    return this.http.get<HttpResponse<any>>(url, {headers: headers, observe: 'response', 
       responseType: "json"})
       .pipe(
-        delay(environment.restDelay)
-      );
+        map(
+          (res: HttpResponse<any>) => {
+            let itemsData = res.body;
+            Object.keys(itemsData).map(
+              (val) => {
+                let dataArray = [];
+                Object.keys(itemsData[val]).map(
+                  (val2) => {
+                    dataArray.push(itemsData[val][val2])
+                  }
+                )
+                itemsData[val] = dataArray;
+              }
+            )
+            const dataResponse: DataResponse = {
+              items: itemsData,
+              total_count: 1
+            }
+            return dataResponse;
+          }
+        )
+      )
   }
 
   getAboutData$(): Observable<HttpResponse<DataResponse>> {
@@ -53,7 +73,7 @@ export class DataService {
   /**
    * Construct URL based on Prod/Dev mode
    */
-  getDataSet(): string {
-    return environment.production ? "data.json" : "dev-data.json";
+  getBaseUrl(): string {
+    return environment.production ? "https://siling1k.firebaseio.com/" : "https://kq-1-1a499.firebaseio.com/"
   }
 }
