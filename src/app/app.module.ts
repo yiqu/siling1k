@@ -15,6 +15,8 @@ import { HomeModule } from './home/home.module';
 import { NotFoundModule } from './404/404.module';
 import { LoadingModule } from './shared/loading/loading.module';
 import { TitleService } from './service/title.service';
+import { AdminModule } from './admin/admin.module';
+import { AdminService } from './service/admin.service';
 
 @NgModule({
   declarations: [
@@ -47,6 +49,7 @@ import { TitleService } from './service/title.service';
     HomeModule,
     NotFoundModule,
     LoadingModule,
+    AdminModule,
     AppRoutingModule
   ],
 
@@ -54,7 +57,8 @@ import { TitleService } from './service/title.service';
     HttpErrorHandler,
     MessageService,
     DataService,
-    TitleService
+    TitleService,
+    AdminService
   ],
 
   bootstrap: [

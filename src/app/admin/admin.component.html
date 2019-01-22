@@ -1,0 +1,29 @@
+<div class="center-text">
+  <span class="font-indie indie-font-25">Welcome to Admin Panel</span>
+</div>
+<hr>
+<div>
+  <p class="font-roboto font-thin">
+    Make changes and updates.
+  </p>
+</div>
+
+<div class="row">
+  <div class="col-md-3">
+    <div class="list-group">
+      <a *ngFor="let item of editableItems"
+        [ngClass]="{'list-group-item':true, 'list-group-item-action':true, 
+          'list-group-item-info':true, 'about-item':true, 'font-roboto':true}"
+        [routerLink]="item.id"
+        [preserveFragment]="false"
+        [queryParamsHandling]=""
+        routerLinkActive="active">
+        {{item.title}}
+      </a>
+    </div>
+  </div>
+ 
+  <div class="col-md-9">
+    <router-outlet></router-outlet>
+  </div>
+</div>

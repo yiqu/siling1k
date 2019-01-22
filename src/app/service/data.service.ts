@@ -7,6 +7,7 @@ import { HttpErrorHandler, HandleError } from './error-handler.service';
 import { environment } from '../../environments/environment';
 import { DataResponse, ItemDetail } from '../shared/models/data.model';
 import { IRequestOptions } from '../shared/models/IRequestOptions.model';
+import { SilingEditable, SilingDailyData } from '../shared/models/editable.model';
 
 
 const headers = new HttpHeaders({
@@ -70,10 +71,19 @@ export class DataService {
       ); 
   }
 
+  saveDailySilingEntry(data: SilingEditable): Observable<HttpResponse<any>> {
+    let url: string = this.getBaseUrl() + "items" + "/" + data.silingType + ".json";
+    const dataToPost = new SilingDailyData(data.date, +data.balance);
+    return this.http.post<any>(url, dataToPost, {headers: headers, observe: 'response', 
+      responseType: "json"}).pipe(
+        //delay(3000)
+      );
+  }
+
   /**
    * Construct URL based on Prod/Dev mode
    */
   getBaseUrl(): string {
-    return environment.production ? "https://siling1k.firebaseio.com/panel/" : "https://kq-1-1a499.firebaseio.com/"
+    return environment.production ? "https://siling1k.firebaseio.com/panel/" : "https://kq-1-1a499.firebaseio.com/panel/"
   }
 }
