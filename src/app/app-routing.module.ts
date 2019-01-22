@@ -12,6 +12,9 @@ import { AboutDetailComponent } from './about/about-detail/about-detail.componen
 import { AboutEditComponent } from './about/about-edit/about-edit.component';
 import { CanDeactivateGuard } from './about/about-new/about-new-deactivate-guard.service';
 import { MarketIndexFormResolver } from './about/about-new/market-index.resolver.service';
+import { PanelAdditionComponent } from './admin/add/add-panel.component';
+import { AdminComponent } from './admin/admin.component';
+import { AdminLandingComponent } from './admin/admin-landing/admin-landing.component';
 
  //Root routes for app
 const routes: Routes = [
@@ -29,6 +32,13 @@ const routes: Routes = [
   { path: 'details/:panelId', component: DetailsComponent, 
     data: {pageTitle: "Details"},
     //resolve: {panelItemInfo: DetailsResolver} 
+  },
+  {
+    path: 'admin', component: AdminComponent, data: {title: 'Admin'},
+    children: [
+      { path: '', component: AdminLandingComponent, data: {title: 'Admin Lounge'} },
+      { path: 'add', component: PanelAdditionComponent, data: {title: 'Add New Data'} }
+    ]
   },
   { path: 'loading', component: LoadingComponent, data: {title: 'Loading'} },
   /**

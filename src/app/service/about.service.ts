@@ -117,7 +117,7 @@ export class AboutService {
     return fga;
   }
 
-  getValidators(req: boolean) {
+  getValidators(req: boolean): any[] {
     let validatorList = [];
     if (req) {
       validatorList.push(Validators.required);
@@ -125,7 +125,8 @@ export class AboutService {
     return validatorList;
   }
 
-  createNewFormControl(value: string, disabled: boolean = false, validators?: any[], asyncValidators?: any[]) {
+  createNewFormControl(value: string, disabled: boolean = false, 
+    validators?: any[], asyncValidators?: any[]): FormControl {
     return new FormControl({
       value: value,
       disabled: disabled

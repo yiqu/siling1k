@@ -1,0 +1,25 @@
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Add a New SiLing Daily Entry</h5>
+    <form [formGroup]="silingFormGroup" (ngSubmit)="onSubmit()">
+      <div *ngFor="let fgKey of getObjectKeys(silingFormObj)" class="">
+        <div class="mb-3">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text pre-width">
+              {{fgKey | uppercase}}
+              </span>
+            </div>
+            <input type="text" class="form-control" 
+              [formControlName]="fgKey" *ngIf="fgKey!=='silingType'">
+            <select [formControlName]="fgKey" class="form-control" *ngIf="fgKey==='silingType'">
+              <option *ngFor="let type of silingTypes" [value]="type.id">{{type.title}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <button [disabled]="(!silingFormGroup.valid || this.as.isDailyPosting)" class="btn btn-primary fixed-width">Submit</button>
+      <span *ngIf="!silingFormGroup.valid" class="text-muted">Fill in required fields *</span>
+    </form>
+  </div>
+</div>
