@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { TitleService } from '../../service/title.service';
 import { SilingEditable, SilingBankType } from '../../shared/models/editable.model';
 import { Router, ActivatedRoute, Data } from '@angular/router';
 import { FormGroup, FormArray, FormControl, Validators, FormBuilder } from "@angular/forms"
-import { Observable } from 'rxjs';
+import { Observable, Subscribable, Subscription } from 'rxjs';
 import { HttpResponse } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { AdminService } from '../../service/admin.service';
@@ -16,7 +16,7 @@ import { AboutService } from '../../service/about.service';
     '../../shared/forms/form.component.css']
 })
 
-export class PanelAdditionComponent implements OnInit {
+export class PanelAdditionComponent implements OnInit, OnDestroy {
 
   silingFormGroup: FormGroup;
   silingFormObj: any;
@@ -24,7 +24,8 @@ export class PanelAdditionComponent implements OnInit {
     new SilingBankType("Fidelity", "Fidelity"),
     new SilingBankType("Empower", "Empower"),
     new SilingBankType("Ascensus", "Ascensus")
-  ]
+  ];
+  onSaveCompleteSub$: Subscription = new Subscription();
 
   constructor(public ts: TitleService, public router: Router, public route: ActivatedRoute,
     public as: AdminService, public abs: AboutService, public fb: FormBuilder) {
@@ -33,6 +34,16 @@ export class PanelAdditionComponent implements OnInit {
   ngOnInit() {
     this.setPageTitle();
     this.createSilingEntryFG();
+    this.onSaveCompleteSub$ = this.as.onSaveComplete$.subscribe(
+      (savedId: string) => {
+        this.router.navigate(['../'], {relativeTo: this.route, 
+          queryParams:{ 'lastAction': "dailyPanel", "panelId": savedId }});
+      }
+    );
+  } 
+
+  ngOnDestroy() {
+    this.onSaveCompleteSub$.unsubscribe();
   }
 
   setPageTitle() {
