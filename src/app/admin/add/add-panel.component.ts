@@ -8,6 +8,7 @@ import { HttpResponse } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { AdminService } from '../../service/admin.service';
 import { AboutService } from '../../service/about.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'admin-add-panel',
@@ -26,9 +27,11 @@ export class PanelAdditionComponent implements OnInit, OnDestroy {
     new SilingBankType("Ascensus", "Ascensus")
   ];
   onSaveCompleteSub$: Subscription = new Subscription();
+  todayDate: any;
 
   constructor(public ts: TitleService, public router: Router, public route: ActivatedRoute,
     public as: AdminService, public abs: AboutService, public fb: FormBuilder) {
+      this.todayDate = (moment(this.todayDate).subtract(1, 'day').format("MM/DD/YYYY"));
   }
 
   ngOnInit() {
@@ -57,7 +60,7 @@ export class PanelAdditionComponent implements OnInit, OnDestroy {
   createSilingEntryFG() {
     this.silingFormObj = {
       "silingType": this.abs.createNewFormControl("Fidelity", false, [Validators.required]),
-      "date": this.abs.createNewFormControl("1/1/2019", false, [Validators.required]),
+      "date": this.abs.createNewFormControl(this.todayDate, false, [Validators.required]),
       "balance": this.abs.createNewFormControl("0.00", false, [Validators.required])
     }
     this.silingFormGroup = this.fb.group(this.silingFormObj);
