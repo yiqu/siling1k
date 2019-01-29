@@ -6,6 +6,7 @@ import { SilingFormModule } from '../shared/forms/form-barrel.module';
 import { AdminComponent } from './admin.component';
 import { PanelAdditionComponent } from './add/add-panel.component';
 import { AdminLandingComponent } from './admin-landing/admin-landing.component';
+import { PipeModule } from '../pipes/pipe-barrel.module';
 
 @NgModule({
 
@@ -19,7 +20,8 @@ import { AdminLandingComponent } from './admin-landing/admin-landing.component';
     CommonModule,
     RouterModule,
     FormsModule,
-    SilingFormModule
+    SilingFormModule,
+    PipeModule
   ],
 
   exports: [

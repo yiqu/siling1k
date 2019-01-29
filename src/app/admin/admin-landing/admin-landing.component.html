@@ -1,3 +1,16 @@
+<div *ngIf="lastAction && panelIdOfAction && silingId"class="alert alert-success" role="alert">
+  <button type="button" class="close" (click)="onActionAlertDismiss()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <h4 class="alert-heading">Entry Submitted!</h4>
+  <p>
+    {{lastAction | actionTranslate:silingId}}
+  </p>
+  <div>
+    <a [routerLink]="['/home']" class="btn btn-info">Go back Home</a>
+  </div>
+</div>
+
 <div class="card">
   <div class="card-body">
     <h5 class="card-title">Adming Lounge</h5>
