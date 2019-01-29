@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Editable } from '../shared/models/editable.model';
 import { TitleService } from '../service/title.service';
-import { Router, ActivatedRoute, Data } from '@angular/router';
+import { Router, ActivatedRoute, Data, Params } from '@angular/router';
 
 @Component({
   selector: 'siling1k-admin',
@@ -29,4 +29,5 @@ export class AdminComponent implements OnInit {
       }
     );
   }
+  
 }

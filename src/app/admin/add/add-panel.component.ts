@@ -40,7 +40,9 @@ export class PanelAdditionComponent implements OnInit, OnDestroy {
     this.onSaveCompleteSub$ = this.as.onSaveComplete$.subscribe(
       (savedId: string) => {
         this.router.navigate(['../'], {relativeTo: this.route, 
-          queryParams:{ 'lastAction': "dailyPanel", "panelId": savedId }});
+          queryParams:{ 'lastAction': "dailyPanel", 
+            "panelId": savedId,
+            "silingId": this.silingFormGroup.get("silingType").value }});
       }
     );
   } 
