@@ -7,13 +7,15 @@ import { AdminComponent } from './admin.component';
 import { PanelAdditionComponent } from './add/add-panel.component';
 import { AdminLandingComponent } from './admin-landing/admin-landing.component';
 import { PipeModule } from '../pipes/pipe-barrel.module';
+import { PanelEditComponent } from './edit/edit-panel.component';
 
 @NgModule({
 
   declarations: [
     PanelAdditionComponent,
     AdminComponent,
-    AdminLandingComponent
+    AdminLandingComponent,
+    PanelEditComponent
   ],
   
   imports: [
@@ -27,7 +29,8 @@ import { PipeModule } from '../pipes/pipe-barrel.module';
   exports: [
     PanelAdditionComponent,
     AdminComponent,
-    AdminLandingComponent
+    AdminLandingComponent,
+    PanelEditComponent
   ],
 
   providers: [

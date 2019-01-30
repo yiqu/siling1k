@@ -12,7 +12,8 @@ import { Router, ActivatedRoute, Data, Params } from '@angular/router';
 export class AdminComponent implements OnInit {
 
   editableItems = [
-    new Editable("New Daily Entry", 'add')
+    new Editable("New Daily Entry", 'add'),
+    new Editable("Edit Existing Entry", "edit")
   ]
 
   constructor(public ts: TitleService, public router: Router, public route: ActivatedRoute) {

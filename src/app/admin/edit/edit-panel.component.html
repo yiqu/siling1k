@@ -1,0 +1,14 @@
+<div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Edit an Existing SiLing Entry</h5>
+      <hr>
+      <p>
+        Which of the following would you like to make your edit in?
+      </p>
+      <div class="btn-group btn-group-lg">
+        <button *ngFor="let bank of this.as.silingTypes" 
+          type="button" class="btn btn-info"
+          (click)="navigateToSiling(bank.id)">{{bank.title}}</button>
+      </div>
+    </div>
+  </div>
