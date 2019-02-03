@@ -21,11 +21,6 @@ export class PanelAdditionComponent implements OnInit, OnDestroy {
 
   silingFormGroup: FormGroup;
   silingFormObj: any;
-  silingTypes: SilingBankType[] = [
-    new SilingBankType("Fidelity", "Fidelity"),
-    new SilingBankType("Empower", "Empower"),
-    new SilingBankType("Ascensus", "Ascensus")
-  ];
   onSaveCompleteSub$: Subscription = new Subscription();
   todayDate: any;
 

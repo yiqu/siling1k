@@ -2,12 +2,18 @@ import { Injectable } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable, Subscription, Subject } from 'rxjs';
 import { HttpResponse } from '@angular/common/http';
-import { SilingEditable } from '../shared/models/editable.model';
 import { DataService } from './data.service';
 import { ToastrService } from 'ngx-toastr';
+import { SilingEditable, SilingBankType } from '../shared/models/editable.model';
 
 @Injectable()
 export class AdminService {
+
+  public silingTypes: SilingBankType[] = [
+    new SilingBankType("Fidelity", "Fidelity"),
+    new SilingBankType("Empower", "Empower"),
+    new SilingBankType("Ascensus", "Ascensus")
+  ];
 
   userToken: string = "1";
 

@@ -1,6 +1,7 @@
 <div class="card">
   <div class="card-body">
     <h5 class="card-title">Add a New SiLing Daily Entry</h5>
+    <hr>
     <form [formGroup]="silingFormGroup" (ngSubmit)="onSubmit()">
       <div *ngFor="let fgKey of getObjectKeys(silingFormObj)" class="">
         <div class="mb-3">
@@ -13,7 +14,7 @@
             <input type="text" class="form-control" 
               [formControlName]="fgKey" *ngIf="fgKey!=='silingType'">
             <select [formControlName]="fgKey" class="form-control" *ngIf="fgKey==='silingType'">
-              <option *ngFor="let type of silingTypes" [value]="type.id">{{type.title}}</option>
+              <option *ngFor="let type of this.as.silingTypes" [value]="type.id">{{type.title}}</option>
             </select>
           </div>
         </div>

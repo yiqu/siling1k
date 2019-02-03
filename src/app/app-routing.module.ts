@@ -15,6 +15,7 @@ import { MarketIndexFormResolver } from './about/about-new/market-index.resolver
 import { PanelAdditionComponent } from './admin/add/add-panel.component';
 import { AdminComponent } from './admin/admin.component';
 import { AdminLandingComponent } from './admin/admin-landing/admin-landing.component';
+import { PanelEditComponent } from './admin/edit/edit-panel.component';
 
  //Root routes for app
 const routes: Routes = [
@@ -37,7 +38,8 @@ const routes: Routes = [
     path: 'admin', component: AdminComponent, data: {title: 'Admin'},
     children: [
       { path: '', component: AdminLandingComponent, data: {title: 'Admin Lounge'} },
-      { path: 'add', component: PanelAdditionComponent, data: {title: 'Add New Data'} }
+      { path: 'add', component: PanelAdditionComponent, data: {title: 'Add New Data'} },
+      { path: 'edit', component: PanelEditComponent, data: {title: 'Edit Existing Data'} }
     ]
   },
   { path: 'loading', component: LoadingComponent, data: {title: 'Loading'} },
