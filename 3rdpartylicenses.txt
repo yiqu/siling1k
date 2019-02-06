@@ -571,7 +571,16 @@ MIT
 @angular/forms
 MIT
 
+@ngx-loading-bar/core
+MIT
+
 @angular/animations
+MIT
+
+@ngx-loading-bar/http-client
+MIT
+
+@ngx-loading-bar/router
 MIT
 
 zone.js
