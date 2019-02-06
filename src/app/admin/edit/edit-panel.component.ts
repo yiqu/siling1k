@@ -11,6 +11,7 @@ import { Router, ActivatedRoute, Data, Params } from '@angular/router';
 export class PanelEditComponent implements OnInit {
 
   currentlyEditing: string;
+  currentEditingDateSelect: string[] = [];
 
   constructor(public as: AdminService, public router: Router, 
     public route: ActivatedRoute) {
@@ -19,9 +20,9 @@ export class PanelEditComponent implements OnInit {
   ngOnInit() {
     this.route.queryParams.subscribe(
       (params: Params) => {
-        console.log(params);
         if (params) {
           this.currentlyEditing = params.editingId;
+          this.getDateSelection(this.currentlyEditing);
         } else {
           this.currentlyEditing = null;
         }
@@ -32,5 +33,9 @@ export class PanelEditComponent implements OnInit {
   navigateToSiling(silingId: string) {
     this.router.navigate(['./'], {relativeTo: this.route, 
       queryParams: {editingId: silingId}});
+  }
+
+  getDateSelection(editingId: string) {
+    this.as.getDataForSinglePanel(editingId);
   }
 }

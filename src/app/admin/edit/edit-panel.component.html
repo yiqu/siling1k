@@ -11,10 +11,12 @@
         (click)="navigateToSiling(bank.id)">{{bank.title}}</button>
     </div>
   </div>
-  <div class="card-body" *ngIf="currentlyEditing">
+  <div class="card-body" *ngIf="currentlyEditing && !this.as.loadingEditingPanel">
     <hr>
     <h5>Editing {{currentlyEditing}} Data</h5>
     <p>Please choose a date to continue to edit its data.</p>
-    
+    <select class="form-control">
+      <option *ngFor="let type of this.as.silingTypes" [value]="type.id">{{type.title}}</option>
+    </select>
   </div>
 </div>

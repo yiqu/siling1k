@@ -80,6 +80,11 @@ export class DataService {
       );
   }
 
+  getSinglePanelData(silingId: string): Observable<HttpResponse<any>> {
+    let url: string = this.getBaseUrl() + "items" + "/" + silingId + ".json";
+    return this.http.get<HttpResponse<any>>(url, {headers: headers, observe: 'response', responseType: 'json'});
+  }
+
   /**
    * Construct URL based on Prod/Dev mode
    */
