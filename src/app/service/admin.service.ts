@@ -22,6 +22,8 @@ export class AdminService {
   public addedEntryName: string;
   public onSaveComplete$: Subject<string> = new Subject<string>();
 
+  loadingEditingPanel: boolean = false;
+
   constructor(public ds: DataService, public ts: ToastrService) {
   }
 
@@ -40,5 +42,20 @@ export class AdminService {
         this.onSaveComplete$.next(this.addedEntryName);
       }
     );
+  }
+
+  getDataForSinglePanel(silingId: string) {
+    this.loadingEditingPanel = true;
+    this.ds.getSinglePanelData(silingId).subscribe(
+      (res: HttpResponse<any>) => {
+        console.log(res)
+      },
+      (error) => {
+        this.loadingEditingPanel = false;
+      },
+      () => {
+        this.loadingEditingPanel = false;
+      }
+    )
   }
 }

@@ -17,6 +17,8 @@ import { LoadingModule } from './shared/loading/loading.module';
 import { TitleService } from './service/title.service';
 import { AdminModule } from './admin/admin.module';
 import { AdminService } from './service/admin.service';
+import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
+import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
 
 @NgModule({
   declarations: [
@@ -50,6 +52,8 @@ import { AdminService } from './service/admin.service';
     NotFoundModule,
     LoadingModule,
     AdminModule,
+    LoadingBarHttpClientModule,
+    LoadingBarRouterModule,
     AppRoutingModule
   ],
 

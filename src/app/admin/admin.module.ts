@@ -8,6 +8,7 @@ import { PanelAdditionComponent } from './add/add-panel.component';
 import { AdminLandingComponent } from './admin-landing/admin-landing.component';
 import { PipeModule } from '../pipes/pipe-barrel.module';
 import { PanelEditComponent } from './edit/edit-panel.component';
+import { LoadingModule } from '../shared/loading/loading.module';
 
 @NgModule({
 
@@ -23,6 +24,7 @@ import { PanelEditComponent } from './edit/edit-panel.component';
     RouterModule,
     FormsModule,
     SilingFormModule,
+    LoadingModule,
     PipeModule
   ],
 
