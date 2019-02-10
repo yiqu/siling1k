@@ -6,6 +6,7 @@ import { MarketIndex } from '../../shared/models/market-index.model';
 import { Subscription } from 'rxjs';
 import { HttpResponse } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
+import { TitleService } from 'src/app/service/title.service';
 
 @Component({
   selector: 'about-detail',
@@ -22,7 +23,7 @@ export class AboutDetailComponent implements OnInit, OnDestroy {
   previousParamId: string = "";
 
   constructor(public router: Router, public route: ActivatedRoute, public as: AboutService,
-              public ts: ToastrService) {
+              public ts: ToastrService, public titleSer: TitleService,) {
                 
     this.route.params.subscribe(
       (param: Params) => {
@@ -37,6 +38,8 @@ export class AboutDetailComponent implements OnInit, OnDestroy {
    * Subscribe to about item details
    */
   ngOnInit() {
+    this.setPageTitle();
+    
     this.aboutItem$ = this.as.singleAboutDataSubj.subscribe(
       (data: AboutItem) => {
         this.aboutItem = data;
@@ -46,6 +49,7 @@ export class AboutDetailComponent implements OnInit, OnDestroy {
         }
       }
     );
+
   }
 
   /**
@@ -68,6 +72,14 @@ export class AboutDetailComponent implements OnInit, OnDestroy {
 
   goBackToAbout() {
     this.router.navigate(['../'], {relativeTo: this.route});
+  }
+
+  setPageTitle() {
+    this.route.data.subscribe(
+      (data: Data) => {
+        this.titleSer.setPageTitle(data.title);
+      }
+    );
   }
 
   ngOnDestroy() {
