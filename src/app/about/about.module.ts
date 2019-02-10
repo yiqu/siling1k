@@ -13,6 +13,7 @@ import { LoadingModule } from '../shared/loading/loading.module';
 import { CanDeactivateGuard } from "./about-new/about-new-deactivate-guard.service";
 import { MarketIndexFormResolver } from "./about-new/market-index.resolver.service";
 import { SilingFormModule } from '../shared/forms/form-barrel.module';
+import { AboutRoutingModule } from './about-routing.module';
 
 @NgModule({
   imports: [
@@ -20,15 +21,11 @@ import { SilingFormModule } from '../shared/forms/form-barrel.module';
     FormsModule,
     RouterModule,
     LoadingModule,
-    SilingFormModule
+    SilingFormModule,
+    AboutRoutingModule
   ],
 
   exports: [
-    AboutComponent,
-    AboutLandingComponent,
-    AboutCreationComponent,
-    AboutEditComponent,
-    AboutDetailComponent
   ],
 
   declarations: [

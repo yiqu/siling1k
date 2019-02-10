@@ -10,7 +10,6 @@ import { HttpErrorHandler } from './service/error-handler.service';
 import { MessageService } from './service/message.service';
 import { DataService } from './service/data.service';
 import { NavBarModule } from './shared/nav-bar/nav-bar.module';
-import { AboutModule } from './about/about.module';
 import { HomeModule } from './home/home.module';
 import { NotFoundModule } from './404/404.module';
 import { LoadingModule } from './shared/loading/loading.module';
@@ -47,7 +46,6 @@ import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
     FormsModule,
     HttpClientModule,
     NavBarModule,
-    AboutModule,
     HomeModule,
     NotFoundModule,
     LoadingModule,
