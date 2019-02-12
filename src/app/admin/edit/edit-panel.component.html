@@ -11,12 +11,24 @@
         (click)="navigateToSiling(bank.id)">{{bank.title}}</button>
     </div>
   </div>
-  <div class="card-body" *ngIf="currentlyEditing && !this.as.loadingEditingPanel">
+  <div class="card-body" *ngIf="currentlyEditing">
     <hr>
     <h5>Editing {{currentlyEditing}} Data</h5>
     <p>Please choose a date to continue to edit its data.</p>
-    <select class="form-control">
-      <option *ngFor="let type of this.as.silingTypes" [value]="type.id">{{type.title}}</option>
+    <select class="form-control" [(ngModel)]="silingTypeToEdit" (ngModelChange)="onSilingTypeEditChange()"
+      [disabled]="this.as.loadingEditingPanel">
+      <option value="undefined" disabled>Select a date</option>
+      <option *ngFor="let singleData of silingDailyData" [ngValue]="singleData">{{singleData.data.date}}</option>
     </select>
+    <span class="text-muted" *ngIf="this.as.loadingEditingPanel">Loading...</span>
+
+    <div *ngIf="silingTypeToEdit">
+      <p class="mt-3">Editing {{currentlyEditing}} data for {{silingTypeToEdit ? silingTypeToEdit.data.date : ""}}:</p>
+      {{silingTypeToEdit.entryId}}
+      bal:
+      {{silingTypeToEdit.data.balance}}
+    </div>
+    
+
   </div>
 </div>

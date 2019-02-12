@@ -1,4 +1,5 @@
 import { Injectable, OnInit, Output, EventEmitter } from '@angular/core';
+import { ChartOptions } from "chart.js";
 
 export class GraphService {
 
@@ -37,6 +38,7 @@ export class GraphService {
  * CONSTANTS
  **************************/
 const DEFAULT_GRAPH_CONFIG = {
+  maintainAspectRatio: false,
   responsive: true,
   title: {
     display: true,

@@ -58,7 +58,6 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.showOverviewGraph = environment.production;
-
     // set subscription for panel data 
     this.panelDataSub$ = this.cs.onDataReloaded.subscribe(
       (data: PanelItem[]) => {
