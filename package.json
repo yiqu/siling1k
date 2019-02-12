@@ -51,6 +51,7 @@
     "@types/jquery": "~3.3.19",
     "@types/bootstrap": "4.1.2",
     "@types/lodash": "^4.14.116",
+    "@types/chart.js": "~2.7.44",
     "codelyzer": "~4.5.0",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
