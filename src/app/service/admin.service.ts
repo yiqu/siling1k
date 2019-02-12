@@ -4,7 +4,8 @@ import { Observable, Subscription, Subject } from 'rxjs';
 import { HttpResponse } from '@angular/common/http';
 import { DataService } from './data.service';
 import { ToastrService } from 'ngx-toastr';
-import { SilingEditable, SilingBankType } from '../shared/models/editable.model';
+import { SilingEditable, SilingBankType, EditableSilingDailyData, SilingDailyData } from '../shared/models/editable.model';
+import * as _ from 'lodash';
 
 @Injectable()
 export class AdminService {
@@ -23,6 +24,9 @@ export class AdminService {
   public onSaveComplete$: Subject<string> = new Subject<string>();
 
   loadingEditingPanel: boolean = false;
+  selectedSilingData: EditableSilingDailyData[] = [];
+  selectedSilingData$: Subject<EditableSilingDailyData[]> = new Subject();
+  currentSelectedSilingToEdit$: Subject<EditableSilingDailyData> = new Subject();
 
   constructor(public ds: DataService, public ts: ToastrService) {
   }
@@ -44,11 +48,12 @@ export class AdminService {
     );
   }
 
-  getDataForSinglePanel(silingId: string) {
+  getDataForSinglePanel(silingId: string, dateToEdit: string) {
     this.loadingEditingPanel = true;
+    this.selectedSilingData.length = 0;
     this.ds.getSinglePanelData(silingId).subscribe(
       (res: HttpResponse<any>) => {
-        console.log(res)
+        this.extractDates(res.body, dateToEdit);
       },
       (error) => {
         this.loadingEditingPanel = false;
@@ -57,5 +62,16 @@ export class AdminService {
         this.loadingEditingPanel = false;
       }
     )
+  }
+
+  extractDates(res: any, dateToEdit: string) {
+    _.transform(res, (res, curr, index, arr) => {
+      this.selectedSilingData.push(new EditableSilingDailyData(index+"", curr as SilingDailyData));
+    });
+    this.selectedSilingData$.next(this.selectedSilingData);
+    if (dateToEdit) {
+      let dataToEdit = _.find(this.selectedSilingData, {"data":{"date":dateToEdit}} );
+      this.currentSelectedSilingToEdit$.next(dataToEdit);
+    }
   }
 }

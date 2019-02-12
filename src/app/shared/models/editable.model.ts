@@ -8,6 +8,11 @@ export class SilingDailyData {
   }
 }
 
+export class EditableSilingDailyData {
+  constructor(public entryId: string, public data: SilingDailyData) {
+  }
+}
+
 export class SilingEditable {
   date: string;
   balance: number;
