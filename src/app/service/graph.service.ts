@@ -68,6 +68,21 @@ const DEFAULT_GRAPH_CONFIG = {
       }
     }]
   },
+  // plugins: {
+  //   datalabels: {
+  //     backgroundColor: function(context) {
+  //       return context.dataset.borderColor;
+  //     },
+  //     borderRadius: 4,
+  //     color: 'white',
+  //     font: {
+  //       weight: 'bold'
+  //     },
+  //     formatter: (val, context) => {
+  //       return "$" + val.y;
+  //     }
+  //   }
+  // },
   tooltips: {
 		position: 'average',
 		mode: 'nearest',
