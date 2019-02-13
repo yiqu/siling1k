@@ -23,8 +23,6 @@ import { DirectivesModule } from '../directives/directives-barrel.module';
   ],
 
   providers: [
-    DataService,
-    CalcService
   ],
 })
 export class DisplayModule { }

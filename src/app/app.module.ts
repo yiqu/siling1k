@@ -18,6 +18,7 @@ import { AdminModule } from './admin/admin.module';
 import { AdminService } from './service/admin.service';
 import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
+import { AboutService } from './service/about.service';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
     MessageService,
     DataService,
     TitleService,
-    AdminService
+    AdminService,
+    AboutService
   ],
 
   bootstrap: [

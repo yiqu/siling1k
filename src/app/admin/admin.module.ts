@@ -11,7 +11,6 @@ import { PanelEditComponent } from './edit/edit-panel.component';
 import { LoadingModule } from '../shared/loading/loading.module';
 
 @NgModule({
-
   declarations: [
     PanelAdditionComponent,
     AdminComponent,
