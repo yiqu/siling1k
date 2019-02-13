@@ -1,6 +1,6 @@
-import { Component, OnInit, ViewChild, Input, 
-  OnChanges, SimpleChange } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, OnChanges, SimpleChange } from '@angular/core';
 import { Chart } from 'chart.js';
+
 
 @Component({
   selector: 'app-graph',

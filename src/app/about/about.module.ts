@@ -38,7 +38,7 @@ import { AboutRoutingModule } from './about-routing.module';
 
   providers: [
     TitleService,
-    AboutService,
+    //AboutService,
     CanDeactivateGuard,
     MarketIndexFormResolver
   ]

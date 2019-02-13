@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as $ from 'jquery';
+//import 'chartjs-plugin-datalabels';
 
 @Component({
   selector: 'app-root',

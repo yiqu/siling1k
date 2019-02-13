@@ -128,7 +128,11 @@ export class CalcService {
         fill: false,
         borderColor: data.getColor(),
         data: this.convertGraphData(data.getDataArray()),
-        hidden: data.isHidden()
+        hidden: data.isHidden(),
+        // datalabels: {
+        //   align: "start",
+        //   anchor: "end"
+        // }
       });
     }
 
