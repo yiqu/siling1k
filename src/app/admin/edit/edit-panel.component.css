@@ -1,0 +1,13 @@
+/* Not touched, or after touched: valid + required */
+input.ng-valid.ng-touched, input.ng-valid.ng-pristine  {
+  border-left: 5px solid #42A948; /* green */
+}
+
+/*AFTER TOUCH:  Invalid */
+input.ng-invalid:not(form).ng-touched  {
+  border-left: 5px solid #a94442; /* red */
+}
+
+.alert-muted {
+  color: #ff0000 !important;
+}

@@ -9,6 +9,7 @@ import { AdminLandingComponent } from './admin-landing/admin-landing.component';
 import { PipeModule } from '../pipes/pipe-barrel.module';
 import { PanelEditComponent } from './edit/edit-panel.component';
 import { LoadingModule } from '../shared/loading/loading.module';
+import { SilingModalModule } from '../shared/modal/siling-modal.module';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { LoadingModule } from '../shared/loading/loading.module';
     FormsModule,
     SilingFormModule,
     LoadingModule,
-    PipeModule
+    PipeModule,
+    SilingModalModule
   ],
 
   exports: [
