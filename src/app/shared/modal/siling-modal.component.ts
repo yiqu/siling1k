@@ -9,9 +9,6 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 export class SilingModalComponent implements OnInit {
 
   @Input()
-  modalId: string;
-
-  @Input()
   modalTitle: string;
 
   @Input()

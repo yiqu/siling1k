@@ -24,24 +24,33 @@
 
     <div *ngIf="currentlyEditing && silingTypeToEdit">
       <p class="mt-3">Editing <span style="font-weight: 700">{{currentlyEditing}}</span> data on
-        <span style="font-weight: 700">{{silingTypeToEdit.data ? silingTypeToEdit.data.date : ""}}:</span>
+        <span style="font-weight: 700">{{silingTypeToEdit.data ? silingTypeToEdit.data.date : ""}}</span>
+        ({{silingTypeToEdit.entryId}}):
       </p>
 
-      <form [formGroup]="dataEditFormGroup">
+      <form *ngIf="dataEditFormGroup" [formGroup]="dataEditFormGroup">
         <div class="input-group">
           <div class="input-group-prepend">
             <div class="input-group-text">$</div>
           </div>
           <input type="text" class="form-control" [formControlName]="'balance'">
-          <button class="btn btn-primary" (click)="resetEditingBalance()" [disabled]="!balanceFormControl.dirty">Reset</button>
+          <button class="btn btn-primary" (click)="resetEditingBalance()" 
+            [disabled]="!balanceFormControl.dirty">Reset</button>
         </div>
         <div *ngIf="balanceFormControl.invalid && (balanceFormControl.dirty || balanceFormControl.touched)"
           class="text-muted" >
+          Error:
           <div *ngIf="balanceFormControl.errors.required">
             {{emptyBalanceHint}}
           </div>
+          <div *ngIf="balanceFormControl.errors.entryFormatError">
+            {{badDollarFormatHint}}
+          </div>
         </div>
-        <button class="btn btn-success mt-3" data-toggle="modal" data-target="#editingConfirmModal">Update</button>
+        <button class="btn btn-success mt-3" data-toggle="modal" 
+          data-target="#editingConfirmModal" (click)="onUpdate()" 
+          [disabled]="balanceFormControl.invalid || this.as.isDailyEditing">
+            {{this.as.isDailyEditing ? "Updating..." : "Update"}}</button>
       </form>
 
     </div>
@@ -50,5 +59,6 @@
 
 
 <div class="modal fade" id="editingConfirmModal">
-  <siling-modal (onModalConfirm)="onConfirm()"></siling-modal>
+  <siling-modal [modalTitle]="'Update Daily Entry'" [confirmText]="Confirm" 
+    [modalBodyText]="modalConfirmText" (onModalConfirm)="onConfirm()"></siling-modal>
 </div>

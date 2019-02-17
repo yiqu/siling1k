@@ -53,7 +53,6 @@ export class AboutCreationComponent implements OnInit, CanComponentDeactivate {
   onSubmit() {
     let submitCount: number = 0;
     submitCount = this.newFormFg.value['dataArray'].length;
-    console.log("count" + submitCount);
     this.entrySubmitted = true;
     if (submitCount > 0) {
       this.ts.info("Adding " + submitCount + " entries.", "Info.");

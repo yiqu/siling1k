@@ -4,7 +4,7 @@ import { AboutService } from 'src/app/service/about.service';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { AdminService } from 'src/app/service/admin.service';
 import { Router, ActivatedRoute, Data, Params } from '@angular/router';
-import { EditableSilingDailyData } from 'src/app/shared/models/editable.model';
+import { EditableSilingDailyData, SilingDailyData } from 'src/app/shared/models/editable.model';
 
 @Component({
   selector: 'admin-edit-panel',
@@ -19,9 +19,12 @@ export class PanelEditComponent implements OnInit {
   silingDailyData: any[] = [];
   silingTypeToEdit: EditableSilingDailyData;
   dataEditFormGroup: FormGroup;
+  dataEditRawValue: any;
 
-  emptyBalanceHint: string = "You did not enter a balance to update, if left empty, it will be defaulted to $0.00";
-  initEditingValue: any;
+  emptyBalanceHint: string = "Enter a new balance. It can not be empty";
+  badDollarFormatHint: string = "Balance has to be integers with no more than 2 decimal places.";
+  modalConfirmText: string = "";
+  initEditingValue: SilingDailyData;
 
   constructor(public as: AdminService, public router: Router, 
     public route: ActivatedRoute, public fb: FormBuilder, public abs: AboutService) {
@@ -58,12 +61,26 @@ export class PanelEditComponent implements OnInit {
           this.initEditingValue = this.silingTypeToEdit.data;
         }
       }
+    );
+
+    this.as.editEntryCompleted$.subscribe(
+      (res: boolean) => {
+        if (res) {
+          this.navigateAfterEditComplete();
+        }
+      }
     )
   }
 
   navigateToSiling(silingId: string) {
-    this.router.navigate(['./'], {relativeTo: this.route, 
-      queryParams: {editingId: silingId}});
+    this.router.navigate(['./'], 
+      {
+        relativeTo: this.route, 
+        queryParams: {
+          editingId: silingId
+        }
+      }
+    );
   }
 
   getDateSelection(editingId: string, dateToEdit: string) {
@@ -71,28 +88,41 @@ export class PanelEditComponent implements OnInit {
   }
 
   onSilingTypeEditChange() {
-    this.router.navigate(['./'], {relativeTo: this.route, queryParamsHandling: "merge", 
-      queryParams: {dateToEdit: this.silingTypeToEdit.data.date}})
+    this.router.navigate(['./'], 
+      {
+        relativeTo: this.route, 
+        queryParamsHandling: "merge", 
+        queryParams: {dateToEdit: this.silingTypeToEdit.data.date}
+      }
+    )
   }
 
+  /**
+   * Create form group for editing form.
+   * Validators : required and dollar formatting
+   */
   createEditDataFg() {
+    this.dataEditFormGroup = null;
     const originalBal: string = this.silingTypeToEdit.data.balance + "";
     const originalDate: string = this.silingTypeToEdit.data.date
     let fgObj = {
-      balance: this.abs.createNewFormControl(originalBal, false, [Validators.required]),
+      balance: this.abs.createNewFormControl(originalBal, false, 
+        [Validators.required, this.as.dailyEntryDollarFormat]),
       date: this.abs.createNewFormControl(originalDate, true)
     }
     this.dataEditFormGroup = this.fb.group(fgObj);
-    console.log(this.dataEditFormGroup)
   }
 
   resetEditingBalance() {
     this.dataEditFormGroup.reset(this.initEditingValue);
   }
 
-  onEditSubmit() {
-    let rawValue = this.dataEditFormGroup.getRawValue();
-    console.log(rawValue)
+  onUpdate() {
+    this.dataEditRawValue = this.dataEditFormGroup.getRawValue();
+    this.dataEditRawValue = this.lintEditData(this.dataEditRawValue);
+    this.modalConfirmText = "Are you sure you want to update " + this.currentlyEditing + 
+      "'s data on <br><em>" + this.silingTypeToEdit.data.date + 
+      "</em><br>from " + this.initEditingValue.balance + " <br>to <b>" + this.dataEditRawValue.balance + "</b>";
   }
 
   getObjectKeys(obj: any): string[] {
@@ -101,6 +131,27 @@ export class PanelEditComponent implements OnInit {
   }
 
   onConfirm() {
-    console.log("confirmed")
+    let data: any = {};
+    data.data = this.dataEditRawValue;
+    data.silingType = this.currentlyEditing;
+    data.entryId = this.silingTypeToEdit.entryId;
+    this.as.updateDailyEntry(data);
+  }
+
+  navigateAfterEditComplete() {
+    this.router.navigate(['./'], 
+      {
+        relativeTo: this.route, 
+        queryParamsHandling: '',
+        queryParams: {editingId: this.currentlyEditing}
+      }
+    )
+  }
+
+  lintEditData(data) {
+    if (data) {
+      data.balance = (data.balance).replace(/^0+/, '')
+    }
+    return data;
   }
 }
