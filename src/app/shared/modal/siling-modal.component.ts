@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { SilingModalConfig, ModalAction } from '../models/modal-config.model';
 
 @Component({
   selector: 'siling-modal',
@@ -9,32 +10,26 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 export class SilingModalComponent implements OnInit {
 
   @Input()
-  modalTitle: string;
-
-  @Input()
-  confirmText: string;
-
-  @Input()
-  modalBodyText: string;
+  modalConfig: SilingModalConfig;
 
   @Output()
-  onModalConfirm: EventEmitter<any> = new EventEmitter<any>();
+  onModalConfirm: EventEmitter<ModalAction> = new EventEmitter<ModalAction>();
 
   constructor() {}
 
   ngOnInit() {
-    if (!this.confirmText) {
-      this.confirmText = "Confirm";
+    if (!this.modalConfig.confirmText) {
+      this.modalConfig.confirmText = "Confirm";
     }
-    if (!this.modalTitle) {
-      this.modalTitle = "Warning";
+    if (!this.modalConfig.title) {
+      this.modalConfig.title = "Warning";
     }
-    if (!this.modalBodyText) {
-      this.modalBodyText = "Are you sure you want to proceed?";
+    if (!this.modalConfig.body) {
+      this.modalConfig.body = "Are you sure you want to proceed?";
     }
   }
 
   confirm() {
-    this.onModalConfirm.emit(true);
+    this.onModalConfirm.emit(this.modalConfig.action);
   }
 }

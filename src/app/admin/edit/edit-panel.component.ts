@@ -5,6 +5,8 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { AdminService } from 'src/app/service/admin.service';
 import { Router, ActivatedRoute, Data, Params } from '@angular/router';
 import { EditableSilingDailyData, SilingDailyData } from 'src/app/shared/models/editable.model';
+import { SilingModalConfig, ModalAction } from '../../shared/models/modal-config.model';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'admin-edit-panel',
@@ -25,9 +27,11 @@ export class PanelEditComponent implements OnInit {
   badDollarFormatHint: string = "Balance has to be integers with no more than 2 decimal places.";
   modalConfirmText: string = "";
   initEditingValue: SilingDailyData;
+  modalConfig: SilingModalConfig = new SilingModalConfig();
 
   constructor(public as: AdminService, public router: Router, 
-    public route: ActivatedRoute, public fb: FormBuilder, public abs: AboutService) {
+    public route: ActivatedRoute, public fb: FormBuilder, public abs: AboutService,
+    public ts: ToastrService) {
   }
 
   get balanceFormControl() { 
@@ -123,6 +127,12 @@ export class PanelEditComponent implements OnInit {
     this.modalConfirmText = "Are you sure you want to update " + this.currentlyEditing + 
       "'s data on <br><em>" + this.silingTypeToEdit.data.date + 
       "</em><br>from " + this.initEditingValue.balance + " <br>to <b>" + this.dataEditRawValue.balance + "</b>";
+    this.modalConfig = new SilingModalConfig("Update Daily Entry", "Update", this.modalConfirmText, ModalAction.UPDATE_ACTION);
+  }
+
+  onDelete() {
+    this.modalConfirmText = "Are you sure you want to delete this daily entry?";
+    this.modalConfig = new SilingModalConfig("Remove Daily Entry", "Delete", this.modalConfirmText, ModalAction.DELETE_ACTION);
   }
 
   getObjectKeys(obj: any): string[] {
@@ -130,12 +140,24 @@ export class PanelEditComponent implements OnInit {
     return keys;
   }
 
-  onConfirm() {
-    let data: any = {};
-    data.data = this.dataEditRawValue;
-    data.silingType = this.currentlyEditing;
-    data.entryId = this.silingTypeToEdit.entryId;
-    this.as.updateDailyEntry(data);
+  onConfirm(action: ModalAction) {
+    switch (action) {
+      case ModalAction.UPDATE_ACTION: {
+        let data: any = {};
+        data.data = this.dataEditRawValue;
+        data.silingType = this.currentlyEditing;
+        data.entryId = this.silingTypeToEdit.entryId;
+        this.as.updateDailyEntry(data);
+        break;
+      };
+      case ModalAction.DELETE_ACTION: {
+        console.log("delete");
+        break;
+      };
+      default: {
+        this.ts.warning("No action detected", "Info.");
+      }
+    }
   }
 
   navigateAfterEditComplete() {

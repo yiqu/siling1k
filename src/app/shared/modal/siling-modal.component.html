@@ -2,17 +2,22 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="modalLabel">{{modalTitle}}</h5>
+        <h5 class="modal-title" id="modalLabel">{{modalConfig.title}}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body" [innerHTML]="modalBodyText">
+      <div class="modal-body" [innerHTML]="modalConfig.body">
        
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-primary"(click)="confirm()" data-dismiss="modal">{{confirmText}}</button>
+        <button type="button" class="btn btn-primary" 
+          [ngClass]="{'btn': true, 
+            'btn-primary': modalConfig.action === 'UPDATE', 
+            'btn-danger': modalConfig.action === 'DELETE'}"
+          (click)="confirm()" 
+          data-dismiss="modal">{{modalConfig.confirmText}}</button>
       </div>
     </div>
   </div>

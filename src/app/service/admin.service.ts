@@ -87,6 +87,10 @@ export class AdminService {
     );
   }
 
+  deleteDailyEntry() {
+    
+  }
+
   extractDates(res: any, dateToEdit: string) {
     _.transform(res, (res, curr, index, arr) => {
       this.selectedSilingData.push(new EditableSilingDailyData(index+"", curr as SilingDailyData));
