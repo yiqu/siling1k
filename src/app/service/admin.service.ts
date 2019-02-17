@@ -6,6 +6,7 @@ import { DataService } from './data.service';
 import { ToastrService } from 'ngx-toastr';
 import { SilingEditable, SilingBankType, EditableSilingDailyData, SilingDailyData } from '../shared/models/editable.model';
 import * as _ from 'lodash';
+import { FormControl } from '@angular/forms';
 
 @Injectable()
 export class AdminService {
@@ -22,11 +23,13 @@ export class AdminService {
   public savingDailyEntry$: Subscription = new Subscription();
   public addedEntryName: string;
   public onSaveComplete$: Subject<string> = new Subject<string>();
+  public isDailyEditing: boolean = false;
 
   loadingEditingPanel: boolean = false;
   selectedSilingData: EditableSilingDailyData[] = [];
   selectedSilingData$: Subject<EditableSilingDailyData[]> = new Subject();
   currentSelectedSilingToEdit$: Subject<EditableSilingDailyData> = new Subject();
+  editEntryCompleted$: Subject<any> = new Subject();
 
   constructor(public ds: DataService, public ts: ToastrService) {
   }
@@ -64,6 +67,26 @@ export class AdminService {
     )
   }
 
+  updateDailyEntry(data) {
+    this.isDailyEditing = true;
+    let url: string = "items/" + data.silingType + "/" + data.entryId + ".json";
+    this.ds.postData(data, url).subscribe(
+      (res: HttpResponse<any>) => {
+        if (res.status === 200) {
+          this.ts.success("Successfully updated daily entry for " +
+            res.body.date + ".", "Updated")
+        }
+      },
+      (err) => {
+        this.isDailyEditing = false;
+      },
+      () => {
+        this.isDailyEditing = false;
+        this.editEntryCompleted$.next(true);
+      }
+    );
+  }
+
   extractDates(res: any, dateToEdit: string) {
     _.transform(res, (res, curr, index, arr) => {
       this.selectedSilingData.push(new EditableSilingDailyData(index+"", curr as SilingDailyData));
@@ -73,5 +96,21 @@ export class AdminService {
       let dataToEdit = _.find(this.selectedSilingData, {"data":{"date":dateToEdit}} );
       this.currentSelectedSilingToEdit$.next(dataToEdit);
     }
+  }
+
+  /**
+   * Custom validator to check if it is a valid daily entry format
+   * 12.12 - yes
+   * 12.12.1 - no
+   * 12 - yes
+   * 12.123 -no
+   * @param control 
+   */
+  dailyEntryDollarFormat(control: FormControl): {[s: string]:boolean} {
+    let format = /^\d+(\.\d{1,2})?$/;
+    if (!(""+control.value).match(format)) {
+      return {'entryFormatError': true};
+    } 
+    return null;
   }
 }

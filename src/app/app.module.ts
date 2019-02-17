@@ -29,7 +29,7 @@ import { AboutService } from './service/about.service';
     BrowserModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
-      timeOut: 3000,
+      timeOut: 5000,
       extendedTimeOut: 1000,
       positionClass: 'toast-bottom-right',
       preventDuplicates: false,
