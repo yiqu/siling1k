@@ -10,12 +10,11 @@
   "scripts": {
     "ng": "ng",
     "start": "node server.js",
-    "build": "ng build",
+    "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build.prod": "ng build --prod --base-href=siling1k/",
-    "postinstall": "ng build --prod"
+    "build.prod": "ng build --prod --base-href=siling1k/"
   },
   "private": false,
   "dependencies": {
@@ -76,5 +75,6 @@
   "engines": {
     "node": "10.6.0",
     "npm": "6.4.1"
-  }
+  },
+  "heroku-run-build-script": true
 }
