@@ -48,9 +48,13 @@
           </div>
         </div>
         <button class="btn btn-success mt-3" data-toggle="modal" 
-          data-target="#editingConfirmModal" (click)="onUpdate()" 
+          data-target="#confirmModal" (click)="onUpdate()" 
           [disabled]="balanceFormControl.invalid || this.as.isDailyEditing">
             {{this.as.isDailyEditing ? "Updating..." : "Update"}}</button>
+        <button class="btn btn-danger mt-3 ml-3" data-toggle="modal" 
+          data-target="#confirmModal" (click)="onDelete()" 
+          [disabled]="balanceFormControl.invalid || this.as.isDailyEditing">
+            {{this.as.isDailyEditing ? "Deleting..." : "Delete"}}</button>
       </form>
 
     </div>
@@ -58,7 +62,6 @@
 </div>
 
 
-<div class="modal fade" id="editingConfirmModal">
-  <siling-modal [modalTitle]="'Update Daily Entry'" [confirmText]="'Confirm'" 
-    [modalBodyText]="modalConfirmText" (onModalConfirm)="onConfirm()"></siling-modal>
+<div class="modal fade" id="confirmModal">
+  <siling-modal [modalConfig]="modalConfig" (onModalConfirm)="onConfirm($event)"></siling-modal>
 </div>

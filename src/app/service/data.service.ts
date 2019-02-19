@@ -115,6 +115,18 @@ export class DataService {
   }
 
   /**
+   * DELETE request
+   * @param deleteUrl 
+   */
+  deleteData(deleteUrl: string) {
+    let url: string = this.getBaseUrl() + deleteUrl;
+    return this.http.delete(url, {headers: headers, observe: 'response', responseType: 'json'}).
+      pipe(
+        timeout(4000)
+      )
+  }
+
+  /**
    * Construct URL based on Prod/Dev mode
    */
   getBaseUrl(): string {
