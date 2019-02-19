@@ -67,7 +67,7 @@ export class AdminService {
     )
   }
 
-  updateDailyEntry(data) {
+  updateDailyEntry(data: any) {
     this.isDailyEditing = true;
     let url: string = "items/" + data.silingType + "/" + data.entryId + ".json";
     this.ds.postData(data, url).subscribe(
@@ -87,8 +87,21 @@ export class AdminService {
     );
   }
 
-  deleteDailyEntry() {
-    
+  deleteDailyEntry(data: any) {
+    this.isDailyEditing = true;
+    let url: string = "items/" + data.silingType + "/" + data.entryId + ".json";
+    this.ds.deleteData(url).subscribe(
+      (res: HttpResponse<any>) => {
+      },
+      (err) => {
+        this.isDailyEditing = false;
+      },
+      () => {
+        this.isDailyEditing = false;
+        this.ts.success("Successfully deleted entry.", "Deleted");
+        this.editEntryCompleted$.next(true);
+      }
+    )
   }
 
   extractDates(res: any, dateToEdit: string) {

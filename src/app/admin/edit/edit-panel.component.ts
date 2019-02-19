@@ -141,17 +141,18 @@ export class PanelEditComponent implements OnInit {
   }
 
   onConfirm(action: ModalAction) {
+    let data: any = {};
+    data.silingType = this.currentlyEditing;
+    data.entryId = this.silingTypeToEdit.entryId;
+
     switch (action) {
       case ModalAction.UPDATE_ACTION: {
-        let data: any = {};
         data.data = this.dataEditRawValue;
-        data.silingType = this.currentlyEditing;
-        data.entryId = this.silingTypeToEdit.entryId;
         this.as.updateDailyEntry(data);
         break;
       };
       case ModalAction.DELETE_ACTION: {
-        console.log("delete");
+        this.as.deleteDailyEntry(data);
         break;
       };
       default: {

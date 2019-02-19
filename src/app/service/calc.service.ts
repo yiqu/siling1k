@@ -129,10 +129,7 @@ export class CalcService {
         borderColor: data.getColor(),
         data: this.convertGraphData(data.getDataArray()),
         hidden: data.isHidden(),
-        // datalabels: {
-        //   align: "start",
-        //   anchor: "end"
-        // }
+        spanGaps: true
       });
     }
 
@@ -144,7 +141,8 @@ export class CalcService {
         fill: false,
         borderColor: "#0086b3",
         data: avgDataPoint,
-        hidden: false
+        hidden: false,
+        spanGaps: true
       });
     }
     
