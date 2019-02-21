@@ -1,0 +1,14 @@
+.summary-title {
+  font-size: 24px;
+}
+
+.summary-number {
+  font-weight: 500;
+  font-size: 15px;
+  letter-spacing: 1px;
+}
+
+.summary-dollar {
+  color: #00b300;
+  font-weight: 700;
+}

@@ -1,0 +1,20 @@
+<div class="card font-thin">
+  <div class="card-body">
+    <h3 class="card-title text-center font-indie">{{summaryTitle}}</h3>
+    <hr>
+    <p class="">
+      <span class="">Total Siling1k amount: </span>
+      <span class="summary-number summary-dollar">
+      ${{totalSilingAmount}}
+      </span>
+    </p>
+    <p class="card-text">{{summary}}</p>
+  </div>
+  <div class="card-footer text-muted font-roboto">
+    {{summaryFooter}}: 
+    <span class="summary-number summary-date" data-toggle="tooltip" data-html="true" 
+      data-placement="top" [title]="'<b>' + lastUpdatedInDays + ' days ago </b>'">
+      {{lastUpdatedDate}} ({{lastUpdatedAge}})
+    </span>
+  </div>
+</div>

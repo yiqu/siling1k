@@ -8,6 +8,7 @@ import { GraphService } from './graph.service';
 import { ChartGraphData } from '../shared/models/graph-data.model';
 import { ChartDataPoint } from '../shared/models/graph-datapoint.model'
 import { environment } from '../../environments/environment';
+import { Subject } from 'rxjs';
 
 const fidDisplayImageUrl: string = "assets/images/fid_logo.jpg";
 const fidDisplayTitle: string = "Fidelity";
@@ -20,7 +21,7 @@ const empDisplayTitle: string = "Empower";
 export class CalcService {
 
   @Output()
-  onDataReloaded: EventEmitter<PanelItem[]> = new EventEmitter<PanelItem[]>();
+  onDataReloaded: Subject<PanelItem[]> = new Subject<PanelItem[]>();
 
   rawData: DataResponse;
   listOfPanels: Set<string> = new Set<string>();
@@ -66,7 +67,7 @@ export class CalcService {
     });
     // reverse the order of items
     this.allPanelData.reverse();
-    this.onDataReloaded.emit(this.allPanelData);
+    this.onDataReloaded.next(this.allPanelData);
     // set graph data and emit the changes
     this.setDataForGraph(this.allPanelData);
   }

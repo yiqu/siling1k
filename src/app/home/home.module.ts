@@ -8,9 +8,11 @@ import { DetailsComponent } from './details/details.component';
 import { GraphModule } from '../shared/graph/graph.module';
 import { CalcService } from '../service/calc.service';
 import { GraphService } from '../service/graph.service';
+import { PipeModule } from '../pipes/pipe-barrel.module';
 import { AppRoutingModule } from '../app-routing.module';
 import { DetailsResolver } from "./details/details-resolver.service";
 import { TitleService } from '../service/title.service';
+import { SilingSummaryComponent } from './summary/summary.component';
 
 @NgModule({
   imports: [
@@ -26,7 +28,8 @@ import { TitleService } from '../service/title.service';
 
   declarations: [
     HomeComponent,
-    DetailsComponent
+    DetailsComponent,
+    SilingSummaryComponent
   ],
 
   providers: [

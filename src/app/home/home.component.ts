@@ -11,7 +11,7 @@ import { PanelItem } from '../shared/models/panel.model';
 import { ToggleAction } from '../shared/models/toggle-action.model';
 import { Utils } from '../shared/utils';
 import { ToastrService } from 'ngx-toastr';
-import { Subject } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 import { GraphService } from '../service/graph.service';
 import { TitleService } from '../service/title.service';
 
@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   graphConfig: any;
   graphSize: string;
 
-  panelDataSub$: Subject<PanelItem[]> = new Subject<PanelItem[]>();
+  panelDataSub$: Subscription = new Subscription();
   graphDataSub$: Subject<any> = new Subject<any>();
   graphConfigSub$: Subject<any> = new Subject<any>();
 
