@@ -1,12 +1,12 @@
 <div *ngIf="allPanelData; else loading">
-  <app-graph *ngIf="showOverviewGraph" [graphData]="graphData" [graphConfig]="graphConfig"
-    [size]="graphSize"></app-graph>
 
   <div class="row">
     <div class="col-md mb-3 mt-3">
-      <app-home-summary></app-home-summary>
+      <app-home-summary [graphData]="graphData" [graphConfig]="graphConfig"
+        [size]="graphSize"></app-home-summary>
     </div>
   </div>
+  
   <div class="row">
     <div *ngFor="let panelData of allPanelData" class="col-md center-text">
       <app-display [id]="panelData.title"

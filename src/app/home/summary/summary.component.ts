@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import * as moment from 'moment';
 import * as _ from 'lodash';
 import { Subscription } from 'rxjs';
+import { environment } from '../../../environments/environment';
 import { CalcService } from '../../service/calc.service';
 import { PanelItem } from '../../shared/models/panel.model';
 import { ItemDetail } from 'src/app/shared/models/data.model';
@@ -15,8 +16,17 @@ import { Utils } from '../../shared/utils';
 
 export class SilingSummaryComponent implements OnInit {
 
+  @Input()
+  graphData;
+
+  @Input()
+  graphConfig;
+
+  @Input()
+  size;
+
   summaryTitle: string = "Siling1k Summary";
-  summary: string = "";
+  summary: string = "...";
   summaryFooter: string = "Last updated";
   lastUpdatedDate: string = "";
   lastUpdatedAge: string;
@@ -24,12 +34,15 @@ export class SilingSummaryComponent implements OnInit {
   lastUpdatedInDays: number;
   silingDataSub$: Subscription = new Subscription();
   today: any;
+  showOverviewGraph: boolean = false;
 
   constructor(public cs: CalcService) {
     this.today = moment();
   }
 
   ngOnInit() {
+    this.showOverviewGraph = environment.production;
+
     if (this.cs.allPanelData.length > 1) {
       this.lastUpdatedDate = this.getLastUpdatedDate();
       this.getLastUpdatedAge();
