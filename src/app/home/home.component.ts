@@ -1,7 +1,6 @@
 import { Component, OnInit, ChangeDetectorRef, AfterViewInit, 
   ChangeDetectionStrategy, ViewChild, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { environment } from '../../environments/environment';
 import { DataService } from '../service/data.service';
 import { HttpResponse } from '@angular/common/http';
 import { DataResponse } from '../shared/models/data.model';
@@ -36,7 +35,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   // holds all of the panel data (caluclated already) to be displayed
   allPanelData: PanelItem[] = null;
   mainGraphSize: any = {height: "400px", width: "400px"};
-  showOverviewGraph: boolean = true;
 
   /**
    * Constructor
@@ -57,7 +55,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.showOverviewGraph = environment.production;
     // set subscription for panel data 
     this.panelDataSub$ = this.cs.onDataReloaded.subscribe(
       (data: PanelItem[]) => {

@@ -148,6 +148,8 @@ export class PanelEditComponent implements OnInit {
     switch (action) {
       case ModalAction.UPDATE_ACTION: {
         data.data = this.dataEditRawValue;
+        // convert to number type from string type
+        data.data.balance = +data.data.balance;
         this.as.updateDailyEntry(data);
         break;
       };

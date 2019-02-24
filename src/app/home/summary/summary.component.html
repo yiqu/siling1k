@@ -8,8 +8,13 @@
       ${{totalSilingAmount}}
       </span>
     </p>
-    <p class="card-text">{{summary}}</p>
+    <p class="card-text mb-3">{{summary}}</p>
+    
+    <app-graph *ngIf="true" [graphData]="graphData" [graphConfig]="graphConfig"
+      [size]="graphSize"></app-graph>
+
   </div>
+
   <div class="card-footer text-muted font-roboto">
     {{summaryFooter}}: 
     <span class="summary-number summary-date" data-toggle="tooltip" data-html="true" 

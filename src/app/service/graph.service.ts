@@ -41,7 +41,7 @@ const DEFAULT_GRAPH_CONFIG = {
   maintainAspectRatio: false,
   responsive: true,
   title: {
-    display: true,
+    display: false,
     text: "SiLing Graph"
   },
   scales: {
@@ -52,7 +52,7 @@ const DEFAULT_GRAPH_CONFIG = {
         tooltipFormat: 'll'
       },
       scaleLabel: {
-        display: true,
+        display: false,
         labelString: 'Date'
       }
     }],
