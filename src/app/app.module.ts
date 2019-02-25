@@ -19,6 +19,7 @@ import { AdminService } from './service/admin.service';
 import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
 import { AboutService } from './service/about.service';
+import { BudgetModule } from './budget/budget.module';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { AboutService } from './service/about.service';
     AdminModule,
     LoadingBarHttpClientModule,
     LoadingBarRouterModule,
+    BudgetModule,
     AppRoutingModule
   ],
 

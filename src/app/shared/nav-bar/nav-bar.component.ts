@@ -5,6 +5,7 @@ const NAV_ITEM_LIST = [
   new NavItem("Home", "home"),
   new NavItem("Market", "market", true),
   new NavItem("About", "about"),
+  new NavItem("Budget", "budget"),
   new NavItem("Admin", "admin")
 ]
 
