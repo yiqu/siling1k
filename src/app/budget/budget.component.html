@@ -1,0 +1,30 @@
+<div class="center-text">
+  <span class="font-indie indie-font-25">Budget Overview</span>
+</div>
+<hr>
+
+<div class="row">
+  <div class="col-md-3">
+    <div class="list-group">
+      <a [ngClass]="{'list-group-item':true, 'list-group-item-action':true, 
+          'list-group-item-info':true, 'font-roboto':true}"
+        [routerLink]="'overview'"
+        [preserveFragment]="false"
+        [queryParamsHandling]=""
+        routerLinkActive="active">
+        Overview
+      </a>
+      <a class="list-group-item list-group-item-action list-group-item-info font-roboto"
+        [routerLink]="'monthly'"
+        [preserveFragment]="false"
+        [queryParamsHandling]=""
+        routerLinkActive="active">
+        Monthly
+      </a>
+    </div>
+  </div>
+ 
+  <div class="col-md-9">
+    <router-outlet></router-outlet>
+  </div>
+</div>

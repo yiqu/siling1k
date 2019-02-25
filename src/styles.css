@@ -98,6 +98,10 @@ a.disabled {
   color: #990000;
 }
 
+.full-width {
+  width: 100%;
+}
+
 /* Rules for sizing the icon. */
 .material-icons.md-18 { vertical-align: sub; font-size: 18px; }
 .material-icons.md-24 { vertical-align: sub; font-size: 24px; }
