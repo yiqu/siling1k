@@ -75,7 +75,8 @@ export class DataService {
 
   saveDailySilingEntry(data: SilingEditable): Observable<HttpResponse<any>> {
     let url: string = this.getBaseUrl() + "items" + "/" + data.silingType + ".json";
-    const dataToPost = new SilingDailyData(data.date, +data.balance);
+    const dataToPost = new SilingDailyData(data.date, +((""+data.balance).replace(/,/g, '')));
+    console.log(dataToPost)
     return this.http.post<any>(url, dataToPost, {headers: headers, observe: 'response', 
       responseType: "json"}).pipe(
         //delay(3000)
