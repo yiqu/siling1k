@@ -50,7 +50,7 @@
     "@types/jasmine": "~2.8.8",
     "@types/jasminewd2": "~2.0.3",
     "@types/jquery": "~3.3.19",
-    "@types/bootstrap": "4.1.2",
+    "@types/bootstrap": "4.3.0",
     "@types/lodash": "^4.14.116",
     "@types/chart.js": "~2.7.44",
     "codelyzer": "~4.5.0",
