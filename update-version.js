@@ -1,6 +1,6 @@
 var request = require('request');
 var moment = require('moment');
-const URL = "https://kq-1-1a499.firebaseio.com/updateTime.json";
+const URL = "https://siling1k.firebaseio.com/updateTime.json";
 
 request.post(
     URL,
