@@ -28,4 +28,5 @@ deploy:
   local_dir: dist/siling1k/  # Only copy the /dist/siling1k contents (Angular > 6)
 
 after_deploy:
-- echo "Deployed to GH Pages!!!"
+  - echo "Deployed to GH Pages!!!"
+  - node update-version.js
