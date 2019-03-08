@@ -8,7 +8,8 @@ import { GraphService } from './graph.service';
 import { ChartGraphData } from '../shared/models/graph-data.model';
 import { ChartDataPoint } from '../shared/models/graph-datapoint.model'
 import { environment } from '../../environments/environment';
-import { Subject } from 'rxjs';
+import { Subject, interval, Subscription, Observable } from 'rxjs';
+import { map, share } from 'rxjs/operators';
 
 const fidDisplayImageUrl: string = "assets/images/fid_logo.jpg";
 const fidDisplayTitle: string = "Fidelity";
@@ -23,14 +24,34 @@ export class CalcService {
   @Output()
   onDataReloaded: Subject<PanelItem[]> = new Subject<PanelItem[]>();
 
+  todaySub$: Subject<boolean> = new Subject<boolean>();
+
   rawData: DataResponse;
   listOfPanels: Set<string> = new Set<string>();
   allPanelData: PanelItem[] = [];
 
-  today: any;
+  today: moment.Moment;
+  todayObs$: Observable<moment.Moment>;
 
-  constructor(public gs: GraphService) { 
-    this.today = moment();
+  constructor(public gs: GraphService) {
+    // sub to live clock
+    this.createLiveClickObs();
+    this.todayObs$.subscribe(
+      (val: moment.Moment) => {
+        this.today = val;
+      }
+    )
+  }
+
+  createLiveClickObs() {
+    this.todayObs$ = interval(1000).pipe(  
+      map(
+        (tick) => {
+          return moment();
+        }
+      ),
+      share()
+    );
   }
 
   getReturnPercent(data: ItemDetail[], reverse: boolean = true) {
@@ -40,6 +61,8 @@ export class CalcService {
         data[i].profit = profit;
         let percent = (profit / data[i-1].balance);
         data[i].profitPercent = percent;
+        // default the time to noon
+        data[i].date = data[i].date + " 12:00";
         let dateCreated = (moment(data[i].date, "MM-DD-YYYY HH:mm"));
         let age = dateCreated.from(this.today);
         data[i].age = age;

@@ -12,3 +12,8 @@
   color: #00b300;
   font-weight: 700;
 }
+
+.today-text {
+  float: right;
+  font-size: 13px;
+}

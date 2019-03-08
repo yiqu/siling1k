@@ -33,11 +33,19 @@ export class SilingSummaryComponent implements OnInit {
   totalSilingAmount: string = "";
   lastUpdatedInDays: number;
   silingDataSub$: Subscription = new Subscription();
-  today: any;
+  today: moment.Moment;
   showOverviewGraph: boolean = false;
+  dateFormat: string = "ddd MM/DD/YY hh:mm:ss A";
+  todayText: string = "";
 
   constructor(public cs: CalcService) {
     this.today = moment();
+    this.cs.todayObs$.subscribe(
+      (val: moment.Moment) => {
+        this.today = val;
+        this.todayText = this.today.format(this.dateFormat);
+      }
+    )
   }
 
   ngOnInit() {
