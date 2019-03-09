@@ -1,0 +1,149 @@
+{
+  "personal": {
+    "food": [
+      {
+        "name": "grocery",
+        "spent": 1234
+      },
+      {
+        "name": "chopstixx",
+        "spent": 1234
+      },
+      {
+        "name": "eatout",
+        "spent": 1234
+      },
+      {
+        "name": "other",
+        "spent": 222
+      }
+    ],
+    "transport": [
+      {
+        "name": "gas",
+        "spent": 222
+      },
+      {
+        "name": "tires",
+        "spent": 221
+      }
+    ],
+    "cat": [
+      {
+        "name": "food",
+        "spent": 21
+      }
+
+    ],
+    "other": [
+      {
+        "name": "cake",
+        "spent": 150
+      }
+    ],
+    "melaleuca": [
+      {
+        "name": "online",
+        "spent": 140
+      }
+    ],
+    "massage": [
+      {
+        "name": "Massage Envy",
+        "spent": 50
+      }
+    ],
+    "cellphone": [
+      {
+        "name": "verizon",
+        "spent": 222
+      }
+    ],
+    "carPayment": [
+      {
+        "name": "Honda",
+        "spent": 395
+      }
+    ]
+
+  },
+  "house": {
+    "bge": [
+      {
+        "name": "BGE Gas and Eletric",
+        "spent": 120
+      },
+      {
+        "name": "BGE extra work",
+        "spent": 20
+      }
+    ],
+    "water": [
+      {
+        "name": "Ann Arundel County",
+        "spent": 30
+      }
+    ],
+    "internet": [
+      {
+        "name": "Verizon",
+        "spent": 39.99
+      }
+    ],
+    "frontFoot": [
+      {
+        "name": "County",
+        "spent": 40
+      }
+    ],
+    "hoa": [
+      {
+        "name": "HOA",
+        "spent": 40
+      }
+    ],
+    "homeImprovment": [
+      {
+        "name": "Home Depot",
+        "spent": 100
+      },
+      {
+        "name": "Other",
+        "spent": 222
+      }
+    ],
+    "mortgage": [
+      {
+        "name": "Eagle Homes",
+        "spent": 4500
+      }
+    ]
+
+  },
+  "tith": {
+    "tith": [
+      {
+        "name": "The Cause",
+        "spent": 1100
+      }
+    ]
+  },
+  
+  "income": {
+    "income": [
+      {
+        "name": "John",
+        "spent": 20000
+      },
+      {
+        "name": "Jake",
+        "spent": 30100
+      }
+    ]
+    
+  },
+  "summary": {
+    "saving": -209
+  }
+
+}
