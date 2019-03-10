@@ -9,11 +9,14 @@
     <div class="card drill-card">
       <div class="card-body">
         <h5 class="font-roboto">Overview</h5>
+
         <div class="drill-card-body">
           <p class="font-thin">See an overview of your budget.</p>
         </div>
         
-        <a [routerLink]="['./overview']" class="btn btn-info">Go to Overview</a>
+        <div class="mt-3">
+          <a [routerLink]="['./overview']" class="btn btn-info">Go to Overview</a>
+        </div>
       </div>
     </div>
   </div>
@@ -21,7 +24,9 @@
   <div class="col-md-6">
     <div class="card drill-card">
       <div class="card-body">
+
         <h5 class="font-roboto">Monthly</h5>
+
         <div class="drill-card-body">
           <p class="font-thin">See a monthly report of your budget.</p>
           <select class="form-control">
