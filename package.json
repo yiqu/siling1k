@@ -39,7 +39,6 @@
     "jquery": "~3.3.1",
     "lodash": "^4.17.11",
     "moment": "~2.22.2",
-    "ngx-scrollbar": "^4.1.1",
     "ngx-toastr": "^9.1.2",
     "rxjs": "~6.3.3",
     "zone.js": "~0.8.26"

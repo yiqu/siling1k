@@ -10,7 +10,6 @@ import { BudgetLandingComponent } from './landing/budget-landing.component';
 import { BudgetRoutingModule } from './budget-routing.module';
 import { BudgetComponent } from './budget.component';
 import { BudgetOverviewComponent } from './overview/budget-overview.component';
-import { NgScrollbarModule } from 'ngx-scrollbar';
 
 @NgModule({
   declarations: [
@@ -24,7 +23,6 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
     RouterModule,
     FormsModule,
     SilingFormModule,
-    NgScrollbarModule,
     LoadingModule,
     PipeModule,
     SilingModalModule,
