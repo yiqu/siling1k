@@ -20,6 +20,8 @@ import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
 import { AboutService } from './service/about.service';
 import { BudgetModule } from './budget/budget.module';
+import { BudgetService } from './service/budget.service';
+import { NgScrollbarModule } from 'ngx-scrollbar';
 
 @NgModule({
   declarations: [
@@ -55,6 +57,7 @@ import { BudgetModule } from './budget/budget.module';
     LoadingBarHttpClientModule,
     LoadingBarRouterModule,
     BudgetModule,
+    NgScrollbarModule,
     AppRoutingModule
   ],
 
@@ -64,7 +67,8 @@ import { BudgetModule } from './budget/budget.module';
     DataService,
     TitleService,
     AdminService,
-    AboutService
+    AboutService,
+    BudgetService
   ],
 
   bootstrap: [

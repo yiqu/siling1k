@@ -26,4 +26,11 @@ export class Utils {
       $('[data-toggle="tooltip"]').tooltip();
     },2000);
   }
+
+  public static getObjectKeys(obj: any): string[] {
+    let keys = Object.keys(obj);
+    return keys;
+  }
+
+  
 }

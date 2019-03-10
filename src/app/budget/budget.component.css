@@ -1,0 +1,8 @@
+.monthly-nav {
+  max-height: 400px;
+  overflow: hidden;
+}
+
+.monthly-nav:hover {
+  overflow-y: scroll;
+}

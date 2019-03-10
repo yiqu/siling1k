@@ -27,7 +27,7 @@ export class FormInputArrayComponent implements OnInit {
   ngOnInit() {
   }
 
-  getObjectKeys(obj: any): string[] {
+  public getObjectKeys(obj: any): string[] {
     let keys = Object.keys(obj);
     return keys;
   }

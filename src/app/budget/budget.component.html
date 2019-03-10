@@ -4,19 +4,41 @@
 <hr>
 
 <div class="row">
-  <div class="col-md-3">
+  <div class="col-md-3" id="budget-left-nav" *ngIf="leftNavLoaded; else loading">
     <div class="list-group">
-      <a [ngClass]="{'list-group-item':true, 'list-group-item-action':true, 
+      <li class="list-group-item">Menu</li>
+      <a *ngFor="let item of leftNavTopGroup"
+        [ngClass]="{'list-group-item':true, 'list-group-item-action':true, 
           'list-group-item-info':true, 'font-roboto':true}"
-        [routerLink]="'overview'"
+        [routerLink]="item.url"
         [preserveFragment]="false"
         [queryParamsHandling]=""
         routerLinkActive="active">
-        Overview
+          {{item.display}}
       </a>
-      
+    </div>
+
+    <div class="list-group mt-3">
+      <li class="list-group-item">Past Entries ({{leftNavMonthGroup.length}})</li>
+      <div class="monthly-nav">
+        <a *ngFor="let item of leftNavMonthGroup"
+        [ngClass]="{'list-group-item':true, 'list-group-item-action':true, 
+          'list-group-item-info':true, 'font-roboto':true}"
+        [routerLink]="[monthPath ,item.url]"
+        [preserveFragment]="false"
+        [queryParamsHandling]=""
+        routerLinkActive="active">
+          {{item.display}}
+        </a>
+      </div>
     </div>
   </div>
+
+  <ng-template #loading>
+    <div class="col-md-3 list-group">
+      <li class="list-group-item">Loading...</li>
+    </div>
+  </ng-template>
  
   <div class="col-md-9">
     <router-outlet></router-outlet>
