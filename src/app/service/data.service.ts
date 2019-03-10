@@ -128,9 +128,36 @@ export class DataService {
   }
 
   /**
+   * GET request
+   * @param url 
+   * @param type 
+   */
+  getData<T>(url: string, type?: string): Observable<HttpResponse<T>> {
+    let getUrl = this.buildBaseUrl() + url;
+    return this.http.get<T>(getUrl, {headers: headers, observe: 'response', responseType: 'json'}).pipe(
+      timeout(4000),
+      retryWhen(errors => {
+        let errorCount = 0;
+        return errors.pipe(
+          delayWhen(() => timer(2000)),
+          take(5),
+          tap((res) => {
+            errorCount += 1;
+            this.ts.error("Error: " + res.message + ". <br>Retrying now. (" +errorCount+")/5" , "Error")
+          })
+        );
+      }),
+    )
+  }
+
+  /**
    * Construct URL based on Prod/Dev mode
    */
   getBaseUrl(): string {
     return environment.production ? "https://siling1k.firebaseio.com/panel/" : "https://kq-1-1a499.firebaseio.com/panel2/"
+  }
+
+  buildBaseUrl(): string {
+    return environment.production ? "https://siling1k.firebaseio.com/" : "https://kq-1-1a499.firebaseio.com/"
   }
 }
