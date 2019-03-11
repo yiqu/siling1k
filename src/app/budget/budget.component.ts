@@ -75,6 +75,7 @@ export class BudgetComponent implements OnInit {
     }
     //sort by year, then month
     this.leftNavMonthGroup = _.sortBy(this.leftNavMonthGroup, ['year', 'month']);
+    this.leftNavMonthGroup.reverse();
   }
 
   

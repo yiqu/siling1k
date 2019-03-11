@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from "@angular/forms";
 import { SilingFormModule } from '../shared/forms/form-barrel.module';
 import { PipeModule } from '../pipes/pipe-barrel.module';
 import { LoadingModule } from '../shared/loading/loading.module';
@@ -10,18 +9,19 @@ import { BudgetLandingComponent } from './landing/budget-landing.component';
 import { BudgetRoutingModule } from './budget-routing.module';
 import { BudgetComponent } from './budget.component';
 import { BudgetOverviewComponent } from './overview/budget-overview.component';
+import { BudgetAddNewComponent } from './add/add.component';
 
 @NgModule({
   declarations: [
     BudgetComponent,
     BudgetLandingComponent,
-    BudgetOverviewComponent
+    BudgetOverviewComponent,
+    BudgetAddNewComponent
   ],
   
   imports: [
     CommonModule,
     RouterModule,
-    FormsModule,
     SilingFormModule,
     LoadingModule,
     PipeModule,
