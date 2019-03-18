@@ -43,7 +43,6 @@ export class BudgetComponent implements OnInit {
     this.leftNavLoaded = false;
     this.bs.budgetAll$ = this.bs.getAllBudget().subscribe(
       (res: any) => {
-        console.log(res)
         this.bugetAllData = res;
         if (this.bugetAllData) {
           this.entryDates = Utils.getObjectKeys(this.bugetAllData);
@@ -75,6 +74,7 @@ export class BudgetComponent implements OnInit {
     }
     //sort by year, then month
     this.leftNavMonthGroup = _.sortBy(this.leftNavMonthGroup, ['year', 'month']);
+    this.leftNavMonthGroup.reverse();
   }
 
   

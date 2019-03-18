@@ -1,0 +1,29 @@
+<h4 class="text-center">Budget Report {{today.format('MM/YY')}}</h4>
+
+<form [formGroup]="budgetFormGroup">
+  <div class="form-group" *ngFor="let mainTopic of budgetTopics" [formGroupName]="mainTopic">
+    <div>
+      {{mainTopic | titlecase}}
+    </div>
+
+    <div *ngFor="let subTopic of getTopicArr(mainTopic)" [formArrayName]="subTopic">
+      {{subTopic}}
+
+      <div *ngFor="let fg of budgetFormGroup.get(mainTopic).get(subTopic).controls; let i=index">
+        #{{i+1}}
+        <div [formGroupName]="i">
+          <div *ngFor="let basic of basicControl" class="form-group">
+            <label>
+              {{basic}}
+              <input type="text" [formControlName]="basic">
+            </label>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    
+
+  </div>
+
+</form>
