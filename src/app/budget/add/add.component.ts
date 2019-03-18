@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormArray, FormControl, Validators, FormBuilder } from "@angular/forms"
 import { AboutService } from './../../service/about.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-budget-add',
@@ -18,19 +19,23 @@ export class BudgetAddNewComponent implements OnInit {
   personalTopics: any[] = ["carPayment", "cat", "cellphone", "food", "massage", "melaleuca", "transport", "other"];
   tithTopics: any[] = ["tith"];
   incomeTopics: any[] = ["income"];
+  basicControl: string[] = ["name", "spent"];
 
   // Main FromGroup
   budgetFormGroup: FormGroup;
+  today: moment.Moment;
 
   constructor(public fb: FormBuilder, public as: AboutService) {
     this.budgetFormGroup = new FormGroup({});
+    this.today = moment();
   }
 
   ngOnInit() {
     this.createBudgetFg();
 
-    console.log(this.budgetFormGroup)
+    console.log(this.budgetFormGroup.controls)
     console.log(this.houseFg.get("bge"))
+    console.log(this.bgeArray.at(0))
 
   }
 
@@ -42,7 +47,7 @@ export class BudgetAddNewComponent implements OnInit {
     return this.budgetFormGroup.get("personal");
   }
 
-  get TithFg() {
+  get tithFg() {
     return this.budgetFormGroup.get("tith");
   }
 
@@ -50,6 +55,9 @@ export class BudgetAddNewComponent implements OnInit {
     return this.budgetFormGroup.get("income");
   }
 
+  get bgeArray() {
+    return this.houseFg.get('bge') as FormArray;
+  }
 
   /**
    * Create all form groups
@@ -96,6 +104,21 @@ export class BudgetAddNewComponent implements OnInit {
     return this.fb.array([fg]);
   }
 
-
+  getTopicArr(mainTopic: string): string[] {
+    switch(mainTopic) {
+      case "house": {
+        return this.houseTopics;
+      }
+      case "personal": {
+        return this.personalTopics;
+      }
+      case "tith": {
+        return this.tithTopics;
+      }
+      case "income": {
+        return this.incomeTopics;
+      }
+    }
+  }
 
 }

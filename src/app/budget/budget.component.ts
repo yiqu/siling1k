@@ -43,7 +43,6 @@ export class BudgetComponent implements OnInit {
     this.leftNavLoaded = false;
     this.bs.budgetAll$ = this.bs.getAllBudget().subscribe(
       (res: any) => {
-        console.log(res)
         this.bugetAllData = res;
         if (this.bugetAllData) {
           this.entryDates = Utils.getObjectKeys(this.bugetAllData);
