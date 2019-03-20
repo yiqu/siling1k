@@ -29,8 +29,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   graphSize: string;
 
   panelDataSub$: Subscription = new Subscription();
-  graphDataSub$: Subject<any> = new Subject<any>();
-  graphConfigSub$: Subject<any> = new Subject<any>();
+  graphDataSub$: Subscription = new Subscription();
+  graphConfigSub$: Subscription = new Subscription();
 
   // holds all of the panel data (caluclated already) to be displayed
   allPanelData: PanelItem[] = null;

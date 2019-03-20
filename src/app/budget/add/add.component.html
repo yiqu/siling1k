@@ -3,7 +3,9 @@
 <form [formGroup]="budgetFormGroup">
   <div class="form-group" *ngFor="let mainTopic of budgetTopics" [formGroupName]="mainTopic">
     <div>
-      {{mainTopic | titlecase}}
+      <h5>
+        {{mainTopic | titlecase}}
+      </h5>
     </div>
 
     <div *ngFor="let subTopic of getTopicArr(mainTopic)" [formArrayName]="subTopic">
@@ -22,8 +24,5 @@
       </div>
 
     </div>
-    
-
   </div>
-
 </form>

@@ -10,6 +10,7 @@ import { BudgetRoutingModule } from './budget-routing.module';
 import { BudgetComponent } from './budget.component';
 import { BudgetOverviewComponent } from './overview/budget-overview.component';
 import { BudgetAddNewComponent } from './add/add.component';
+import { MaterialModule } from '../shared/barrels/material.module';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { BudgetAddNewComponent } from './add/add.component';
     LoadingModule,
     PipeModule,
     SilingModalModule,
-    BudgetRoutingModule
+    BudgetRoutingModule,
+    MaterialModule
   ],
 
   exports: [
