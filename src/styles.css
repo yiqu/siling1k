@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:100i,300i,300,400,400i');
 @import url('https://fonts.googleapis.com/css?family=Indie+Flower');
 @import url('https://fonts.googleapis.com/css?family=Orbitron');
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 p {
   font-family: 'Roboto', sans-serif;
