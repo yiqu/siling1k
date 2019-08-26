@@ -15,7 +15,7 @@ export class GraphComponent implements OnInit, OnChanges {
   config: any
   @Input()
   size: string;
-  @ViewChild('lineChart') 
+  @ViewChild('lineChart', { static: true }) 
   private chartRef;
 
   chart: any;
