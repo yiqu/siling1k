@@ -44,8 +44,6 @@ export class PanelEditComponent implements OnInit {
         if (params) {
           this.currentlyEditing = params["editingId"];
           this.getDateSelection(this.currentlyEditing, params["dateToEdit"]);
-        } else {
-          this.currentlyEditing = null;
         }
       }
     );
@@ -88,7 +86,9 @@ export class PanelEditComponent implements OnInit {
   }
 
   getDateSelection(editingId: string, dateToEdit: string) {
-    this.as.getDataForSinglePanel(editingId, dateToEdit);
+    if (editingId) {
+      this.as.getDataForSinglePanel(editingId, dateToEdit);
+    }
   }
 
   onSilingTypeEditChange() {
