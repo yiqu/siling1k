@@ -14,7 +14,7 @@ import { PanelEditComponent } from './admin/edit/edit-panel.component';
  //Root routes for app
 const routes: Routes = [
   { path: 'home', component: HomeComponent, data: {title: 'Home'} },
-  { path: 'about', loadChildren: "./about/about.module#AboutModule" },
+  { path: 'about', loadChildren: () => import('./about/about.module').then(m => m.AboutModule) },
   { path: 'details', redirectTo: '/home', pathMatch: 'full' },
   { path: 'details/:panelId', component: DetailsComponent, 
     data: {pageTitle: "Details"},

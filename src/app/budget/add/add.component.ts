@@ -34,7 +34,7 @@ export class BudgetAddNewComponent implements OnInit {
     this.createBudgetFg();
 
     console.log(this.budgetFormGroup.controls)
-    console.log(this.houseFg.get("bge"))
+    //console.log(this.houseFg.get("bge"))
     console.log(this.bgeArray.at(0))
 
   }

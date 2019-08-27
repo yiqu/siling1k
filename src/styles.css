@@ -3,6 +3,7 @@
 @import url('https://fonts.googleapis.com/css?family=Indie+Flower');
 @import url('https://fonts.googleapis.com/css?family=Orbitron');
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import '~ngx-toastr/toastr';
 
 p {
   font-family: 'Roboto', sans-serif;
