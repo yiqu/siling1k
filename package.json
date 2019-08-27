@@ -75,8 +75,8 @@
     "tslint": "~5.11.0"
   },
   "engines": {
-    "node": "10.6.0",
-    "npm": "6.4.1"
+    "node": "12.9.1",
+    "npm": "6.10.2"
   },
   "heroku-run-build-script": true
 }
