@@ -37,7 +37,7 @@
     "chartjs-plugin-datalabels": "^0.5.0",
     "core-js": "^2.5.4",
     "jquery": "~3.4.0",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.19",
     "moment": "~2.22.2",
     "ngx-toastr": "^10.1.0",
     "rxjs": "~6.5.2",
